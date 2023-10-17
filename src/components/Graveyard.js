@@ -150,6 +150,7 @@ const Graveyard = ({ onPass }) => {
                 message = 'Please try again. Remember to check your spelling.' 
                 isDisplayed = {tryAgainMessage}
                 marginTop='1rem'
+                color='black'
             />
         </div>
         <div className="headstones" >

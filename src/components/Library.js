@@ -89,22 +89,23 @@ const Library = ({ onPass }) => {
             <img className="library-ghost" src ={Ghost}/>
             <div className='riddles'>
             {riddles.map((riddle, index) => (
-            <Riddle 
-                key={index} 
-                riddle={riddle.riddle} 
-                units={riddle.units}
-                onAnswerChange={(value) => {
-                    const newAnswers = [...userAnswers];
-                    newAnswers[index] = value;
-                    setUserAnswers(newAnswers);
-                }} 
-            />
-            ))}
+                <Riddle 
+                    key={index} 
+                    riddle={riddle.riddle} 
+                    units={riddle.units}
+                    onAnswerChange={(value) => {
+                        const newAnswers = [...userAnswers];
+                        newAnswers[index] = value;
+                        setUserAnswers(newAnswers);
+                    }} 
+                />
+                ))}
                 <button className='library-btn' onClick={checkAnswers}>Submit</button>
                 <TryAgain
                     message = 'Please Try Again' 
                     isDisplayed={showTryAgainMessage} 
                     marginTop='1rem'
+                    color='black'
                 />
             </div>
         </div>

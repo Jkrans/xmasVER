@@ -111,7 +111,7 @@ const ImageEquationRow = ({onPass}) => {
       <TryAgain 
         message = 'Please Try Again' 
         isDisplayed={tryAgainMessage} 
-        color='rgb(237, 97, 97, 1)' 
+        color='black' 
         marginTop='1rem'
       />
       </>

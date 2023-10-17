@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Jackstein from '../images/jackstein.png'
 
 const TryAgainMessage = ({ message, isDisplayed, color, marginTop }) => {
   const [visibility, setVisibility] = useState(isDisplayed ? 'visible' : 'hidden');  
@@ -10,7 +11,6 @@ const TryAgainMessage = ({ message, isDisplayed, color, marginTop }) => {
           setVisibility('visible');
           timer = setTimeout(() => {
               setVisibility('hidden');
-              console.log('set hidden')
             }, 10000); // hide after 10 seconds
         } else setVisibility('hidden');
         
@@ -18,11 +18,16 @@ const TryAgainMessage = ({ message, isDisplayed, color, marginTop }) => {
   }, [isDisplayed]);
 
   return (
-    <p style={{
-        color: color, 
-        marginTop: marginTop, 
-        visibility: visibility,
-    }}>{message}</p>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center', 
+      marginTop: marginTop, 
+      visibility: visibility, }}>
+      <img src={Jackstein} width='30px'/>
+      <p style = {{ color: color, fontSize: '1rem' }}className='speech-bubble'>{message}</p>
+
+    </div>
   );
 }
 

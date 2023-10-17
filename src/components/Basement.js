@@ -124,7 +124,7 @@ const Basement = ({ onPass }) => {
                     <div>
                         <input type="text" placeholder='Secret Code...' onChange={(e) => setUserAnswer(e.target.value)}/>
                         <button className='basement-btn' onClick={checkAnswer}>Submit Code</button>
-                        <TryAgain message='Please Try Again' isDisplayed={showTryAgainMessage} marginTop='1rem'/>
+                        <TryAgain message='Please Try Again' isDisplayed={showTryAgainMessage} marginTop='1rem' color='black'/>
 
                     </div>
     

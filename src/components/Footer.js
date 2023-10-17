@@ -1,5 +1,4 @@
 
-
 const Footer = (props) => {
 
   const currentYear = new Date().getFullYear();
@@ -13,8 +12,9 @@ const Footer = (props) => {
         </a> 
       ))}
       </div>
-      <p style={{display: 'inline'}}>Created by {props.designers} - Flaticon</p>
-      <p>Copyright © {currentYear} Jeremy Krans. All Rights Reserved.</p>
+      <p style={{display: 'inline'}}>Icons created by {props.designers} - Flaticon</p>
+      <p>Copyright © {currentYear} Jeremy Krans. All Rights Reserved.</p>       
+      
     </div>
   )
 }

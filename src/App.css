@@ -249,15 +249,10 @@ body {
   width: 100%;
 }
 
-.riddles p {
+.riddles p:not(:last-child) {
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 2rem;
-}
-
-.riddles > p:last-of-type {
-  color: rgb(255, 0, 0, 0.55);
-  text-align: center;
 }
 
 .answer-p {
@@ -731,6 +726,29 @@ body {
   top: 22rem;
   left: 28rem;
   transform: scaleX(-1);
+}
+
+.speech-bubble {
+	position: relative;
+	background: #d6d6d6;
+	border-radius: .4em;
+  padding: .2rem .5rem;
+  margin-left: 1rem;
+}
+
+.speech-bubble:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-right-color: #d6d6d6;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -5px;
+	margin-left: -10px;
 }
 
 .fade-in {
