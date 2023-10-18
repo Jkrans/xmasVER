@@ -11,7 +11,7 @@ const riddles = [
     },
     {
         question: "A zombie, a mummy, and a ghost bought a house. It has all of the usual rooms except for one. What room won't you find?",
-        answer: ['living room'],
+        answer: ['living room', 'livingroom'],
         isSolved: false,
     },
     {
@@ -26,7 +26,7 @@ const riddles = [
     },
     {
         question: "How do you fix a damaged jack-o-lantern?",
-        answer: ['pumpkin patch'],
+        answer: ['pumpkin patch', 'pumpkinpatch'],
         isSolved: false,
     },
     {
@@ -36,7 +36,7 @@ const riddles = [
     },
     {
         question: "What do you get when you cross a snowman with a vampire?",
-        answer: ['frostbite'],
+        answer: ['frostbite', 'frost bite'],
         isSolved: false,
     },
     {
