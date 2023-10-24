@@ -31,7 +31,7 @@ const WitchesLair = ({onPass}) => {
   });
   return (
     <div className="main--witch">
-      <Story title="Witches Lair" story={story} color="rgb(0,0,0,0.7)"/ >
+      <Story title="Witches' Lair" story={story} color="rgb(0,0,0,0.7)"/ >
       <ImageEquationRow onPass={onPass}/>
       
     </div>

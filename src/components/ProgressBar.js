@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { CurrentComponentContext } from '../App';
 
 import Potion from '../images/purple-potion.png';

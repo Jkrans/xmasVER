@@ -1,6 +1,5 @@
 import {useEffect} from 'react'
 import HauntedHouse from '../images/haunted-house.png'
-import slime from '../images/wave.svg'
 
 const Start = ({onPass}) => {
 
