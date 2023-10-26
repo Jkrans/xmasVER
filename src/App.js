@@ -125,7 +125,7 @@ function App() {
       )}
 
       <div className={`${transitionClass}`}>
-        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowWitchesLair(true))} />}
+        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowBasement(true))} />}
         {currentComponent === 'WitchesLair' && <WitchesLair onPass={() => handlePass(() => setShowWitchesLair(false), () => setShowLibrary(true))} />}
         {currentComponent === 'Library' && <Library onPass={() => handlePass(() => setShowLibrary(false), () => setShowBasement(true))} />} 
         {currentComponent === 'Basement' && <Basement onPass={() => handlePass(() => setShowBasement(false), () => setShowGraveyard(true))} />}
