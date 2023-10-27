@@ -17,13 +17,13 @@ function extractLinkToObject(link) {
   let textMatch = link.match(/>(.*?)(?=\sicons)/);
 
   if (!hrefMatch || !titleMatch || !textMatch) {
-      throw new Error('Invalid link format');
+    throw new Error('Invalid link format');
   }
 
   return {
-      href: hrefMatch[1],
-      title: titleMatch[1],
-      text: textMatch[1].trim() // Trimming to remove potential extra spaces
+    href: hrefMatch[1],
+    title: titleMatch[1],
+    text: textMatch[1].trim() // Trimming to remove potential extra spaces
   };
 }
 
@@ -55,7 +55,7 @@ function App() {
   const [showWitchesLair, setShowWitchesLair] = useState(false);
   const [transitionClass, setTransitionClass] = useState('fade-in');
   const [currentComponent, setCurrentComponent] = useState('Start');
-  const [formattedTime, setFormattedTime] = useState(""); 
+  const [formattedTime, setFormattedTime] = useState("");
 
   const handleTimeUpdate = (time) => {
     setFormattedTime(time);
@@ -63,12 +63,12 @@ function App() {
 
   const setFadeTransition = (currentComponentName) => {
     setTransitionClass('fade-out');
-      const timer = setTimeout(() => {
-        setCurrentComponent(currentComponentName);
-        window.scrollTo(0, 0);
-        setTransitionClass('fade-in');
-      }, 2000);
-      return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      setCurrentComponent(currentComponentName);
+      window.scrollTo(0, 0);
+      setTransitionClass('fade-in');
+    }, 2000);
+    return () => clearTimeout(timer);
   }
 
   useEffect(() => {
@@ -111,30 +111,30 @@ function App() {
   }
 
   return (
-    <div className="App">      
+    <div className="App">
       {currentComponent !== 'Start' && currentComponent !== 'NoEscape' && (
         <>
           <CurrentComponentContext.Provider value={currentComponent}>
             <Header />
           </CurrentComponentContext.Provider>
           {currentComponent !== 'Escaped' && (
-            <Countdown onTimeUpdate={handleTimeUpdate} onCountdownEnd={() => handleCountdownEnd(() => setShowNoEscape(true))}/>
+            <Countdown onTimeUpdate={handleTimeUpdate} onCountdownEnd={() => handleCountdownEnd(() => setShowNoEscape(true))} />
           )}
-          
+
         </>
       )}
 
       <div className={`${transitionClass}`}>
-        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowBasement(true))} />}
+        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowWitchesLair(true))} />}
         {currentComponent === 'WitchesLair' && <WitchesLair onPass={() => handlePass(() => setShowWitchesLair(false), () => setShowLibrary(true))} />}
-        {currentComponent === 'Library' && <Library onPass={() => handlePass(() => setShowLibrary(false), () => setShowBasement(true))} />} 
+        {currentComponent === 'Library' && <Library onPass={() => handlePass(() => setShowLibrary(false), () => setShowBasement(true))} />}
         {currentComponent === 'Basement' && <Basement onPass={() => handlePass(() => setShowBasement(false), () => setShowGraveyard(true))} />}
         {currentComponent === 'Graveyard' && <Graveyard onPass={() => handlePass(() => setShowGraveyard(false), () => setShowEscaped(true))} />}
-        {currentComponent === 'Escaped' && <Escaped formattedTime={formattedTime}/>}
+        {currentComponent === 'Escaped' && <Escaped formattedTime={formattedTime} />}
         {currentComponent === 'NoEscape' && <NoEscape onPass={() => handlePass(() => setShowNoEscape(false), () => setShowStart(true))} />}
       </div>
 
-      <Footer flaticonLinks={flaticonLinks} designers = 'Jack Krans, Freepik, Jesus Chavarria, Tempo_doloe, Wanicon, Eucalyp, and designbydai'/>
+      <Footer flaticonLinks={flaticonLinks} designers='Jack Krans, Freepik, Jesus Chavarria, Tempo_doloe, Wanicon, Eucalyp, and designbydai' />
     </div>
   );
 }
