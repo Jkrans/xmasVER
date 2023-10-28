@@ -1,8 +1,8 @@
-import {useState, useEffect, useRef} from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const CountdownTimer = ({ onCountdownEnd, onTimeUpdate }) => {
     const [timer, setTimer] = useState(40 * 60);
-    
+
     const hasEnded = useRef(false); // to help ensure onCountdownEnd is only called once
 
     // Function to format the time
@@ -13,7 +13,7 @@ const CountdownTimer = ({ onCountdownEnd, onTimeUpdate }) => {
     };
 
     useEffect(() => {
-        const interval = setInterval(() =>{
+        const interval = setInterval(() => {
             setTimer((prevTimer) => {
                 if (prevTimer <= 0) {
                     clearInterval(interval);
@@ -28,7 +28,7 @@ const CountdownTimer = ({ onCountdownEnd, onTimeUpdate }) => {
                 return prevTimer - 1;
             })
         }, 1000);
-        
+
         return () => {
             clearInterval(interval);
         }
@@ -37,8 +37,8 @@ const CountdownTimer = ({ onCountdownEnd, onTimeUpdate }) => {
     return (
         <div className="countdown">
             <div>
-                <p>RIP in:</p>
-                <p>{formatTime(timer)}</p>    
+                <p>Cooked in:</p>
+                <p>{formatTime(timer)}</p>
             </div>
         </div>
     )

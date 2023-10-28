@@ -3,7 +3,7 @@
   src: url('./fonts/PigpenCipher.otf');
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&family=Shadows+Into+Light&display=swap');
 
 :root {
   box-sizing: border-box;
@@ -14,9 +14,9 @@
 }
 
 body {
-  background: linear-gradient(var(--witch-green), var(--witch-purple)); 
+  background: linear-gradient(var(--witch-green), var(--witch-purple));
   overflow-x: hidden;
-  font-family: 'Young Serif', serif;
+  font-family: 'Gabarito', sans-serif;
 }
 
 .start-page {
@@ -25,26 +25,32 @@ body {
   align-items: center;
   width: 100vw;
   height: calc(100vh);
-  font-family: 'Nosifer';
+  font-family: 'Shadows Into Light';
+  font-size: 1.7rem;
 }
 
 .start-page button {
   margin-top: 3rem;
   padding: 0.5rem;
   padding-top: 0.6rem;
-  background-color: rgb(0, 164, 33);
+  background-color: rgb(220, 161, 12);
   border: none;
-  box-shadow: 1px 2px 5px rgb(37, 0, 57);
+  box-shadow: 1px 2px 5px rgb(57, 48, 0);
   font-size: 200%;
-  font-family: 'Nosifer';
+  font-family: 'Shadows Into Light';
   letter-spacing: 1rem;
   border-radius: 12px;
   width: 100%;
 }
 
 .start-page button:hover {
-  box-shadow: inset 1px 2px 5px rgb(0, 81, 16);
+  box-shadow: inset 1px 2px 5px rgb(137, 100, 7);
   transform: translate(0.1rem, 0.2rem);
+}
+
+.gravy {
+  position: absolute;
+  z-index: -1;
 }
 
 .header {
@@ -53,11 +59,12 @@ body {
   top: 0;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.1)
+
+  /* background-color: rgba(0, 0, 0, 0.1) */
 }
 
 .header--h1 {
-  font-family: 'Nosifer';
+  font-family: 'Shadows Into Light';
   color: var(--witch-purple);
   font-size: 1.7rem;
   margin-left: 1rem;
@@ -76,7 +83,7 @@ body {
   position: sticky;
   top: 6rem;
   left: 2rem;
- }
+}
 
 .countdown div {
   display: flex;
@@ -88,7 +95,7 @@ body {
 .countdown div p {
   font-weight: bold;
   margin: 0;
-  font-family: "Courier New", Monaco, monospace;
+  font-family: "Play", Monaco, monospace;
 }
 
 .story-content {
@@ -101,15 +108,15 @@ body {
 }
 
 .story-content h2 {
-  font-family: 'Nosifer';
-  font-size: 3.5rem;
+  font-family: 'Shadows Into Light';
+  font-size: 4rem;
   letter-spacing: 1rem;
 }
 
 .story-content p {
-  font-size: 1.15rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  font-family: 'Young Serif', serif;
+  font-family: 'Gabarito', sans-serif;
 }
 
 .main--witch {
@@ -118,7 +125,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  
+
 }
 
 .image--row {
@@ -139,12 +146,12 @@ body {
   border: 1px solid black;
   margin: 1rem 2rem;
   padding: 1rem;
-  width: var(--divSize); 
-  height: var(--divSize); 
+  width: var(--divSize);
+  height: var(--divSize);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow:  3px 6px 20px rgb(40, 40, 40);
+  box-shadow: 3px 6px 20px rgb(40, 40, 40);
 
 }
 
@@ -177,18 +184,19 @@ body {
   width: 30%;
   padding: 0.5rem;
   padding-top: 0.6rem;
-  background-color: rgb(0, 125, 60);
+  background-color: rgb(97 147 0);
   border: none;
   box-shadow: 1px 2px 5px rgb(37, 0, 57);
   font-size: 200%;
-  font-family: 'Nosifer';
+  font-family: 'Shadows Into Light';
   letter-spacing: 1rem;
   border-radius: 12px;
 }
 
 .brew-btn:hover {
   box-shadow: inset 1px 2px 5px rgb(0, 0, 0);
-  transform: translate(0.1rem, 0.2rem); /* This will shift the text inside the button to the right by 0.1rem and down by 0.2rem */
+  transform: translate(0.1rem, 0.2rem);
+  /* This will shift the text inside the button to the right by 0.1rem and down by 0.2rem */
 }
 
 .footer {
@@ -214,7 +222,7 @@ body {
 }
 
 .footer p {
-  margin:0.5rem 0 0 0 ;
+  margin: 0.5rem 0 0 0;
 }
 
 
@@ -222,9 +230,11 @@ body {
   0% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-20px);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -291,14 +301,15 @@ body {
   border: none;
   box-shadow: 1px 2px 5px rgb(0, 81, 16);
   font-size: 200%;
-  font-family: 'Nosifer';
+  font-family: 'Shadows Into Light';
   letter-spacing: 1rem;
   border-radius: 12px;
 }
 
 .library-btn:hover {
   box-shadow: inset 1px 2px 5px rgb(0, 81, 16);
-  transform: translate(0.1rem, 0.2rem); /* This will shift the text inside the button to the right by 0.1rem and down by 0.2rem */
+  transform: translate(0.1rem, 0.2rem);
+  /* This will shift the text inside the button to the right by 0.1rem and down by 0.2rem */
 }
 
 .pigpen {
@@ -307,7 +318,7 @@ body {
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   box-shadow: 5px 10px 30px rgb(0, 0, 0);
-  
+
 }
 
 .slide-in {
@@ -326,7 +337,7 @@ body {
   width: 75%;
 }
 
-.main-pp-wrapper > p {
+.main-pp-wrapper>p {
   color: #fff;
   width: 20%;
   align-self: flex-end;
@@ -355,7 +366,7 @@ body {
   width: 70%;
 }
 
-.pigpen-container > img {
+.pigpen-container>img {
   position: absolute;
   transform: rotate(90deg);
   width: 40em;
@@ -392,7 +403,7 @@ body {
   font-size: 1.1rem
 }
 
-.basement-btn {  
+.basement-btn {
   flex-grow: 1;
   padding: 0.7rem;
   padding-top: 0.9rem;
@@ -401,7 +412,7 @@ body {
   border: none;
   color: rgb(78, 92, 99);
   font-size: 150%;
-  font-family: 'Nosifer';
+  font-family: 'Shadows Into Light';
   letter-spacing: 0.5rem;
   border-radius: 12px;
   border: 2px solid rgb(0, 0, 0);
@@ -485,6 +496,7 @@ body {
   background-color: white;
   z-index: 1;
 }
+
 .progress-bar-bubble img {
   visibility: hidden;
 }
@@ -496,7 +508,7 @@ body {
 .progress-bar-line {
   height: 15px;
   margin: 0 -5px 0 -5px;
-  width:50px;
+  width: 50px;
   background-color: white;
   z-index: -1;
 }
@@ -505,6 +517,7 @@ body {
   /* background: linear-gradient(to right, var(--witch-purple), rgb(255, 255, 255)) */
   background: linear-gradient(to top right, rgb(255, 100, 25) 20%, rgb(255, 255, 255))
 }
+
 .progress-bar-full-color {
   /* background-color: var(--witch-purple); */
   background-color: rgb(255, 100, 25);
@@ -512,12 +525,13 @@ body {
 
 @keyframes spinGrow {
   0% {
-      transform: rotate(0deg);
-      width: 0rem;
+    transform: rotate(0deg);
+    width: 0rem;
   }
+
   100% {
-      transform: rotate(360deg);
-      width: 30rem;
+    transform: rotate(360deg);
+    width: 30rem;
   }
 }
 
@@ -540,18 +554,22 @@ body {
   width: 78%;
   flex-wrap: wrap;
 }
-.headstones > div {
+
+.headstones>div {
   position: relative;
-  overflow: hidden; /* This will contain the child's shadow */
+  overflow: hidden;
+  /* This will contain the child's shadow */
   padding-top: 3.5rem;
   clip-path: polygon(0 0, 100% 0, 100% 95%, 0 95%);
 }
-.headstones img { 
+
+.headstones img {
   width: 50%;
   border-radius: 50% 50% 0 0;
   z-index: 1;
-  
+
 }
+
 .headstone-glow {
   animation: bigGlow 1s ease-in forwards, glowingEffect 1s infinite alternate 1s;
   border-radius: 50% 50% 0 0;
@@ -566,7 +584,7 @@ body {
   0% {
     box-shadow: 0 0 70px 10px rgb(255, 21, 21);
   }
-  
+
   100% {
     box-shadow: 0 0 50px 4px #6c9c78;
   }
@@ -576,13 +594,13 @@ body {
   0% {
     box-shadow: 0 0 50px 5px #6c9c78;
   }
-  
+
   100% {
     box-shadow: 0 0 42px 4px #6c9c78;
   }
 }
 
-.headstones > div { 
+.headstones>div {
   position: relative;
   display: flex;
   justify-content: center;
@@ -600,7 +618,7 @@ body {
   margin-top: 2rem;
 }
 
-.graveyard-riddle input{
+.graveyard-riddle input {
   width: 20rem;
   height: 3rem;
   font-size: 1.8rem;
@@ -612,7 +630,7 @@ body {
   transition: border-bottom 500ms ease, width 500ms ease;
 }
 
-.graveyard-riddle input:focus{
+.graveyard-riddle input:focus {
   outline: none;
   width: 30rem;
   border-bottom: 2px solid rgb(255, 100, 25);
@@ -632,6 +650,7 @@ body {
 .visible {
   display: block;
 }
+
 .not-visible {
   display: none;
 }
@@ -672,7 +691,8 @@ body {
   position: relative;
 }
 
-.success-text h1 , p{
+.success-text h1,
+p {
   margin: 0;
 }
 
@@ -682,7 +702,7 @@ body {
   margin: 2rem 0 12rem 0;
 }
 
-.success-text img{
+.success-text img {
   position: absolute;
   top: 13rem;
   right: 0rem;
@@ -693,15 +713,16 @@ body {
   padding: 0 2rem 0 3rem;
   position: relative;
 }
+
 .failed h1 {
-  font-family: 'Nosifer';
+  font-family: 'Shadows Into Light';
   margin: 0;
 }
 
 .failed p {
   margin-top: 2rem;
   font-size: 1.5rem;
-  font-family: 'Young Serif', serif;
+  font-family: 'Gabarito', sans-serif;
 }
 
 .failed button {
@@ -709,7 +730,7 @@ body {
   width: 80%;
   border: none;
   font-size: 2rem;
-  font-family: 'Young Serif', serif;
+  font-family: 'Gabarito', sans-serif;
   background: rgb(207, 118, 0);
   color: rgb(206, 223, 242);
   border-radius: 5px;
@@ -717,7 +738,7 @@ body {
 }
 
 .failed button:hover {
-  background: rgb(177, 101, 0);  
+  background: rgb(177, 101, 0);
 }
 
 .pumpkin-looking {
@@ -729,26 +750,26 @@ body {
 }
 
 .speech-bubble {
-	position: relative;
-	background: #d6d6d6;
-	border-radius: .4em;
+  position: relative;
+  background: #d6d6d6;
+  border-radius: .4em;
   padding: .2rem .5rem;
   margin-left: 1rem;
 }
 
 .speech-bubble:before {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 50%;
-	width: 0;
-	height: 0;
-	border: 10px solid transparent;
-	border-right-color: #d6d6d6;
-	border-left: 0;
-	border-bottom: 0;
-	margin-top: -5px;
-	margin-left: -10px;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-right-color: #d6d6d6;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -5px;
+  margin-left: -10px;
 }
 
 .fade-in {

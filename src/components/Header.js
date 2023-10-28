@@ -1,12 +1,16 @@
 import ProgressBar from './ProgressBar'
+import gravy from '../images/gravy.svg'
 
 
 const Header = () => {
   return (
-    <main className="header">
-      <h1 className="header--h1">The Haunted Mansion Escape</h1>
-      <ProgressBar />
-    </main>
+    <>
+      <img className="gravy" src={gravy} />
+      <main className="header" >
+        <h1 className="header--h1">The Great Turkey Escape</h1>
+        <ProgressBar />
+      </main>
+    </>
   )
 }
 

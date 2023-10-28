@@ -28,19 +28,12 @@ function extractLinkToObject(link) {
 }
 
 const flaticonLinks = [
-  { href: 'https://www.flaticon.com/free-icons/potion', title: 'potion icons', text: 'Potion' },
-  { href: 'https://www.flaticon.com/free-icons/halloween', title: 'halloween icons', text: 'Halloween' },
-  { href: 'https://www.flaticon.com/free-icons/spider', title: 'spider icons', text: 'Spider' },
-  { href: 'https://www.flaticon.com/free-icons/ghost', title: 'ghost icons', text: 'Ghost' },
-  { href: 'https://www.flaticon.com/free-icons/hand-bones', title: 'hand bones icons', text: 'Hand bones' },
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/haunted-house" title="haunted house icons">Haunted house icons created by designbydai - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/disease" title="disease icons">Gravestone icons created by kerismaker - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/headstone" title="headstone icons">Headstone icons created by Tempo_doloe - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/skeleton" title="skeleton icons">Reaper icons created by Freepik - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/cloak" title="cloak icons">Cloak icons created by wanicon - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/entrance" title="entrance icons">Gate icons created by Eucalyp - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-animated-icons/pumpkin" title="pumpkin animated icons">Pumpkin icons created by Freepik - Flaticon</a>'),
-  { href: '', title: 'frank icon', text: 'Frank' },
+  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/turkey" title="turkey icons">Turkey icons created by Freepik - Flaticon</a>'),
+  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/corn-cob" title="corn cob icons">Corn cob icons created by Vectorslab - Flaticon</a>'),
+  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/pumpkin" title="pumpkin icons">Pumpkin icons created by Freepik - Flaticon</a>'),
+  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/green-beans" title="green-beans icons">Green-beans icons created by AomAm - Flaticon</a>'),
+  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/pumpkin-pie" title="pumpkin-pie icons">Pumpkin-pie icons created by amonrat rungreangfangsai - Flaticon</a>'),
+  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/mashed-potatoes" title="mashed potatoes icons">Mashed potatoes icons created by juicy_fish - Flaticon</a>'),
 ];
 
 export const CurrentComponentContext = createContext();
@@ -125,7 +118,7 @@ function App() {
       )}
 
       <div className={`${transitionClass}`}>
-        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowWitchesLair(true))} />}
+        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowGraveyard(true))} />}
         {currentComponent === 'WitchesLair' && <WitchesLair onPass={() => handlePass(() => setShowWitchesLair(false), () => setShowLibrary(true))} />}
         {currentComponent === 'Library' && <Library onPass={() => handlePass(() => setShowLibrary(false), () => setShowBasement(true))} />}
         {currentComponent === 'Basement' && <Basement onPass={() => handlePass(() => setShowBasement(false), () => setShowGraveyard(true))} />}
@@ -134,7 +127,7 @@ function App() {
         {currentComponent === 'NoEscape' && <NoEscape onPass={() => handlePass(() => setShowNoEscape(false), () => setShowStart(true))} />}
       </div>
 
-      <Footer flaticonLinks={flaticonLinks} designers='Jack Krans, Freepik, Jesus Chavarria, Tempo_doloe, Wanicon, Eucalyp, and designbydai' />
+      <Footer flaticonLinks={flaticonLinks} designers='Jack Krans, Freepik' />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
-import Cloak from '../images/cloak.png'
-import Gate from '../images/gate.png'
-import Pumpkin from '../images/pumpkin2.gif'
+// import Cloak from '../images/cloak.png'
+// import Gate from '../images/gate.png'
+// import Pumpkin from '../images/pumpkin2.gif'
 import Story from './Story'
 
 const story = [
@@ -25,7 +25,7 @@ const story = [
 
 const Escaped = ({ formattedTime }) => {
 
-    const [img, setImg] = useState(Cloak)
+    const [img, setImg] = useState('')
     const hasTriggered = useRef(false);
 
     // Set styles when the component mounts
@@ -36,27 +36,27 @@ const Escaped = ({ formattedTime }) => {
         footerLinks.forEach(link => {
             link.style.color = "rgb(138, 164, 255)";
         });
-      
+
         // Remove styles when the component unmounts
         return () => {
-          document.body.style.backgroundColor = '';
+            document.body.style.backgroundColor = '';
         };
-      }, []);
+    }, []);
 
     // fade out image and then fade in new images when user reaches certain scroll point.    
     const handleScroll = () => {
-        if(hasTriggered.current) return;
-        
+        if (hasTriggered.current) return;
+
         const successImg = document.querySelector('#success-img');
 
-        if(window.scrollY > 400) {
+        if (window.scrollY > 400) {
             hasTriggered.current = true;
 
             const fadeToGate = setTimeout(() => {
                 successImg.classList.add('fade-out');
-                
+
                 const showGate = setTimeout(() => {
-                    setImg(Gate);
+                    setImg('');
                     successImg.classList.replace('fade-out', 'fade-in');
                 }, 2000);
             }, 2000);
@@ -67,23 +67,23 @@ const Escaped = ({ formattedTime }) => {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
-             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleScroll);
         };
     });
 
-  return (
-    <div className="main--witch">
-        <Story title='Escaped' story={story} width='75%'/>
-        <div className='centerItems success'>
-            <img id='success-img' className='' src={img}/>
-            <div className='success-text centerItems'>
-                <h1 style={{fontFamily: 'Young Serif'}}>SPOOKTACULAR WORK!</h1>
-                <p>With a display of wit and cunning, you made your escape with <span style={{color: '#002473'}}>{formattedTime}</span> to spare. That was seriously impressive!</p>
-                <img src={Pumpkin} width='250px'/>
+    return (
+        <div className="main--witch">
+            <Story title='Escaped' story={story} width='75%' />
+            <div className='centerItems success'>
+                <img id='success-img' className='' src={img} />
+                <div className='success-text centerItems'>
+                    <h1 style={{ fontFamily: 'Young Serif' }}>SPOOKTACULAR WORK!</h1>
+                    <p>With a display of wit and cunning, you made your escape with <span style={{ color: '#002473' }}>{formattedTime}</span> to spare. That was seriously impressive!</p>
+                    <img src={''} width='250px' />
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Escaped

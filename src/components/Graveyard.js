@@ -3,55 +3,49 @@ import Story from './Story'
 import Headstone from './Headstone'
 import TryAgain from './TryAgainMessage'
 
-const riddles = [
-    {
-        question: "I'm tall when I'm young and I'm short when I'm old. What am I?",
-        answer: ['candle'],
-        isSolved: false,
-    },
-    {
-        question: "A zombie, a mummy, and a ghost bought a house. It has all of the usual rooms except for one. What room won't you find?",
-        answer: ['living room', 'livingroom'],
-        isSolved: false,
-    },
-    {
-        question: "What do you call a witch at the beach?",
-        answer: ['sandwich','sandwitch', 'sand witch', 'sand-witch'],
-        isSolved: false,
-    },
-    {
-        question: "What is a ghost's favorite dessert?",
-        answer: ['i-scream', 'ice cream', 'i scream', 'ice-cream'],
-        isSolved: false,
-    },
-    {
-        question: "How do you fix a damaged jack-o-lantern?",
-        answer: ['pumpkin patch', 'pumpkinpatch'],
-        isSolved: false,
-    },
-    {
-        question: "What is a mummy's favorite type of music?",
-        answer: ['wrap', 'rap'],
-        isSolved: false,
-    },
-    {
-        question: "What do you get when you cross a snowman with a vampire?",
-        answer: ['frostbite', 'frost bite'],
-        isSolved: false,
-    },
-    {
-        question: "The more you take away, the bigger I get. What am I?",
-        answer: ['grave'],
-        isSolved: false,
-    },
-    
-]
+// const riddles = [
+//     {
+//         question: "I'm tall when I'm young and I'm short when I'm old. What am I?",
+//         answer: ['candle'],
+//         isSolved: false,
+//     },
+//     {
+//         question: "A zombie, a mummy, and a ghost bought a house. It has all of the usual rooms except for one. What room won't you find?",
+//         answer: ['living room', 'livingroom'],
+//         isSolved: false,
+//     },
+//     {
+//         question: "What do you call a witch at the beach?",
+//         answer: ['sandwich', 'sandwitch', 'sand witch', 'sand-witch'],
+//         isSolved: false,
+//     },
+//     {
+//         question: "What is a ghost's favorite dessert?",
+//         answer: ['i-scream', 'ice cream', 'i scream', 'ice-cream'],
+//         isSolved: false,
+//     },
+//     {
+//         question: "How do you fix a damaged jack-o-lantern?",
+//         answer: ['pumpkin patch', 'pumpkinpatch'],
+//         isSolved: false,
+//     },
+//     {
+//         question: "What is a mummy's favorite type of music?",
+//         answer: ['wrap', 'rap'],
+//         isSolved: false,
+//     },
+//     {
+//         question: "What do you get when you cross a snowman with a vampire?",
+//         answer: ['frostbite', 'frost bite'],
+//         isSolved: false,
+//     },
+//     {
+//         question: "The more you take away, the bigger I get. What am I?",
+//         answer: ['grave'],
+//         isSolved: false,
+//     },
 
-// What do you get when you cross a snowman with a vampire?
-// Answer: Frostbite.
-
-// 
-//Answer: A grave.
+// ]
 
 const story = [
     "After unlocking the cage in the basement, relief floods over you. Before you can turn to thank your skeletal companion, you find his cage eerily empty, with just a soft chuckle echoing in the background as a reminder of his presence. The dim light allows you to spot a set of worn-out cellar doors across the room. Hopeful, you make your way over and push them open. A gust of cool air greets you. Stepping out, you find yourself not in the safety of the outdoors as you hoped, but instead, in an eerie, moonlit graveyard. Fog blankets the ground, and twisted trees stretch their skeletal branches toward the sky. This is no ordinary graveyard, and as you will soon discover, its residents aren't exactly resting in peace.",
@@ -69,35 +63,51 @@ const story = [
 
 
 const Graveyard = ({ onPass }) => {
+    const [riddles, setRiddles] = useState([]);
     const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0); // starts from the first riddle
     const [userInput, setUserInput] = useState('');
     const [tryAgainMessage, setTryAgainMessage] = useState(false);
+
+    useEffect(() => {
+        async function fetchRiddles() {
+            try {
+                const response = await fetch("http://localhost:3001/api/riddles");
+                const data = await response.json();
+                setRiddles(data);
+            } catch (err) {
+                console.error("An error occurred while fetching riddles:", err);
+            }
+        }
+
+        fetchRiddles();
+        // ... (rest of your existing useEffect code)
+    }, []);
 
     const handleInputChange = (e) => {
         setUserInput(e.target.value);
     };
 
     const handleSubmit = (e) => {
-        
+
         let gTimer;
-        e.preventDefault(); 
-      
-        let correct = riddles[currentRiddleIndex].answer.some(variant => 
-          userInput.toLowerCase().includes(variant.toLowerCase())
+        e.preventDefault();
+
+        let correct = riddles[currentRiddleIndex].answer.some(variant =>
+            userInput.toLowerCase().includes(variant.toLowerCase())
         );
-      
+
         if (correct) {
-          riddles[currentRiddleIndex].isSolved = true; 
-          if ((currentRiddleIndex === riddles.length - 1)) {
-            //End the game or display a message, etc.
-            onPass(true)
-            clearTimeout(gTimer);
-          } else {
-            setCurrentRiddleIndex((prevIndex) => prevIndex + 1); 
-            setUserInput('');
-            console.log('set to false')
-            setTryAgainMessage(false)
-          }
+            riddles[currentRiddleIndex].isSolved = true;
+            if ((currentRiddleIndex === riddles.length - 1)) {
+                //End the game or display a message, etc.
+                onPass(true)
+                clearTimeout(gTimer);
+            } else {
+                setCurrentRiddleIndex((prevIndex) => prevIndex + 1);
+                setUserInput('');
+                console.log('set to false')
+                setTryAgainMessage(false)
+            }
 
         } else {
             // if it's already true, set it to false, then after that, set it to true
@@ -113,7 +123,7 @@ const Graveyard = ({ onPass }) => {
             }
         }
     };
-    
+
 
     useEffect(() => {
         // Set styles when the component mounts
@@ -124,44 +134,48 @@ const Graveyard = ({ onPass }) => {
         footerLinks.forEach(link => {
             link.style.color = "rgb(19, 63, 35)";
         })
-    
-  
+
+
         return () => {
             // Remove styles when the component unmounts
             document.body.style.backgroundColor = '';
         };
     });
 
-  return (
-    <div className="main--witch">
-        <Story title="The Graveyard" story={story} width="78%" color="rgb(255, 100, 25)"/> 
-        <div className="headstones" >
-            <Headstone isGlowing={true}/>
-            <Headstone isGlowing={riddles[0].isSolved ? true : false}/>
-            <Headstone isGlowing={riddles[1].isSolved ? true : false}/>
-            <Headstone isGlowing={riddles[2].isSolved ? true : false}/>
+    return (
+        <div className="main--witch">
+            <Story title="The Graveyard" story={story} width="78%" color="rgb(255, 100, 25)" />
+            {riddles.length > 0 && (
+                <>
+                    <div className="headstones">
+                        <Headstone isGlowing={true} />
+                        <Headstone isGlowing={riddles[0].isSolved ? true : false} />
+                        <Headstone isGlowing={riddles[1].isSolved ? true : false} />
+                        <Headstone isGlowing={riddles[2].isSolved ? true : false} />
+                    </div>
+                    <div className="centerItems graveyard-riddle">
+                        <p>{riddles[currentRiddleIndex].question}</p>
+                        <form onSubmit={handleSubmit}>
+                            <input type='text' value={userInput} onChange={handleInputChange} maxLength={35} />
+                        </form>
+                        <TryAgain
+                            message='Please try again. Remember to check your spelling.'
+                            isDisplayed={tryAgainMessage}
+                            marginTop='1rem'
+                            color='black'
+                        />
+                    </div>
+                    <div className="headstones">
+                        <Headstone isGlowing={riddles[3].isSolved ? true : false} />
+                        <Headstone isGlowing={riddles[4].isSolved ? true : false} />
+                        <Headstone isGlowing={riddles[5].isSolved ? true : false} />
+                        <Headstone isGlowing={riddles[6].isSolved ? true : false} />
+                    </div>
+                </>
+            )}
         </div>
-        <div className="centerItems graveyard-riddle">
-            <p>{riddles[currentRiddleIndex].question}</p>
-            <form onSubmit={handleSubmit}>
-                <input type='text' value={userInput} onChange={handleInputChange} maxLength={35}/>
-            </form>
-            <TryAgain 
-                message = 'Please try again. Remember to check your spelling.' 
-                isDisplayed = {tryAgainMessage}
-                marginTop='1rem'
-                color='black'
-            />
-        </div>
-        <div className="headstones" >
-            <Headstone isGlowing={riddles[3].isSolved ? true : false}/>
-            <Headstone isGlowing={riddles[4].isSolved ? true : false}/>
-            <Headstone isGlowing={riddles[5].isSolved ? true : false}/>
-            <Headstone isGlowing={riddles[6].isSolved ? true : false}/>        
-        </div>
-      
-    </div>
-  )
+
+    )
 }
 
 export default Graveyard

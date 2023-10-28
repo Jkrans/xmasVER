@@ -14,13 +14,14 @@ const story = [
 
 const WitchesLair = ({ onPass }) => {
   useEffect(() => {
+
     // Set styles when the component mounts
-    document.body.style.background = 'linear-gradient(rgb(0, 100, 50), rgb(117, 0, 180))';
+    document.body.style.background = 'linear-gradient(rgb(220, 161, 12), rgb(79 39 25))';
     document.getElementsByClassName('header--h1')[0].style.color = 'rgb(45, 0, 60)';
 
     const footerLinks = document.querySelectorAll('.footer a, .footer p');
     footerLinks.forEach(link => {
-      link.style.color = "rgb(117, 0, 180)";
+      link.style.color = "rgb(79 39 25)";
     })
 
 
@@ -31,7 +32,7 @@ const WitchesLair = ({ onPass }) => {
   });
   return (
     <div className="main--witch">
-      <Story title="Witch's Lair" story={story} color="rgb(0,0,0,0.7)" />
+      <Story title="The Enclosure" story={story} color="rgb(0,0,0,0.7)" />
       <ImageEquationRow onPass={onPass} />
 
     </div>
