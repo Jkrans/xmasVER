@@ -27,7 +27,7 @@ const ImageEquationRow = ({ onPass }) => {
         { img: mashed, value: getRandomNumber() },
       ]);
     }
-  }, []);
+  },);
 
   const handleInputChange = (index, event) => {
     const newInputValues = [...inputValues];
