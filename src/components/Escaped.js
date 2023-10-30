@@ -52,10 +52,10 @@ const Escaped = ({ formattedTime }) => {
         if (window.scrollY > 400) {
             hasTriggered.current = true;
 
-            const fadeToGate = setTimeout(() => {
+            setTimeout(() => {
                 successImg.classList.add('fade-out');
 
-                const showGate = setTimeout(() => {
+                setTimeout(() => {
                     setImg('');
                     successImg.classList.replace('fade-out', 'fade-in');
                 }, 2000);
