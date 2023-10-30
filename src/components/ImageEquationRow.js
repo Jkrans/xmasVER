@@ -53,7 +53,7 @@ const ImageEquationRow = ({ onPass }) => {
 
   return (
     <>
-      {items && items.length == 5 ? ( // Check if 'items' exists and has at least 5 elements
+      {items && items.length === 5 ? ( // Check if 'items' exists and has at least 5 elements
         <>
           <ImageRow
             firstImage={items[2].img}

@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import Story from './Story'
 import Headstone from './Headstone'
 import TryAgain from './TryAgainMessage'
