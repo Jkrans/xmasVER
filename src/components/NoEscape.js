@@ -27,8 +27,8 @@ const NoEscape = ({ onPass }) => {
   return (
     <div className="main--witch">
       <div className='centerItems failed'>
-        <img id='success-img' className='' src={''} />
-        <img id='success-img' className='pumpkin-looking' src={''} width='20%' />
+        <img id='success-img' className='' src={''} alt="" />
+        <img id='success-img' className='pumpkin-looking' src={''} width='20%' alt="" />
         <div className='failed-text centerItems'>
           <h1>No Escape</h1>
           <p>Nice try. Join the spirits in the graveyard or...</p>

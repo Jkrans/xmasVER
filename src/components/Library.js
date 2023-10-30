@@ -86,7 +86,7 @@ const Library = ({ onPass }) => {
             <Story title="The Library" story={story} color="rgb(255,255,255,0.8)" width="70%" />
 
             <div className='riddles-container'>
-                <img className="library-ghost" src={''} />
+                <img className="library-ghost" src={''} alt="" />
                 <div className='riddles'>
                     {riddles.map((riddle, index) => (
                         <Riddle
