@@ -4,3 +4,9 @@ CREATE TABLE riddles (
   answer TEXT[] NOT NULL,
   isSolved BOOLEAN NOT NULL
 );
+
+CREATE TABLE stories (
+  story_id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  story JSONB NOT NULL
+);

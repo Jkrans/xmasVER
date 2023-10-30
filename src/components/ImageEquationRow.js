@@ -38,6 +38,7 @@ const ImageEquationRow = ({ onPass }) => {
   const checkValues = () => {
     let timer;
     for (let i = 0; i < items.length; i++) {
+      onPass(true);
       if (parseInt(inputValues[i]) !== items[i].value) {
         setTryAgainMessage(true)
         timer = setTimeout(() => {

@@ -85,3 +85,52 @@ app.get('/api/riddles', async (req, res) => {
     }
 });
 
+app.post('/api/addStories', async (req, res) => {
+    try {
+        const stories = [
+            {
+                title: "The Enclosure",
+                story: [
+                    "As you strut around your enclosure, you overhear the farmer chatting with his family. \"This one's gotten nice and plump,\" he points right at you, \"I reckon they’ll be the star of our Thanksgiving table!\" Panic surges through your feathers; it's clear you're slated to be the main course. You've got to make a plan and fast.",
+                    "Your eyes dart to the gate of your enclosure. It's locked with a peculiar mechanism featuring a set of icons: a corn cob, a pumpkin, green beans, mashed potatoes, and a pie. Next to the lock, a sign reads, \"Enter the coded values for the image to unlock.\" Below that there are more instructions that state \"The code will reset each day for security purposes by the farmer. If you need to get out, you can solve the equations below.\"",
+                    "You smirk to yourself. They clearly underestimated this \"Bird Brain\" when they devised this \"turkey-proof plan.\" They'll soon find out just how clever a turkey can be. It's time to hatch your plan and fly the coop."
+                ]
+            }
+        ];
+
+        const insertedStories = [];
+        for (const { title, story } of stories) {
+            const newStory = await db.query(
+                "INSERT INTO stories (title, story) VALUES ($1, $2) RETURNING *",
+                [title, JSON.stringify(story)]
+            );
+            insertedStories.push(newStory.rows[0]);
+        }
+
+        res.json(insertedStories);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+});
+
+
+app.get('/api/stories/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const storyQuery = await db.query('SELECT * FROM stories WHERE story_id = $1', [id]);
+        const storyData = storyQuery.rows[0];
+
+        if (!storyData) {
+            return res.status(404).json({ error: 'Story not found' });
+        }
+
+        res.json(storyData);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+
+

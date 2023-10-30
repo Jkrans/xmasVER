@@ -80,7 +80,6 @@ const Graveyard = ({ onPass }) => {
         }
 
         fetchRiddles();
-        // ... (rest of your existing useEffect code)
     }, []);
 
     const handleInputChange = (e) => {
