@@ -71,7 +71,7 @@ const Graveyard = ({ onPass }) => {
     useEffect(() => {
         async function fetchRiddles() {
             try {
-                const response = await fetch("http://localhost:3001/api/riddles");
+                const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/riddles");
                 const data = await response.json();
                 setRiddles(data);
             } catch (err) {
