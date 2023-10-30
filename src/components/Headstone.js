@@ -5,7 +5,7 @@ const Headstone = (props) => {
   const { isGlowing } = props;
   return (
     <div>
-      <img src={turkey}></img>
+      <img src={turkey} alt="" />
       <div className={isGlowing ? 'headstone-glow' : ''}></div>
     </div>
   )

@@ -87,23 +87,23 @@ const ImageEquationRow = ({ onPass }) => {
 
           <div className="image--row">
             <div>
-              <img src={items[2].img} />
+              <img src={items[2].img} alt="" />
               <input type="text" value={inputValues[2]} onChange={(event) => handleInputChange(2, event)} maxLength={2} />
             </div>
             <div>
-              <img src={items[0].img} />
+              <img src={items[0].img} alt="" />
               <input type="text" value={inputValues[0]} onChange={(event) => handleInputChange(0, event)} maxLength={2} />
             </div>
             <div>
-              <img src={items[4].img} />
+              <img src={items[4].img} alt="" />
               <input type="text" value={inputValues[4]} onChange={(event) => handleInputChange(4, event)} maxLength={2} />
             </div>
             <div>
-              <img src={items[3].img} />
+              <img src={items[3].img} alt="" />
               <input type="text" value={inputValues[3]} onChange={(event) => handleInputChange(3, event)} maxLength={2} />
             </div>
             <div>
-              <img src={items[1].img} />
+              <img src={items[1].img} alt="" />
               <input type="text" value={inputValues[1]} onChange={(event) => handleInputChange(1, event)} maxLength={2} />
             </div>
           </div>

@@ -1,14 +1,14 @@
 import React from 'react'
 
 const ProgressBarFragment = (props) => {
-    const {backgroundColorBubble, backgroundColorLine, imgVisibility, img, imgPixels, lineDisplay} = props
+  const { backgroundColorBubble, backgroundColorLine, imgVisibility, img, imgPixels, lineDisplay } = props
 
   return (
     <>
       <div className={`progress-bar-bubble ${backgroundColorBubble}`}>
-        <img className={imgVisibility} src={img} width={imgPixels} height={imgPixels} />
+        <img className={imgVisibility} src={img} width={imgPixels} height={imgPixels} alt="" />
       </div>
-      <div className={`progress-bar-line ${backgroundColorLine}`} style={{display: lineDisplay}}></div>
+      <div className={`progress-bar-line ${backgroundColorLine}`} style={{ display: lineDisplay }}></div>
     </>
   )
 }

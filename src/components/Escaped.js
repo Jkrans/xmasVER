@@ -75,11 +75,11 @@ const Escaped = ({ formattedTime }) => {
         <div className="main--witch">
             <Story title='Escaped' story={story} width='75%' />
             <div className='centerItems success'>
-                <img id='success-img' className='' src={img} />
+                <img id='success-img' className='' src={img} alt="" />
                 <div className='success-text centerItems'>
                     <h1 style={{ fontFamily: 'Young Serif' }}>SPOOKTACULAR WORK!</h1>
                     <p>With a display of wit and cunning, you made your escape with <span style={{ color: '#002473' }}>{formattedTime}</span> to spare. That was seriously impressive!</p>
-                    <img src={''} width='250px' />
+                    <img src={''} width='250px' alt="" />
                 </div>
             </div>
         </div>

@@ -97,7 +97,7 @@ const Basement = ({ onPass }) => {
                 <div className="pigpen-wrapper slide-in">
                     <div className='pigpen-container'>
                         <div className="pigpen">
-                            <img src={''} />
+                            <img src={''} alt="" />
                             <PigpenLetters letter="A" top="34px" left="61px" />
                             <PigpenLetters letter="B" top="34px" left="146px" />
                             <PigpenLetters letter="D" top="127px" left="61px" />
@@ -111,7 +111,7 @@ const Basement = ({ onPass }) => {
                             <PigpenLetters letter="Y" bottom="110px" right="70px" />
                             <PigpenLetters letter="Z" bottom="50px" right="145px" />
                         </div>
-                        <img src={''} />
+                        <img src={''} alt="" />
                     </div>
                 </div>
             </div>

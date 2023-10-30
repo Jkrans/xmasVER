@@ -25,7 +25,7 @@ const TryAgainMessage = ({ message, isDisplayed, color, marginTop }) => {
       marginTop: marginTop,
       visibility: visibility,
     }}>
-      <img src={''} width='30px' />
+      <img src={''} width='30px' alt="" />
       <p style={{ color: color, fontSize: '1rem' }} className='speech-bubble'>{message}</p>
 
     </div>

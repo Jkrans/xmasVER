@@ -5,7 +5,7 @@ import gravy from '../images/gravy.svg'
 const Header = () => {
   return (
     <>
-      <img className="gravy" src={gravy} />
+      <img className="gravy" src={gravy} alt="" />
       <main className="header" >
         <h1 className="header--h1">The Great Turkey Escape</h1>
         <ProgressBar />
