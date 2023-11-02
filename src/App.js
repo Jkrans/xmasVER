@@ -2,8 +2,8 @@ import { useState, useEffect, createContext } from 'react'
 import './App.css';
 import Header from './components/Header'
 import Footer from "./components/Footer"
-import WitchesLair from './components/WitchesLair';
-import Library from './components/Library';
+import Enclosure from './components/ChallengeOne';
+import CornMaze from './components/ChallengeTwo';
 import Basement from './components/Basement';
 import Countdown from './components/CountdownTimer';
 import Start from './components/Start';
@@ -34,18 +34,19 @@ const flaticonLinks = [
   extractLinkToObject('<a href="https://www.flaticon.com/free-icons/green-beans" title="green-beans icons">Green-beans icons created by AomAm - Flaticon</a>'),
   extractLinkToObject('<a href="https://www.flaticon.com/free-icons/pumpkin-pie" title="pumpkin-pie icons">Pumpkin-pie icons created by amonrat rungreangfangsai - Flaticon</a>'),
   extractLinkToObject('<a href="https://www.flaticon.com/free-icons/mashed-potatoes" title="mashed potatoes icons">Mashed potatoes icons created by juicy_fish - Flaticon</a>'),
+  extractLinkToObject('<a href="https://www.flaticon.com/free-animated-icons/agriculture" title="agriculture animated icons">Scarecrow icons created by Freepik - Flaticon</a>'),
 ];
 
 export const CurrentComponentContext = createContext();
 
 function App() {
   const [showStart, setShowStart] = useState(false);
-  const [showLibrary, setShowLibrary] = useState(false);
+  const [showCornMaze, setShowCornMaze] = useState(false);
   const [showBasement, setShowBasement] = useState(false);
   const [showGraveyard, setShowGraveyard] = useState(false);
   const [showEscaped, setShowEscaped] = useState(false);
   const [showNoEscape, setShowNoEscape] = useState(false);
-  const [showWitchesLair, setShowWitchesLair] = useState(false);
+  const [showEnclosure, setShowEnclosure] = useState(false);
   const [transitionClass, setTransitionClass] = useState('fade-in');
   const [currentComponent, setCurrentComponent] = useState('Start');
   const [formattedTime, setFormattedTime] = useState("");
@@ -65,11 +66,11 @@ function App() {
   }
 
   useEffect(() => {
-    if (showWitchesLair) {
-      setFadeTransition('WitchesLair');
+    if (showEnclosure) {
+      setFadeTransition('Enclosure');
     }
-    else if (showLibrary) {
-      setFadeTransition('Library');
+    else if (showCornMaze) {
+      setFadeTransition('CornMaze');
     }
     else if (showBasement) {
       setFadeTransition('Basement');
@@ -86,7 +87,7 @@ function App() {
     else if (showStart) {
       setFadeTransition('Start');
     }
-  }, [showStart, showWitchesLair, showLibrary, showBasement, showGraveyard, showEscaped, showNoEscape]);
+  }, [showStart, showEnclosure, showCornMaze, showBasement, showGraveyard, showEscaped, showNoEscape]);
 
   const handlePass = (setFalse, setTrue) => {
     console.log('sup')
@@ -95,8 +96,8 @@ function App() {
   }
 
   const handleCountdownEnd = (setTrue) => {
-    setShowWitchesLair(false);
-    setShowLibrary(false);
+    setShowEnclosure(false);
+    setShowCornMaze(false);
     setShowBasement(false);
     setShowGraveyard(false);
     setFadeTransition('NoEscape');
@@ -118,9 +119,9 @@ function App() {
       )}
 
       <div className={`${transitionClass}`}>
-        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowWitchesLair(true))} />}
-        {currentComponent === 'WitchesLair' && <WitchesLair onPass={() => handlePass(() => setShowWitchesLair(false), () => setShowGraveyard(true))} />}
-        {currentComponent === 'Library' && <Library onPass={() => handlePass(() => setShowLibrary(false), () => setShowBasement(true))} />}
+        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowEnclosure(true))} />}
+        {currentComponent === 'Enclosure' && <Enclosure onPass={() => handlePass(() => setShowEnclosure(false), () => setShowCornMaze(true))} />}
+        {currentComponent === 'CornMaze' && <CornMaze onPass={() => handlePass(() => setShowCornMaze(false), () => setShowBasement(true))} />}
         {currentComponent === 'Basement' && <Basement onPass={() => handlePass(() => setShowBasement(false), () => setShowGraveyard(true))} />}
         {currentComponent === 'Graveyard' && <Graveyard onPass={() => handlePass(() => setShowGraveyard(false), () => setShowEscaped(true))} />}
         {currentComponent === 'Escaped' && <Escaped formattedTime={formattedTime} />}

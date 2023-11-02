@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CurrentComponentContext } from '../App';
 
-// import Potion from '../images/purple-potion.png';
+import pie from '../images/pumpkin-pie.png';
 // import Ghost from '../images/ghost.png';
 // import HandBone from '../images/hand-bones.png';
 // import Grave from '../images/grave.png';
@@ -13,8 +13,8 @@ const ProgressBar = () => {
     const currentComponent = useContext(CurrentComponentContext);
 
     const componentName = [
-        'WitchesLair',
-        'Library',
+        'Enclosure',
+        'CornMaze',
         'Basement',
         'Graveyard',
         'Escaped'
@@ -39,10 +39,11 @@ const ProgressBar = () => {
     return (
         <div className="progress-bar">
             <PBFragment
-                img={''}
+                img={pie}
                 backgroundColorBubble={getBackgroundColor(currentComponent, componentName, 0)}
                 backgroundColorLine={getBackgroundColorLine(currentComponent, componentName, 1)}
                 imgVisibility={setImageVisible(currentComponent, componentName, 1)}
+                imgPixels="42px"
             />
 
             <PBFragment

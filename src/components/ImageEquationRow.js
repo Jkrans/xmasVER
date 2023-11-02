@@ -56,6 +56,35 @@ const ImageEquationRow = ({ onPass }) => {
     <>
       {items && items.length === 5 ? ( // Check if 'items' exists and has at least 5 elements
         <>
+          <div className="imageAndInput">
+            <div>
+              <img src={items[2].img} alt="corncob icon" />
+              <input type="text" value={inputValues[2]} onChange={(event) => handleInputChange(2, event)} maxLength={2} />
+            </div>
+            <div>
+              <img src={items[0].img} alt="" />
+              <input type="text" value={inputValues[0]} onChange={(event) => handleInputChange(0, event)} maxLength={2} />
+            </div>
+            <div>
+              <img src={items[4].img} alt="" />
+              <input type="text" value={inputValues[4]} onChange={(event) => handleInputChange(4, event)} maxLength={2} />
+            </div>
+            <div>
+              <img src={items[3].img} alt="" />
+              <input type="text" value={inputValues[3]} onChange={(event) => handleInputChange(3, event)} maxLength={2} />
+            </div>
+            <div>
+              <img src={items[1].img} alt="" />
+              <input type="text" value={inputValues[1]} onChange={(event) => handleInputChange(1, event)} maxLength={2} />
+            </div>
+          </div>
+          <button className='brew-btn' onClick={checkValues}>SUBMIT</button>
+          <TryAgain
+            message='Please Try Again'
+            isDisplayed={tryAgainMessage}
+            color='black'
+            marginTop='1rem'
+          />
           <ImageRow
             firstImage={items[2].img}
             secondImage={items[0].img}
@@ -86,35 +115,8 @@ const ImageEquationRow = ({ onPass }) => {
             totalValue={items[2].value + items[3].value + (items[1].value * 2)}
           />
 
-          <div className="image--row">
-            <div>
-              <img src={items[2].img} alt="" />
-              <input type="text" value={inputValues[2]} onChange={(event) => handleInputChange(2, event)} maxLength={2} />
-            </div>
-            <div>
-              <img src={items[0].img} alt="" />
-              <input type="text" value={inputValues[0]} onChange={(event) => handleInputChange(0, event)} maxLength={2} />
-            </div>
-            <div>
-              <img src={items[4].img} alt="" />
-              <input type="text" value={inputValues[4]} onChange={(event) => handleInputChange(4, event)} maxLength={2} />
-            </div>
-            <div>
-              <img src={items[3].img} alt="" />
-              <input type="text" value={inputValues[3]} onChange={(event) => handleInputChange(3, event)} maxLength={2} />
-            </div>
-            <div>
-              <img src={items[1].img} alt="" />
-              <input type="text" value={inputValues[1]} onChange={(event) => handleInputChange(1, event)} maxLength={2} />
-            </div>
-          </div>
-          <button className='brew-btn' onClick={checkValues}>SUBMIT</button>
-          <TryAgain
-            message='Please Try Again'
-            isDisplayed={tryAgainMessage}
-            color='black'
-            marginTop='1rem'
-          />
+
+
         </>
       ) : (
         "Loading..."
