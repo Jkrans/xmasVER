@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { CurrentComponentContext } from '../App';
 
 import pie from '../images/pumpkin-pie.png';
-// import Ghost from '../images/ghost.png';
+import scarecrow from '../images/scarecrow.gif';
 // import HandBone from '../images/hand-bones.png';
 // import Grave from '../images/grave.png';
 
@@ -47,7 +47,7 @@ const ProgressBar = () => {
             />
 
             <PBFragment
-                img={''}
+                img={scarecrow}
                 backgroundColorBubble={getBackgroundColor(currentComponent, componentName, 1)}
                 backgroundColorLine={getBackgroundColorLine(currentComponent, componentName, 2)}
                 imgVisibility={setImageVisible(currentComponent, componentName, 2)}

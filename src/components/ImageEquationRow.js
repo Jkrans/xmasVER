@@ -78,7 +78,7 @@ const ImageEquationRow = ({ onPass }) => {
               <input type="text" value={inputValues[1]} onChange={(event) => handleInputChange(1, event)} maxLength={2} />
             </div>
           </div>
-          <button className='brew-btn' onClick={checkValues}>SUBMIT</button>
+          <button className='brew-btn' onClick={checkValues}>SUBMIT CODE</button>
           <TryAgain
             message='Please Try Again'
             isDisplayed={tryAgainMessage}

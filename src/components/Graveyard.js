@@ -3,50 +3,6 @@ import Story from './Story'
 import Headstone from './Headstone'
 import TryAgain from './TryAgainMessage'
 
-// const riddles = [
-//     {
-//         question: "I'm tall when I'm young and I'm short when I'm old. What am I?",
-//         answer: ['candle'],
-//         isSolved: false,
-//     },
-//     {
-//         question: "A zombie, a mummy, and a ghost bought a house. It has all of the usual rooms except for one. What room won't you find?",
-//         answer: ['living room', 'livingroom'],
-//         isSolved: false,
-//     },
-//     {
-//         question: "What do you call a witch at the beach?",
-//         answer: ['sandwich', 'sandwitch', 'sand witch', 'sand-witch'],
-//         isSolved: false,
-//     },
-//     {
-//         question: "What is a ghost's favorite dessert?",
-//         answer: ['i-scream', 'ice cream', 'i scream', 'ice-cream'],
-//         isSolved: false,
-//     },
-//     {
-//         question: "How do you fix a damaged jack-o-lantern?",
-//         answer: ['pumpkin patch', 'pumpkinpatch'],
-//         isSolved: false,
-//     },
-//     {
-//         question: "What is a mummy's favorite type of music?",
-//         answer: ['wrap', 'rap'],
-//         isSolved: false,
-//     },
-//     {
-//         question: "What do you get when you cross a snowman with a vampire?",
-//         answer: ['frostbite', 'frost bite'],
-//         isSolved: false,
-//     },
-//     {
-//         question: "The more you take away, the bigger I get. What am I?",
-//         answer: ['grave'],
-//         isSolved: false,
-//     },
-
-// ]
-
 const story = [
     "After unlocking the cage in the basement, relief floods over you. Before you can turn to thank your skeletal companion, you find his cage eerily empty, with just a soft chuckle echoing in the background as a reminder of his presence. The dim light allows you to spot a set of worn-out cellar doors across the room. Hopeful, you make your way over and push them open. A gust of cool air greets you. Stepping out, you find yourself not in the safety of the outdoors as you hoped, but instead, in an eerie, moonlit graveyard. Fog blankets the ground, and twisted trees stretch their skeletal branches toward the sky. This is no ordinary graveyard, and as you will soon discover, its residents aren't exactly resting in peace.",
     <br />,

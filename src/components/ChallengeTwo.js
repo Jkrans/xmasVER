@@ -1,34 +1,35 @@
 import { useState, useEffect } from 'react'
 import maze from '../images/maze.png'
+import turkey from '../images/turkey-walk2.png'
+import scarecrow from '../images/scarecrow.png'
 import Story from "./Story"
 import Riddle from "./Riddle"
-// import TryAgain from './TryAgainMessage';
+import TryAgain from './TryAgainMessage';
 
 // Get random values
-const getRandomNumber = (max) => Math.floor(Math.random() * max) + 1;
-const spiders = getRandomNumber(8);
-const witchNumber = getRandomNumber(9) + 1; // so max is 10 and min is 2.
+// const getRandomNumber = (max) => Math.floor(Math.random() * max) + 1;
 
 // riddles objects: riddles, answers, and the units the answers should be in.
 const riddles = [
     {
-        riddle: "A haunted 250-foot train travels 250-feet per minute. It goes through a 500-foot tunnel. How long does it take for a train to travel through the tunnel?",
-        answer: 3,
-        units: "minute/s"
+        riddle: "When this field was 10 years old, I was half its age. How old will I be when this field is 50 years old?",
+        answer: ["45"],
+        units: "years old"
     },
     {
-        riddle: `There are 9 spiders, and you take ${spiders}. How many do you have?`,
-        answer: spiders,
-        units: "spiders"
+        riddle: `A pumpkin and a corncob cost $11.00 in total. The pumpkin costs $10.00 more than the corncob. How much does the corncob cost?`,
+        answer: ["0.5", "0.50", ".5"],
+        units: [""],
+        unitsBefore: "$"
     },
     {
-        riddle: `It takes ${witchNumber} witches ${witchNumber} minutes to brew ${witchNumber} potions. How long would it take 100 witches to brew 100 potions?`,
-        answer: witchNumber,
+        riddle: `Which of these cornstalks reaches higher into the sky: one that measures 10 feet tall, or another that stands at 4 yards tall?`,
+        answer: ["4"],
         units: "minute/s"
     },
     {
         riddle: "In a haunted game of luck you flip a coin 5 times, and it lands tails up each time. What are the chances it will land heads up on your next flip?",
-        answer: 50,
+        answer: ["50"],
         units: "%"
     },
 ]
@@ -36,8 +37,9 @@ const riddles = [
 //ChallengeTwo component
 const ChallengeTwo = ({ onPass }) => {
     const [storyData, setStoryData] = useState({})
-    const [userAnswers, setUserAnswers] = useState([null, null, null, null]);
-    // const [showTryAgainMessage, setShowTryAgainMessage] = useState(false);
+    const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0);
+    const [userAnswer, setUserAnswer] = useState('');
+    const [showTryAgainMessage, setShowTryAgainMessage] = useState(false);
 
     useEffect(() => {
         async function fetchStory() {
@@ -53,20 +55,28 @@ const ChallengeTwo = ({ onPass }) => {
         fetchStory();
     }, []);
 
-    // const checkAnswers = () => {
-    //     let timer;
-    //     for (let i = 0; i < riddles.length; i++) {
-    //         if (parseInt(userAnswers[i]) !== riddles[i].answer) {
-    //             setShowTryAgainMessage(true)
-    //             timer = setTimeout(() => {
-    //                 setShowTryAgainMessage(false);
-    //             }, 10000);
-    //             return;
-    //         } else setShowTryAgainMessage(false)
-    //     }
-    //     onPass(true)
-    //     return () => clearTimeout(timer); // clear timeout on component unmount
-    // }
+    const checkAnswer = (e) => {
+        e.preventDefault();
+
+        let correct = riddles[currentRiddleIndex].answer.some(variant =>
+            userAnswer.toLowerCase().includes(variant.toLowerCase())
+        );
+
+        if (correct) {
+            if (currentRiddleIndex < riddles.length - 1) {
+                setCurrentRiddleIndex(currentRiddleIndex + 1); // Move to next riddle
+                setUserAnswer(''); // Reset answer input
+            } else {
+                onPass(true); // All riddles solved
+            }
+            setShowTryAgainMessage(false);
+        } else {
+            setShowTryAgainMessage(true);
+            setTimeout(() => {
+                setShowTryAgainMessage(false);
+            }, 10000);
+        }
+    };
     useEffect(() => {
         // Set styles when the component mounts
         document.body.style.background = 'linear-gradient(rgb(15, 87, 213), rgb(0, 164, 33)';
@@ -90,27 +100,26 @@ const ChallengeTwo = ({ onPass }) => {
             <Story title={storyData.title} story={storyData.story} color="rgb(255,255,255,0.8)" width="70%" />
 
             <div className='riddles-container'>
-                <img className="ch2-maze" src={maze} alt="simple yellow maze" />
+                <div style={{ position: 'relative' }}>
+                    <img className="ch2-maze" src={maze} alt="simple yellow maze" />
+                    <img className="ch2-turkey" src={turkey} alt="turkey graphic" />
+                </div>
                 <div className='riddles'>
-                    {riddles.map((riddle, index) => (
-                        <Riddle
-                            key={index}
-                            riddle={riddle.riddle}
-                            units={riddle.units}
-                            onAnswerChange={(value) => {
-                                const newAnswers = [...userAnswers];
-                                newAnswers[index] = value;
-                                setUserAnswers(newAnswers);
-                            }}
-                        />
-                    ))}
-                    {/* <button className='library-btn' onClick={checkAnswers}>Submit</button> 
+                    <Riddle
+                        key={currentRiddleIndex}
+                        riddle={riddles[currentRiddleIndex].riddle}
+                        units={riddles[currentRiddleIndex].units}
+                        unitsBefore={riddles[currentRiddleIndex].unitsBefore}
+                        onAnswerChange={(value) => setUserAnswer(value)}
+                        checkAnswer={checkAnswer}
+                    />
                     <TryAgain
                         message='Please Try Again'
                         isDisplayed={showTryAgainMessage}
                         marginTop='1rem'
                         color='black'
-                    />*/}
+                    />
+                    <img src={scarecrow} alt='scarecrow graphic' style={{ alignSelf: 'center' }} />
                 </div>
             </div>
         </div>

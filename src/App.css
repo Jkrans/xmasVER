@@ -259,22 +259,33 @@ body {
 }
 
 .ch2-maze {
-  width: 45%;
-  height: 45%;
+  width: 31.5rem;
+  height: auto;
   margin-top: 2rem;
   opacity: 1;
+}
+
+.ch2-turkey {
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  top: 29.5rem;
+  left: 18.8rem;
+  transform: rotateY(180deg);
 }
 
 .riddles-container {
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 74%;
   color: rgba(255, 255, 255, 0.8)
 }
 
 
 .riddles {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 45%;
 }
 
 .riddles p:not(:last-child) {
@@ -310,24 +321,9 @@ body {
   display: flex;
 }
 
-.library-btn {
-  margin-top: 3rem;
-  width: 100%;
-  padding: 0.5rem;
-  padding-top: 0.7rem;
-  background-color: rgb(117, 0, 180);
-  border: none;
-  box-shadow: 1px 2px 5px rgb(0, 81, 16);
-  font-size: 200%;
-  font-family: 'Shadows Into Light';
-  letter-spacing: 1rem;
-  border-radius: 12px;
-}
-
-.library-btn:hover {
-  box-shadow: inset 1px 2px 5px rgb(0, 81, 16);
-  transform: translate(0.1rem, 0.2rem);
-  /* This will shift the text inside the button to the right by 0.1rem and down by 0.2rem */
+.riddles img {
+  align-self: center;
+  margin-top: 1rem;
 }
 
 .pigpen {
