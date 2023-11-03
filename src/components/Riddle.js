@@ -6,23 +6,29 @@ const Riddle = (props) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
+    if (props.setInputRef) {
+      props.setInputRef(inputRef.current);
+    }
     if (props.unitsBefore) {
       setUnitsBe(props.unitsBefore);
     }
-  }, [props.unitsBefore]);
+  }, [props.unitsBefore, props.setInputRef]);
 
   return (
     <>
       <p>{props.riddle}</p>
       <div>
-        {unitsBe && <p className='answer-p'>{unitsBe}</p>}
+        {unitsBe && <p className='ch2-before-input'>{unitsBe}</p>}
         <form onSubmit={props.checkAnswer} >
           <input
+            id='ch2input'
             ref={inputRef}
+            value={props.userAnswer}
             type="text"
-            maxLength="4"
+            maxLength="10"
             onChange={(event) => props.onAnswerChange(event.target.value)}
-          /></form>
+          />
+        </form>
         <p className='answer-p'>{props.units}</p>
       </div>
     </>

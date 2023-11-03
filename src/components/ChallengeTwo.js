@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import maze from '../images/maze.png'
 import turkey from '../images/turkey-walk2.png'
-import scarecrow from '../images/scarecrow.png'
+import scarecrow from '../images/scarecrow.gif'
 import Story from "./Story"
 import Riddle from "./Riddle"
 import TryAgain from './TryAgainMessage';
@@ -10,33 +10,34 @@ import TryAgain from './TryAgainMessage';
 // const getRandomNumber = (max) => Math.floor(Math.random() * max) + 1;
 
 // riddles objects: riddles, answers, and the units the answers should be in.
-const riddles = [
-    {
-        riddle: "When this field was 10 years old, I was half its age. How old will I be when this field is 50 years old?",
-        answer: ["45"],
-        units: "years old"
-    },
-    {
-        riddle: `A pumpkin and a corncob cost $11.00 in total. The pumpkin costs $10.00 more than the corncob. How much does the corncob cost?`,
-        answer: ["0.5", "0.50", ".5"],
-        units: [""],
-        unitsBefore: "$"
-    },
-    {
-        riddle: `Which of these cornstalks reaches higher into the sky: one that measures 10 feet tall, or another that stands at 4 yards tall?`,
-        answer: ["4"],
-        units: "minute/s"
-    },
-    {
-        riddle: "In a haunted game of luck you flip a coin 5 times, and it lands tails up each time. What are the chances it will land heads up on your next flip?",
-        answer: ["50"],
-        units: "%"
-    },
-]
+// const riddles = [
+//     {
+//         riddle: "When this field was 10 years old, I was half its age. How old will I be when this field is 50 years old?",
+//         answer: ["45"],
+//         units: "years old"
+//     },
+//     {
+//         riddle: `A pumpkin and a corncob cost $11.00 in total. The pumpkin costs $10.00 more than the corncob. How much does the corncob cost?`,
+//         answer: ["0.5", "0.50", ".5"],
+//         units: [""],
+//         unitsBefore: "$"
+//     },
+//     {
+//         riddle: `Which of these cornstalks reaches higher into the sky: one that measures 10 feet tall, or another that stands at 4 yards tall?`,
+//         answer: ["4"],
+//         units: "minute/s"
+//     },
+//     {
+//         riddle: "In a haunted game of luck you flip a coin 5 times, and it lands tails up each time. What are the chances it will land heads up on your next flip?",
+//         answer: ["50"],
+//         units: "%"
+//     },
+// ]
 
 //ChallengeTwo component
 const ChallengeTwo = ({ onPass }) => {
-    const [storyData, setStoryData] = useState({})
+    const [storyData, setStoryData] = useState([])
+    const [riddles, setRiddles] = useState({})
     const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0);
     const [userAnswer, setUserAnswer] = useState('');
     const [showTryAgainMessage, setShowTryAgainMessage] = useState(false);
@@ -55,12 +56,31 @@ const ChallengeTwo = ({ onPass }) => {
         fetchStory();
     }, []);
 
+    useEffect(() => {
+        async function fetchRiddles() {
+            try {
+                const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/ch2riddles");
+                const data = await response.json();
+                setRiddles(data);
+            } catch (err) {
+                console.error("An error occurred while fetching riddles:", err);
+            }
+        }
+
+        fetchRiddles();
+    }, []);
+
+    let inputReference = null;
+
+    const setInputRef = (ref) => {
+        inputReference = ref;
+    };
+
     const checkAnswer = (e) => {
         e.preventDefault();
 
-        let correct = riddles[currentRiddleIndex].answer.some(variant =>
-            userAnswer.toLowerCase().includes(variant.toLowerCase())
-        );
+        let correct = riddles[currentRiddleIndex].answer.includes(userAnswer.toLowerCase());
+
 
         if (correct) {
             if (currentRiddleIndex < riddles.length - 1) {
@@ -76,7 +96,34 @@ const ChallengeTwo = ({ onPass }) => {
                 setShowTryAgainMessage(false);
             }, 10000);
         }
+
+        if (inputReference) {
+            console.log("input ref", inputReference);
+            console.log("Is input disabled?", inputReference.disabled);
+            console.log("Is input visible?", inputReference.offsetWidth > 0 && inputReference.offsetHeight > 0);
+
+            setTimeout(() => {
+                if (inputReference) {
+                    inputReference.focus();
+                }
+            }, 10);
+
+            inputReference.onblur = (e) => {
+                console.log("Focus shifted to:", e.relatedTarget);
+            };
+
+            inputReference.addEventListener("blur", () => {
+                console.log("Input was blurred");
+            });
+
+        }
+        // hacky-ish way to do this because useRef wasn't working.
+        e.stopPropagation();
+        setTimeout(() => {
+            document.getElementById("ch2input").focus();
+        }, 0);
     };
+
     useEffect(() => {
         // Set styles when the component mounts
         document.body.style.background = 'linear-gradient(rgb(15, 87, 213), rgb(0, 164, 33)';
@@ -105,14 +152,18 @@ const ChallengeTwo = ({ onPass }) => {
                     <img className="ch2-turkey" src={turkey} alt="turkey graphic" />
                 </div>
                 <div className='riddles'>
-                    <Riddle
-                        key={currentRiddleIndex}
-                        riddle={riddles[currentRiddleIndex].riddle}
-                        units={riddles[currentRiddleIndex].units}
-                        unitsBefore={riddles[currentRiddleIndex].unitsBefore}
-                        onAnswerChange={(value) => setUserAnswer(value)}
-                        checkAnswer={checkAnswer}
-                    />
+                    {riddles.length > 0 && (
+                        <Riddle
+                            key={currentRiddleIndex}
+                            riddle={riddles[currentRiddleIndex].question}
+                            units={riddles[currentRiddleIndex].units}
+                            unitsBefore={riddles[currentRiddleIndex].unitsbefore}
+                            onAnswerChange={(value) => setUserAnswer(value)}
+                            value={userAnswer}
+                            setInputRef={setInputRef}
+                            checkAnswer={checkAnswer}
+                        />
+                    )}
                     <TryAgain
                         message='Please Try Again'
                         isDisplayed={showTryAgainMessage}

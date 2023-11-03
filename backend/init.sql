@@ -10,3 +10,5 @@ CREATE TABLE stories (
   title TEXT NOT NULL,
   story JSONB NOT NULL
 );
+
+

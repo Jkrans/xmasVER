@@ -76,9 +76,20 @@ app.post('/api/addRiddles', async (req, res) => {
     }
 });
 
+// riddles for ChallengeFour component
 app.get('/api/riddles', async (req, res) => {
     try {
         const allRiddles = await db.query("SELECT * FROM riddles");
+        res.json(allRiddles.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+// riddles for ChallengeTwo component
+app.get('/api/ch2riddles', async (req, res) => {
+    try {
+        const allRiddles = await db.query("SELECT * FROM ch2riddles");
         res.json(allRiddles.rows);
     } catch (err) {
         console.error(err.message);
