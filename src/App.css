@@ -19,6 +19,12 @@ body {
   font-family: 'Gabarito', sans-serif;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .start-page {
   display: flex;
   justify-content: space-evenly;
@@ -83,6 +89,7 @@ body {
   position: sticky;
   top: 6rem;
   left: 2rem;
+  z-index: 1;
 }
 
 .countdown div {
@@ -331,6 +338,12 @@ body {
   margin-top: 1rem;
 }
 
+#ch2-turkey-id {
+  transition: all 2s ease-in-out;
+}
+
+/****** Challenge Three ******/
+
 .pigpen {
   position: relative;
   padding: 2rem;
@@ -341,19 +354,20 @@ body {
 }
 
 .slide-in {
-  left: 73%;
+  position: relative;
+  left: 100%;
+  transition: left 3s ease, transform 3s ease;
 }
 
-
-.slide-out {
-  left: 5%;
-  transition: left 3s ease;
+.center-screen {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .main-pp-wrapper {
   display: flex;
   flex-direction: row;
-  width: 75%;
+  width: 100%;
 }
 
 .main-pp-wrapper>p {
@@ -369,25 +383,16 @@ body {
   border-radius: 10px;
 }
 
-.pigpen-wrapper {
-  position: relative;
-}
-
 .pigpen p {
-  position: absolute;
   font-size: 4rem;
   margin: 0;
 }
 
 .pigpen-container {
   display: flex;
-  position: relative;
-  width: 70%;
 }
 
 .pigpen-container>img {
-  position: absolute;
-  transform: rotate(90deg);
   width: 40em;
   height: 40rem;
   left: 28.4rem;
@@ -395,17 +400,46 @@ body {
 }
 
 .pigpen-cipher {
-  font-family: 'Pigpen';
+  font-family: 'Gabarito', sans-serif;
+  position: relative;
+  flex-direction: column;
   padding: 2rem;
-  margin-top: 8rem;
-  width: 50%;
-  color: rgb(171, 171, 171);
+  align-self: center;
+  margin-bottom: 3rem;
+  margin-left: 2rem;
+  width: 30rem;
+  color: rgb(0, 0, 0);
   font-size: 2.6rem;
   line-height: 3rem;
-  background-color: rgb(78, 92, 99);
+  background-color: rgb(184, 184, 184);
   box-shadow: 3px 5px 20px rgb(50, 50, 50);
   border-radius: 10px;
 }
+
+.pigpen-cipher h5,
+ol {
+  margin: 0 0 1rem 0;
+}
+
+.pigpen-font {
+  font-family: 'pigpen'
+}
+
+.pigpen-img {
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+  top: 0%;
+  height: auto;
+  background-color: #6c9c78;
+  box-shadow: 3px 5px 20px rgb(50, 50, 50);
+  z-index: -1;
+}
+
+/* .pigpen-img:hover {
+  top: -128%;
+  transition: top 0.5s ease-in;
+} */
 
 .pigpen-cipher-container {
   display: flex;
@@ -508,6 +542,7 @@ body {
 .progress-bar-bubble {
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 4px;
   width: 45px;
   height: 45px;

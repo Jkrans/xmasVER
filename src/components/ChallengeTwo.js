@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import maze from '../images/maze.png'
 import turkey from '../images/turkey-walk2.png'
+import turkeyWalk from '../images/turkey-walk2.gif'
 import scarecrow from '../images/scarecrow.gif'
 import Story from "./Story"
 import Riddle from "./Riddle"
@@ -9,31 +10,6 @@ import TryAgain from './TryAgainMessage';
 // Get random values
 // const getRandomNumber = (max) => Math.floor(Math.random() * max) + 1;
 
-// riddles objects: riddles, answers, and the units the answers should be in.
-// const riddles = [
-//     {
-//         riddle: "When this field was 10 years old, I was half its age. How old will I be when this field is 50 years old?",
-//         answer: ["45"],
-//         units: "years old"
-//     },
-//     {
-//         riddle: `A pumpkin and a corncob cost $11.00 in total. The pumpkin costs $10.00 more than the corncob. How much does the corncob cost?`,
-//         answer: ["0.5", "0.50", ".5"],
-//         units: [""],
-//         unitsBefore: "$"
-//     },
-//     {
-//         riddle: `Which of these cornstalks reaches higher into the sky: one that measures 10 feet tall, or another that stands at 4 yards tall?`,
-//         answer: ["4"],
-//         units: "minute/s"
-//     },
-//     {
-//         riddle: "In a haunted game of luck you flip a coin 5 times, and it lands tails up each time. What are the chances it will land heads up on your next flip?",
-//         answer: ["50"],
-//         units: "%"
-//     },
-// ]
-
 //ChallengeTwo component
 const ChallengeTwo = ({ onPass }) => {
     const [storyData, setStoryData] = useState([])
@@ -41,6 +17,7 @@ const ChallengeTwo = ({ onPass }) => {
     const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0);
     const [userAnswer, setUserAnswer] = useState('');
     const [showTryAgainMessage, setShowTryAgainMessage] = useState(false);
+    const [moveTurkey, setMoveTurkey] = useState(0);
 
     useEffect(() => {
         async function fetchStory() {
@@ -70,13 +47,73 @@ const ChallengeTwo = ({ onPass }) => {
         fetchRiddles();
     }, []);
 
-    let inputReference = null;
+    // let inputReference = null;
 
-    const setInputRef = (ref) => {
-        inputReference = ref;
-    };
+    // const setInputRef = (ref) => {
+    //     inputReference = ref;
+    // };
+
+    const moveImage = (move) => {
+        const img = document.getElementById('ch2-turkey-id');
+
+        switch (move) {
+            case 0:
+                img.src = turkeyWalk;
+                img.style.top = '26.3rem';
+                setTimeout(() => {
+                    img.style.left = '25.1rem';
+                    setTimeout(() => {
+                        img.style.top = '17rem';
+                        setTimeout(() => {
+                            img.style.transform = "rotateY(0deg)";
+                            setTimeout(() => {
+                                img.style.left = "15.8rem";
+                                setTimeout(() => {
+                                    img.src = turkey;
+                                }, 2000);
+                            }, 2000);
+                        }, 2000);
+                    }, 2000);
+                }, 2000);
+                break;
+            case 1:
+                img.src = turkeyWalk;
+                img.style.left = '9.4rem';
+                setTimeout(() => {
+                    img.src = turkey;
+                }, 2000);
+                break;
+            case 2:
+                img.src = turkeyWalk;
+                img.style.top = '4.4rem';
+                setTimeout(() => {
+                    img.src = turkey;
+                }, 2000);
+                break;
+            case 3:
+                img.src = turkeyWalk;
+                img.style.transform = "rotateY(180deg)";
+                setTimeout(() => {
+                    img.style.left = '25rem';
+                    setTimeout(() => {
+                        img.style.top = '7.9rem';
+                        setTimeout(() => {
+                            img.src = turkey;
+                        }, 2000);
+                    }, 2000);
+                }, 2000);
+                break;
+            case 4:
+                img.src = turkeyWalk;
+                img.style.left = '50rem';
+                img.style.opacity = '0';
+                break;
+            default: console.log("default")
+        }
+    }
 
     const checkAnswer = (e) => {
+        console.log(moveTurkey);
         e.preventDefault();
 
         let correct = riddles[currentRiddleIndex].answer.includes(userAnswer.toLowerCase());
@@ -86,8 +123,13 @@ const ChallengeTwo = ({ onPass }) => {
             if (currentRiddleIndex < riddles.length - 1) {
                 setCurrentRiddleIndex(currentRiddleIndex + 1); // Move to next riddle
                 setUserAnswer(''); // Reset answer input
+                setMoveTurkey(prev => moveTurkey + 1);
+                moveImage(moveTurkey);
             } else {
-                onPass(true); // All riddles solved
+                moveImage(moveTurkey);
+                setTimeout(() => {
+                    onPass(true); // All riddles solved                    
+                }, 1500);
             }
             setShowTryAgainMessage(false);
         } else {
@@ -97,26 +139,26 @@ const ChallengeTwo = ({ onPass }) => {
             }, 10000);
         }
 
-        if (inputReference) {
-            console.log("input ref", inputReference);
-            console.log("Is input disabled?", inputReference.disabled);
-            console.log("Is input visible?", inputReference.offsetWidth > 0 && inputReference.offsetHeight > 0);
+        // if (inputReference) {
+        //     console.log("input ref", inputReference);
+        //     console.log("Is input disabled?", inputReference.disabled);
+        //     console.log("Is input visible?", inputReference.offsetWidth > 0 && inputReference.offsetHeight > 0);
 
-            setTimeout(() => {
-                if (inputReference) {
-                    inputReference.focus();
-                }
-            }, 10);
+        //     setTimeout(() => {
+        //         if (inputReference) {
+        //             inputReference.focus();
+        //         }
+        //     }, 10);
 
-            inputReference.onblur = (e) => {
-                console.log("Focus shifted to:", e.relatedTarget);
-            };
+        //     inputReference.onblur = (e) => {
+        //         console.log("Focus shifted to:", e.relatedTarget);
+        //     };
 
-            inputReference.addEventListener("blur", () => {
-                console.log("Input was blurred");
-            });
+        //     inputReference.addEventListener("blur", () => {
+        //         console.log("Input was blurred");
+        //     });
 
-        }
+        // }
         // hacky-ish way to do this because useRef wasn't working.
         e.stopPropagation();
         setTimeout(() => {
@@ -149,7 +191,7 @@ const ChallengeTwo = ({ onPass }) => {
             <div className='riddles-container'>
                 <div style={{ position: 'relative' }}>
                     <img className="ch2-maze" src={maze} alt="simple yellow maze" />
-                    <img className="ch2-turkey" src={turkey} alt="turkey graphic" />
+                    <img id='ch2-turkey-id' className="ch2-turkey" src={turkey} alt="turkey graphic" />
                 </div>
                 <div className='riddles'>
                     {riddles.length > 0 && (
@@ -160,7 +202,7 @@ const ChallengeTwo = ({ onPass }) => {
                             unitsBefore={riddles[currentRiddleIndex].unitsbefore}
                             onAnswerChange={(value) => setUserAnswer(value)}
                             value={userAnswer}
-                            setInputRef={setInputRef}
+                            // setInputRef={setInputRef}
                             checkAnswer={checkAnswer}
                         />
                     )}

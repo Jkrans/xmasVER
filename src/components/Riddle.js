@@ -1,18 +1,18 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 const Riddle = (props) => {
   const [unitsBe, setUnitsBe] = useState(null)
 
-  const inputRef = useRef(null);
+  // const inputRef = useRef(null);
 
   useEffect(() => {
-    if (props.setInputRef) {
-      props.setInputRef(inputRef.current);
-    }
+    // if (props.setInputRef) {
+    //   props.setInputRef(inputRef.current);
+    // }
     if (props.unitsBefore) {
       setUnitsBe(props.unitsBefore);
     }
-  }, [props.unitsBefore, props.setInputRef]);
+  }, [props.unitsBefore]);
 
   return (
     <>
@@ -22,7 +22,7 @@ const Riddle = (props) => {
         <form onSubmit={props.checkAnswer} >
           <input
             id='ch2input'
-            ref={inputRef}
+            // ref={inputRef}
             value={props.userAnswer}
             type="text"
             maxLength="10"
