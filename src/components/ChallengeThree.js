@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Story from './Story'
 // import PigpenLetters from './PigpenLetters'
 import pigpen from '../images/pigpen-cipher-key.png'
@@ -11,7 +11,9 @@ const ChallengeThree = ({ onPass }) => {
     // const [showHintButton, setShowHintButton] = useState(false);
     const [userAnswer, setUserAnswer] = useState("");
     const [showTryAgainMessage, setShowTryAgainMessage] = useState(false);
+    const [cipherExpanded, setCipherExpanded] = useState(false);
 
+    const cipherRef = useRef(null);
 
     useEffect(() => {
         async function fetchStory() {
@@ -81,6 +83,31 @@ const ChallengeThree = ({ onPass }) => {
         };
     }, []);
 
+    useEffect(() => {
+        const cipher = cipherRef.current;
+        const handleTransitionEnd = () => {
+            if (cipherExpanded) {
+                cipher.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            cipher.removeEventListener('transitionend', handleTransitionEnd);
+        };
+
+        // Add the event listener
+        cipher.addEventListener('transitionend', handleTransitionEnd);
+
+        // Clean up function
+        return () => {
+            cipher.removeEventListener('transitionend', handleTransitionEnd);
+        };
+    }, [cipherExpanded]);
+
+    const handleCipherClick = () => {
+        setCipherExpanded(!cipherExpanded);
+        cipherRef.current.classList.toggle('pigpen-slide-up');
+    };
+
+
     const checkAnswer = () => {
         let timer;
         if (userAnswer.toLowerCase() !== "skeletonkey" && userAnswer.toLowerCase() !== "skeleton key") {
@@ -104,8 +131,9 @@ const ChallengeThree = ({ onPass }) => {
                 <div className='pigpen-container slide-in'>
                     <img src={truck} alt="pickup-truck with caged turkey in the back." />
                     <div className='pigpen-cipher flex-center '>
-                        <div className='pigpen-img flex-center '>
-                            <img src={pigpen} alt="pigpen cipher key" width='80%' />
+                        <div ref={cipherRef} onClick={handleCipherClick} className='pigpen-img flex-center '>
+                            <p>Cipher Key</p>
+                            <img src={pigpen} alt="pigpen cipher key" width='68%' height='90%' />
                         </div>
                         <h5>Latch Instructions:</h5>
                         <ol>

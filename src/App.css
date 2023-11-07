@@ -342,7 +342,9 @@ body {
   transition: all 2s ease-in-out;
 }
 
+/*****************************/
 /****** Challenge Three ******/
+/*****************************/
 
 .pigpen {
   position: relative;
@@ -426,20 +428,26 @@ ol {
 }
 
 .pigpen-img {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  font-size: 1.1rem;
   position: absolute;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
   overflow: hidden;
-  top: 0%;
-  height: auto;
-  background-color: #6c9c78;
-  box-shadow: 3px 5px 20px rgb(50, 50, 50);
+  top: -10%;
+  width: 95%;
+  height: 110%;
+  background-color: rgb(165, 181, 163);
+  box-shadow: 3px 5px 20px rgb(86, 86, 86);
+  transition: top 0.5s ease-in;
   z-index: -1;
 }
 
-/* .pigpen-img:hover {
-  top: -128%;
-  transition: top 0.5s ease-in;
-} */
+.pigpen-slide-up {
+  top: -110%;
+  transition: all 0.5s ease-in;
+}
 
 .pigpen-cipher-container {
   display: flex;
@@ -530,6 +538,10 @@ ol {
   margin-left: 4rem;
   opacity: 0;
 }
+
+/*****************************/
+/****** Progress Bar ******/
+/*****************************/
 
 .progress-bar {
   display: flex;
