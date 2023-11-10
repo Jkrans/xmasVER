@@ -16,7 +16,7 @@ const ProgressBar = () => {
         'Enclosure',
         'CornMaze',
         'Cage',
-        'Graveyard',
+        'Kitchen',
         'Escaped'
     ];
 
@@ -43,7 +43,7 @@ const ProgressBar = () => {
                 backgroundColorBubble={getBackgroundColor(currentComponent, componentName, 0)}
                 backgroundColorLine={getBackgroundColorLine(currentComponent, componentName, 1)}
                 imgVisibility={setImageVisible(currentComponent, componentName, 1)}
-                imgPixels="42px"
+                imgPixels="38px"
             />
 
             <PBFragment
@@ -51,7 +51,7 @@ const ProgressBar = () => {
                 backgroundColorBubble={getBackgroundColor(currentComponent, componentName, 1)}
                 backgroundColorLine={getBackgroundColorLine(currentComponent, componentName, 2)}
                 imgVisibility={setImageVisible(currentComponent, componentName, 2)}
-                imgPixels='42px'
+                imgPixels='38px'
             />
 
             <PBFragment
@@ -59,7 +59,7 @@ const ProgressBar = () => {
                 backgroundColorBubble={getBackgroundColor(currentComponent, componentName, 2)}
                 backgroundColorLine={getBackgroundColorLine(currentComponent, componentName, 3)}
                 imgVisibility={setImageVisible(currentComponent, componentName, 3)}
-                imgPixels='35px'
+                imgPixels='33px'
             />
             <PBFragment
                 img={''}

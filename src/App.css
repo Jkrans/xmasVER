@@ -13,6 +13,18 @@
   --pumpkin-orange: rgb(255, 100, 25);
 }
 
+.unselectable {
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+/Edge */
+  user-select: none;
+  /* Standard syntax */
+}
+
+
 body {
   background: linear-gradient(var(--witch-green), var(--witch-purple));
   overflow-x: hidden;
@@ -455,50 +467,52 @@ ol {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 2rem;
+
 }
 
 .pigpen-cipher-container p {
   font-weight: bold;
   color: white;
-  font-size: 1.1rem
+  font-size: 1.5rem;
+  margin-bottom: 1rem
 }
 
-.basement-btn {
-  flex-grow: 1;
+.ch3-submit {
+  width: 77.6%;
   padding: 0.7rem;
   padding-top: 0.9rem;
-  margin-left: 2rem;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(198 255 246);
   border: none;
-  color: rgb(78, 92, 99);
-  font-size: 150%;
+  color: rgb(47 181 233);
+  font-size: 215%;
   font-family: 'Shadows Into Light';
   letter-spacing: 0.5rem;
   border-radius: 12px;
-  border: 2px solid rgb(0, 0, 0);
+  border: 2px solid rgb(138 216 246);
   outline: none;
 }
 
-.basement-btn:hover {
+.ch3-submit:hover {
   border: 2px solid rgb(78, 92, 99);
 }
 
-.basement-btn:focus {
+.ch3-submit:focus {
   border: 2px solid rgb(78, 92, 99);
 }
 
 .pigpen-submit-wrapper {
-  margin-top: 5rem;
+  margin-top: 1rem;
   display: flex;
-  flex-direction: column;
-  width: 60%;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 100%;
 }
 
 .pigpen-submit-wrapper input {
+  width: 35%;
   height: 3.5rem;
-  flex-grow: 2;
   font-size: 2rem;
+  margin: 0 2rem 1rem;
   text-align: center;
   border-radius: 5px;
   flex-grow: 2;
@@ -506,6 +520,28 @@ ol {
 
 .pigpen-submit-wrapper input:focus {
   outline: 2px solid rgb(42, 49, 53);
+}
+
+.latch {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.latchright {
+  left: 172px;
+}
+
+.latchbolt {
+  top: 87px;
+  left: 30px;
+  /* left 165 */
+  transition: all 0.2s ease;
+}
+
+.latchtop {
+  left: 60px;
+  top: 71px;
 }
 
 .pigpen-hint {

@@ -7,7 +7,7 @@ import CornMaze from './components/ChallengeTwo';
 import Cage from './components/ChallengeThree';
 import Countdown from './components/CountdownTimer';
 import Start from './components/Start';
-import Graveyard from './components/Graveyard';
+import Kitchen from './components/ChallengeFour';
 import NoEscape from './components/NoEscape';
 import Escaped from './components/Escaped';
 
@@ -43,7 +43,7 @@ function App() {
   const [showStart, setShowStart] = useState(false);
   const [showCornMaze, setShowCornMaze] = useState(false);
   const [showCage, setShowCage] = useState(false);
-  const [showGraveyard, setShowGraveyard] = useState(false);
+  const [showKitchen, setShowKitchen] = useState(false);
   const [showEscaped, setShowEscaped] = useState(false);
   const [showNoEscape, setShowNoEscape] = useState(false);
   const [showEnclosure, setShowEnclosure] = useState(false);
@@ -75,8 +75,8 @@ function App() {
     else if (showCage) {
       setFadeTransition('Cage');
     }
-    else if (showGraveyard) {
-      setFadeTransition('Graveyard');
+    else if (showKitchen) {
+      setFadeTransition('Kitchen');
     }
     else if (showEscaped) {
       setFadeTransition('Escaped');
@@ -87,7 +87,7 @@ function App() {
     else if (showStart) {
       setFadeTransition('Start');
     }
-  }, [showStart, showEnclosure, showCornMaze, showCage, showGraveyard, showEscaped, showNoEscape]);
+  }, [showStart, showEnclosure, showCornMaze, showCage, showKitchen, showEscaped, showNoEscape]);
 
   const handlePass = (setFalse, setTrue) => {
     console.log('sup')
@@ -99,7 +99,7 @@ function App() {
     setShowEnclosure(false);
     setShowCornMaze(false);
     setShowCage(false);
-    setShowGraveyard(false);
+    setShowKitchen(false);
     setFadeTransition('NoEscape');
     setTrue();
   }
@@ -119,11 +119,11 @@ function App() {
       )}
 
       <div className={`${transitionClass}`}>
-        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowCage(true))} />}
+        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowKitchen(true))} />}
         {currentComponent === 'Enclosure' && <Enclosure onPass={() => handlePass(() => setShowEnclosure(false), () => setShowCornMaze(true))} />}
         {currentComponent === 'CornMaze' && <CornMaze onPass={() => handlePass(() => setShowCornMaze(false), () => setShowCage(true))} />}
-        {currentComponent === 'Cage' && <Cage onPass={() => handlePass(() => setShowCage(false), () => setShowGraveyard(true))} />}
-        {currentComponent === 'Graveyard' && <Graveyard onPass={() => handlePass(() => setShowGraveyard(false), () => setShowEscaped(true))} />}
+        {currentComponent === 'Cage' && <Cage onPass={() => handlePass(() => setShowCage(false), () => setShowKitchen(true))} />}
+        {currentComponent === 'Kitchen' && <Kitchen onPass={() => handlePass(() => setShowKitchen(false), () => setShowEscaped(true))} />}
         {currentComponent === 'Escaped' && <Escaped formattedTime={formattedTime} />}
         {currentComponent === 'NoEscape' && <NoEscape onPass={() => handlePass(() => setShowNoEscape(false), () => setShowStart(true))} />}
       </div>

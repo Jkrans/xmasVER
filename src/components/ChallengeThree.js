@@ -3,17 +3,25 @@ import Story from './Story'
 // import PigpenLetters from './PigpenLetters'
 import pigpen from '../images/pigpen-cipher-key.png'
 import truck from '../images/pickup-truck.png'
+import latchleft from '../images/latch-left.png'
+import latchright from '../images/latch-right.png'
+import latchbolt from '../images/latch-bolt.png'
+import latchtop from '../images/latch-parts.png'
 import TryAgain from './TryAgainMessage';
 
 const ChallengeThree = ({ onPass }) => {
     const [storyData, setStoryData] = useState(null);
-    // const [showHint, setShowHint] = useState(false);
+    const [moveLatch, setMoveLatch] = useState(false);
     // const [showHintButton, setShowHintButton] = useState(false);
-    const [userAnswer, setUserAnswer] = useState("");
+    const [userAnswer1, setUserAnswer1] = useState("");
+    const [userAnswer2, setUserAnswer2] = useState("");
+    const [userAnswer3, setUserAnswer3] = useState("");
+    const [userAnswer4, setUserAnswer4] = useState("");
     const [showTryAgainMessage, setShowTryAgainMessage] = useState(false);
     const [cipherExpanded, setCipherExpanded] = useState(false);
 
     const cipherRef = useRef(null);
+    const latchRef = useRef(null);
 
     useEffect(() => {
         async function fetchStory() {
@@ -107,10 +115,34 @@ const ChallengeThree = ({ onPass }) => {
         cipherRef.current.classList.toggle('pigpen-slide-up');
     };
 
+    // helper function 
+    const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-    const checkAnswer = () => {
+    useEffect(() => {
+        const animateLatch = async () => {
+            const latch = latchRef.current;
+            if (moveLatch) {
+                latch.style.transform = 'rotateX(180deg)';
+                latch.style.top = '-94px';
+
+                await delay(1000);
+                latch.style.left = '165px';
+
+                await delay(1000);
+                latch.style.transform = 'rotateX(0deg)';
+                latch.style.top = '87px';
+            }
+        };
+
+        animateLatch();
+    }, [moveLatch]);
+
+    const checkAnswer = async () => {
         let timer;
-        if (userAnswer.toLowerCase() !== "skeletonkey" && userAnswer.toLowerCase() !== "skeleton key") {
+        if (userAnswer1.toLowerCase().trim() !== "lift up" ||
+            userAnswer2.toLowerCase().trim() !== "slide right" ||
+            userAnswer3.toLowerCase().trim() !== "drop down" ||
+            userAnswer4.toLowerCase().trim() !== "pull open") {
             setShowTryAgainMessage(true);
             timer = setTimeout(() => {
                 setShowTryAgainMessage(false);
@@ -118,7 +150,9 @@ const ChallengeThree = ({ onPass }) => {
             return;
         } else setShowTryAgainMessage(false);
 
-        onPass(true)
+        setMoveLatch(true);
+        await delay(2000);
+        onPass(true);
         return () => clearTimeout(timer); // clear timeout on component unmount
     }
 
@@ -136,24 +170,33 @@ const ChallengeThree = ({ onPass }) => {
                             <img src={pigpen} alt="pigpen cipher key" width='68%' height='90%' />
                         </div>
                         <h5>Latch Instructions:</h5>
-                        <ol>
-                            <li><span className='pigpen-font'>pull up</span></li>
-                            <li><span className='pigpen-font'>turn right</span></li>
-                            <li><span className='pigpen-font'>push down</span></li>
-                            <li><span className='pigpen-font'>pull out</span></li>
+                        <ol className='unselectable'>
+                            <li><span className='pigpen-font'>lift up</span></li>
+                            <li><span className='pigpen-font'>slide right</span></li>
+                            <li><span className='pigpen-font'>drop down</span></li>
+                            <li><span className='pigpen-font'>pull open</span></li>
                         </ol>
                     </div>
                 </div>
 
             </div>
             <div className='pigpen-cipher-container'>
-                <p>Can you find the secret code embedded inside the message above? That is the key to getting out of here.</p>
                 <div className='pigpen-submit-wrapper'>
-                    <div>
-                        <input type="text" placeholder='Secret Code...' onChange={(e) => setUserAnswer(e.target.value)} />
-                        <button className='basement-btn' onClick={checkAnswer}>Submit Code</button>
-                        <TryAgain message='Please Try Again' isDisplayed={showTryAgainMessage} marginTop='1rem' color='black' />
+                    <div style={{ width: '55%' }}>
+                        <p>Enter the instructions below:</p>
+                        <input type="text" placeholder='Cipher 1...' onChange={(e) => setUserAnswer1(e.target.value)} />
+                        <input type="text" placeholder='Cipher 2...' onChange={(e) => setUserAnswer2(e.target.value)} />
+                        <input type="text" placeholder='Cipher 3...' onChange={(e) => setUserAnswer3(e.target.value)} />
+                        <input type="text" placeholder='Cipher 4...' onChange={(e) => setUserAnswer4(e.target.value)} />
+                        <button className='ch3-submit' onClick={checkAnswer}>Submit Instructions</button>
+                        <TryAgain message='Please try again. Check spelling.' isDisplayed={showTryAgainMessage} marginTop='1rem' color='black' />
 
+                    </div>
+                    <div style={{ width: '45%', position: 'relative' }}>
+                        <img className="latch latchleft" src={latchleft} />
+                        <img className="latch latchright" src={latchright} />
+                        <img ref={latchRef} className="latch latchbolt" src={latchbolt} />
+                        <img className="latch latchtop" src={latchtop} />
                     </div>
                 </div>
 

@@ -18,7 +18,7 @@ const story = [
 
 
 
-const Graveyard = ({ onPass }) => {
+const ChallengeFour = ({ onPass }) => {
     const [riddles, setRiddles] = useState([]);
     const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0); // starts from the first riddle
     const [userInput, setUserInput] = useState('');
@@ -95,7 +95,7 @@ const Graveyard = ({ onPass }) => {
             // Remove styles when the component unmounts
             document.body.style.backgroundColor = '';
         };
-    });
+    }, []);
 
     return (
         <div className="main--witch">
@@ -133,4 +133,4 @@ const Graveyard = ({ onPass }) => {
     )
 }
 
-export default Graveyard
+export default ChallengeFour
