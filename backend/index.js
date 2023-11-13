@@ -143,5 +143,22 @@ app.get('/api/stories/:id', async (req, res) => {
     }
 });
 
+app.get('/api/riddles/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const riddleQuery = await db.query('SELECT * FROM riddles WHERE id = $1', [id]);
+        const riddleData = riddleQuery.rows[0];
+
+        if (!riddleData) {
+            return res.status(404).json({ error: 'Riddle not found' });
+        }
+
+        res.json(riddleData);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 
 

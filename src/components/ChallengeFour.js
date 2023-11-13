@@ -26,7 +26,7 @@ const ChallengeFour = ({ onPass }) => {
     const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0); // starts from the first riddle
     const [userInput, setUserInput] = useState('');
     const [tryAgainMessage, setTryAgainMessage] = useState(false);
-    const [scrollHeight, setScrollHeight] = useState(1801);
+    const [scrollHeight, setScrollHeight] = useState(1638);
 
     const whiskIconRef = useRef(null);
     const knifeIconRef = useRef(null);
@@ -34,7 +34,7 @@ const ChallengeFour = ({ onPass }) => {
     useEffect(() => {
         async function fetchStory() {
             try {
-                const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/stories/3");
+                const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/stories/4");
                 const data = await response.json();
                 setStoryData(data);
             } catch (err) {
@@ -48,9 +48,15 @@ const ChallengeFour = ({ onPass }) => {
     useEffect(() => {
         async function fetchRiddles() {
             try {
-                const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/riddles");
-                const data = await response.json();
-                setRiddles(data);
+                const riddles = [];
+
+                for (let i = 8; i <= 9; i++) {
+                    const response = await fetch(`https://turkeyver-backend-production.up.railway.app/api/riddles/${i}`);
+                    const data = await response.json();
+                    riddles.push(data);
+                }
+
+                setRiddles(riddles);
             } catch (err) {
                 console.error("An error occurred while fetching riddles:", err);
             }
@@ -58,6 +64,7 @@ const ChallengeFour = ({ onPass }) => {
 
         fetchRiddles();
     }, []);
+
 
     const handleInputChange = (e) => {
         setUserInput(e.target.value);
@@ -118,15 +125,15 @@ const ChallengeFour = ({ onPass }) => {
         };
     }, []);
 
-    const iconAnimate = (elementRef, duration, sh) => {
+    const iconAnimate = (elementRef, duration, maxHeight) => {
         const element = elementRef.current;
 
         const keyframes = [
-            { transform: `translateX(25vw) translateY(calc(${sh}px - 389px)) rotate(0deg)` },
+            { transform: `translateX(25vw) translateY(calc(${maxHeight}px - 389px)) rotate(0deg)` },
             { transform: 'translateX(-70vw) translateY(-30vh) rotate(180deg)' },
-            { transform: `translateX(-20vw) translateY(calc(${sh}px  - 389px)) rotate(90deg)` },
+            { transform: `translateX(-20vw) translateY(calc(${maxHeight}px  - 389px)) rotate(90deg)` },
             { transform: 'translateX(40vw) translateY(-30vh) rotate(270deg)' },
-            { transform: `translateX(25vw) translateY(calc(${sh}px  - 389px)) rotate(0deg)` }
+            { transform: `translateX(25vw) translateY(calc(${maxHeight}px  - 389px)) rotate(0deg)` }
         ];
 
         const timing = {
@@ -134,8 +141,9 @@ const ChallengeFour = ({ onPass }) => {
             iterations: Infinity, // Repeat the animation forever
             fill: 'forwards' // Ensure the animation stays at the last keyframe when finished
         };
-
-        element.animate(keyframes, timing);
+        setTimeout(() => {
+            element.animate(keyframes, timing);
+        }, 0)
     }
 
     useEffect(() => {
@@ -169,18 +177,42 @@ const ChallengeFour = ({ onPass }) => {
                         <img src={knife} alt="Floating Icon" />
                     </div>
                     <div className='ch4-riddles-container'>
-                        <img src={oven} alt="oven Icon" style={{ width: '45%' }} />
+                        <img src={oven} alt="oven Icon" style={{ width: '45%', maxWidth: '512px' }} />
                         <div className="ch4-riddle">
-                            <p>{riddles[currentRiddleIndex].question}</p>
-                            <form onSubmit={handleSubmit}>
-                                <input type='text' value={userInput} onChange={handleInputChange} maxLength={35} />
-                            </form>
-                            <TryAgain
-                                message='Please try again. Remember to check your spelling.'
-                                isDisplayed={tryAgainMessage}
-                                marginTop='1rem'
-                                color='black'
-                            />
+                            <div className="recipe-title">
+                                <h3>Recipe:</h3>
+                                <p style={{ fontFamily: 'Linefont' }}>whatintheworld doesthiseven saybruh?</p>
+                            </div>
+                            <div className="recipe-main">
+                                <div className="recipe-ingredients">
+                                    <h5>Ingredients:</h5>
+                                    <ul style={{ fontFamily: 'Linefont' }}>
+                                        <li>whatintheheck isthisagain</li>
+                                        <li>thisdoesntmeannothin</li>
+                                        <li>itsjustabunchof nothing</li>
+                                        <li>nothingitellyou</li>
+                                        <li>justneeds tolooklikesomeone</li>
+                                        <li>actuallyscribbled inhere</li>
+                                        <li>scribblescribble scribble</li>
+                                    </ul>
+                                </div>
+                                <div className="recipe-instructions">
+                                    <h4>Instructions:</h4>
+                                    <p>{riddles[currentRiddleIndex].question}</p>
+                                    <form onSubmit={handleSubmit}>
+                                        <input type='text' value={userInput} onChange={handleInputChange} maxLength={35} />
+                                    </form>
+                                    <TryAgain
+                                        message='Please try again. Remember to check your spelling.'
+                                        isDisplayed={tryAgainMessage}
+                                        marginTop='1rem'
+                                        color='black'
+                                    />
+                                </div>
+
+                            </div>
+
+
                         </div>
                     </div>
 

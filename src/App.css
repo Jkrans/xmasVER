@@ -4,6 +4,7 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Gabarito&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Linefont:wght@300&display=swap');
 
 :root {
   box-sizing: border-box;
@@ -749,9 +750,63 @@ ol {
   width: 45%;
   text-align: center;
   font-size: 1.7rem;
-  color: white;
+  color: rgb(2, 0, 114);
   visibility: visible;
   margin-top: 2rem;
+  background-color: rgb(254, 255, 214);
+  min-height: 450px;
+  border-radius: 20px;
+  box-shadow: 5px 8px 20px 3px rgb(51, 104, 73);
+}
+
+.ch4-riddle p,
+.ch4-riddle h2,
+.ch4-riddle h3,
+.ch4-riddle h4,
+.ch4-riddle h5 {
+  margin: 0;
+}
+
+.recipe-title {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.recipe-title h3,
+.recipe-title p {
+  padding-left: 3rem;
+}
+
+.recipe-title p {
+  font-size: 3rem;
+  margin-top: -1rem;
+}
+
+.recipe-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 2rem 0;
+}
+
+.recipe-ingredients {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding: 0.5rem;
+  border: 1px solid #000
+}
+
+.recipe-instructions {
+  width: 60%;
+  border: 1px solid #000;
+  padding: 0.5rem;
+}
+
+.recipe-instructions p {
+  padding-top: 3rem;
 }
 
 .ch4-riddle input {
@@ -760,16 +815,16 @@ ol {
   font-size: 1.8rem;
   text-align: center;
   background-color: transparent;
-  color: white;
+  color: rgb(58, 135, 63);
   border: none;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid rgb(0, 0, 0);
   transition: border-bottom 500ms ease, width 500ms ease;
 }
 
 .ch4-riddle input:focus {
   outline: none;
-  width: 20rem;
-  border-bottom: 2px solid rgb(242, 109, 30);
+  width: 18rem;
+  border-bottom: 2px solid rgb(72, 164, 113);
 }
 
 .ch4-riddle p:nth-of-type(2) {
