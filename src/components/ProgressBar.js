@@ -4,7 +4,7 @@ import { CurrentComponentContext } from '../App';
 import pie from '../images/pumpkin-pie.png';
 import scarecrow from '../images/scarecrow.gif';
 import cage from '../images/cage.png';
-// import Grave from '../images/grave.png';
+import oven from '../images/oven.png';
 
 import PBFragment from './ProgressBarFragment';
 
@@ -62,11 +62,11 @@ const ProgressBar = () => {
                 imgPixels='33px'
             />
             <PBFragment
-                img={''}
+                img={oven}
                 backgroundColorBubble={getBackgroundColor(currentComponent, componentName, 3)}
                 backgroundColorLine={getBackgroundColorLine(currentComponent, componentName, 4)}
                 imgVisibility={setImageVisible(currentComponent, componentName, 4)}
-                imgPixels='39px'
+                imgPixels='33px'
                 lineDisplay='none'
             />
 

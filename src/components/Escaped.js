@@ -4,24 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 // import Pumpkin from '../images/pumpkin2.gif'
 import Story from './Story'
 
-const story = [
-    "With a sigh of relief, you solve the final riddle, and a serene silence falls upon the graveyard. The once ominous tombstones now stand silently. The Guardian of Lost Souls steps forward, her blue cloak fluttering gently in the moonlit night.",
-    <br />,
-    <br />,
-    "\"You have done what many before you could not. You have given peace to the restless souls and proven your wit and determination,\" she says, her voice filled with gratitude.",
-    <br />,
-    <br />,
-    "As she speaks, the fog starts to lift, revealing a pathway illuminated by the soft glow of the moon. It leads to an ornate gate you hadn't noticed before. Engraved on the archway above are the words: \"To those who understand the past, the future is an open door.\"",
-    <br />,
-    <br />,
-    "The Guardian gently places her hand on your shoulder, \"Remember the lessons you've learned here, for every challenge you face in life can be conquered with understanding, wit, and determination.\" With a soft smile, she fades away, her form merging with the swirling mists, leaving you with a sense of accomplishment and newfound wisdom.",
-    <br />,
-    <br />,
-    "Taking a deep breath, filled with newfound courage and hope, you walk through the gate. As you step beyond its threshold, the early morning sun greets you, casting a golden hue on the world. You're free, with the dawn of a new day ahead and the challenges of this haunted place behind you. But the lessons and memories will stay with you, a reminder of the night you faced the impossible and emerged victorious.",
-    <br />,
-    <br />,
-    "As you continue your journey, the world around you feels brighter, and the weight on your shoulders lighter. You've not only escaped, but also conquered your own fears, proving to yourself that with determination, courage, and wit, you can overcome any challenge that comes your way."
-];
+
 
 const Escaped = ({ formattedTime }) => {
 
@@ -31,7 +14,7 @@ const Escaped = ({ formattedTime }) => {
     // Set styles when the component mounts
     useEffect(() => {
         document.body.style.background = 'linear-gradient(rgb(138, 164, 255), rgb(255 255 255))';
-        document.querySelector('.header--h1').style.color = 'rgb(10, 37, 112)'
+        document.querySelector('.header--h1').style.color = 'rgb(255, 255, 255, 0.8)'
         const footerLinks = document.querySelectorAll('.footer a, .footer p');
         footerLinks.forEach(link => {
             link.style.color = "rgb(138, 164, 255)";
@@ -73,7 +56,7 @@ const Escaped = ({ formattedTime }) => {
 
     return (
         <div className="main--witch">
-            <Story title='Escaped' story={story} width='75%' />
+            <Story title='Escaped' width='75%' />
             <div className='centerItems success'>
                 <img id='success-img' className='' src={img} alt="" />
                 <div className='success-text centerItems'>
