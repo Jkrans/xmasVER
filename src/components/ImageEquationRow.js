@@ -33,12 +33,18 @@ const ImageEquationRow = ({ onPass }) => {
     const newInputValues = [...inputValues];
     newInputValues[index] = event.target.value;
     setInputValues(newInputValues);
+
+    // Check if the input value is correct and update the input's style
+    if (parseInt(event.target.value) === items[index].value) {
+      event.target.style.borderBottom = '2px solid rgb(97, 147, 0)';
+    } else {
+      event.target.style.borderBottom = '2px solid rgb(0, 0, 0)'; // Reset the border if the value is incorrect
+    }
   };
 
   const checkValues = () => {
     let timer;
     for (let i = 0; i < items.length; i++) {
-      onPass(true);
       if (parseInt(inputValues[i]) !== items[i].value) {
         setTryAgainMessage(true)
         timer = setTimeout(() => {

@@ -15,16 +15,16 @@
   <title>Great Turkey Escape</title>
 
   <script>
-    // window.addEventListener('beforeunload', function (e) {
-    //   // The message that will be shown in some browsers.
-    //   var message = 'Are you sure you want to leave?';
+    window.addEventListener('beforeunload', function (e) {
+      // The message that will be shown in some browsers.
+      var message = 'Are you sure you want to leave?';
 
-    //   // For some browsers, the return value of the event is displayed in the dialog.
-    //   e.returnValue = message;
+      // For some browsers, the return value of the event is displayed in the dialog.
+      e.returnValue = message;
 
-    //   // For other browsers, you set a string on the event.
-    //   return message;
-    // });
+      // For other browsers, you set a string on the event.
+      return message;
+    });
   </script>
 </head>
 

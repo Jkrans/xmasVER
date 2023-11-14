@@ -10,7 +10,7 @@ const ChallengeOne = ({ onPass }) => {
 
     // Set styles when the component mounts
     document.body.style.background = 'linear-gradient(rgb(220, 161, 12), rgb(79 39 25))';
-    document.getElementsByClassName('header--h1')[0].style.color = 'rgb(45, 0, 60)';
+    document.getElementsByClassName('header--h1')[0].style.color = 'rgb(255, 255, 255, 0.8)';
 
     const footerLinks = document.querySelectorAll('.footer a, .footer p');
     footerLinks.forEach(link => {
