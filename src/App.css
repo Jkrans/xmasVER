@@ -755,7 +755,7 @@ ol {
   margin-top: 2rem;
   background-color: rgb(254, 255, 214);
   min-height: 450px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 5px 8px 20px 3px rgb(51, 104, 73);
 }
 
@@ -796,17 +796,20 @@ ol {
   flex-direction: column;
   width: 25%;
   padding: 0.5rem;
-  border: 1px solid #000
+  border: 1px solid #000;
+  border-radius: 10px;
 }
 
 .recipe-instructions {
   width: 60%;
   border: 1px solid #000;
   padding: 0.5rem;
+  border-radius: 10px;
 }
 
 .recipe-instructions p {
   padding-top: 3rem;
+  font-size: 1.5rem;
 }
 
 .ch4-riddle input {
@@ -824,7 +827,7 @@ ol {
 .ch4-riddle input:focus {
   outline: none;
   width: 18rem;
-  border-bottom: 2px solid rgb(72, 164, 113);
+  border-bottom: 2px solid rgb(236, 74, 36);
 }
 
 .ch4-riddle p:nth-of-type(2) {
@@ -863,10 +866,11 @@ ol {
   display: flex;
   position: relative;
   justify-content: space-around;
+  min-width: 65%;
   max-width: 75%;
   text-align: center;
-  box-shadow: inset 5px 5px 25px 2px rgb(0, 0, 0);
-  background: linear-gradient(transparent 55%, rgb(0, 80, 3));
+  box-shadow: inset 5px 5px 25px 2px rgb(48, 48, 48);
+  background: linear-gradient(transparent 55%, rgb(93, 71, 0));
   border-radius: 20px;
   margin-top: 5rem;
   padding: 2rem;
@@ -907,36 +911,35 @@ p {
 
 .failed h1 {
   font-family: 'Shadows Into Light';
+  font-size: 5rem;
   margin: 0;
 }
 
-.failed p {
-  margin-top: 2rem;
-  font-size: 1.5rem;
-  font-family: 'Gabarito', sans-serif;
-}
+
 
 .failed button {
   padding: 0.5rem 1rem;
   width: 80%;
+  height: 15%;
   border: none;
   font-size: 2rem;
   font-family: 'Gabarito', sans-serif;
-  background: rgb(207, 118, 0);
+  background: rgb(0, 144, 93);
   color: rgb(206, 223, 242);
-  border-radius: 5px;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.342);
   margin-top: 3rem;
 }
 
 .failed button:hover {
-  background: rgb(177, 101, 0);
+  background: rgb(0, 113, 73);
 }
 
 .pumpkin-looking {
   position: absolute;
   filter: brightness(81%);
   top: 22rem;
-  left: 28rem;
+  left: 47rem;
   transform: scaleX(-1);
 }
 

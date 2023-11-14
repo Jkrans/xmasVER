@@ -50,7 +50,7 @@ const ChallengeFour = ({ onPass }) => {
             try {
                 const riddles = [];
 
-                for (let i = 8; i <= 9; i++) {
+                for (let i = 9; i <= 14; i++) {
                     const response = await fetch(`https://turkeyver-backend-production.up.railway.app/api/riddles/${i}`);
                     const data = await response.json();
                     riddles.push(data);
@@ -164,12 +164,6 @@ const ChallengeFour = ({ onPass }) => {
             {storyData && <Story title={storyData.title} story={storyData.story} color="white" width="78%" />}
             {riddles.length > 0 && (
                 <>
-                    {/* <div className="headstones">
-                        <Headstone isGlowing={true} />
-                        <Headstone isGlowing={riddles[0].isSolved ? true : false} />
-                        <Headstone isGlowing={riddles[1].isSolved ? true : false} />
-                        <Headstone isGlowing={riddles[2].isSolved ? true : false} />
-                    </div> */}
                     <div ref={whiskIconRef} class="floating-icon">
                         <img src={whisk} alt="Floating Icon" />
                     </div>
@@ -181,7 +175,7 @@ const ChallengeFour = ({ onPass }) => {
                         <div className="ch4-riddle">
                             <div className="recipe-title">
                                 <h3>Recipe:</h3>
-                                <p style={{ fontFamily: 'Linefont' }}>whatintheworld doesthiseven saybruh?</p>
+                                <p style={{ fontFamily: 'Linefont' }}>wHatintheworld dOesthiseven saybruh?</p>
                             </div>
                             <div className="recipe-main">
                                 <div className="recipe-ingredients">
@@ -215,13 +209,6 @@ const ChallengeFour = ({ onPass }) => {
 
                         </div>
                     </div>
-
-                    {/* <div className="headstones">
-                        <Headstone isGlowing={riddles[3].isSolved ? true : false} />
-                        <Headstone isGlowing={riddles[4].isSolved ? true : false} />
-                        <Headstone isGlowing={riddles[5].isSolved ? true : false} />
-                        <Headstone isGlowing={riddles[6].isSolved ? true : false} />
-                    </div> */}
                 </>
             )}
         </div>

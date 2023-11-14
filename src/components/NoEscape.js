@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-// import Reaper from '../images/reaper.png';
-// import Pumpkin from '../images/pumpkin-looking2.gif';
+import cooked from '../images/cooked.png';
+import yikes from '../images/scared.png';
 
 const NoEscape = ({ onPass }) => {
 
   useEffect(() => {
     // Set styles when the component mounts
-    document.body.style.background = 'linear-gradient(rgb(26, 31, 50) 45%, white) ';
+    document.body.style.background = 'linear-gradient(rgb(94, 135, 146) 45%, white) ';
 
     const footerLinks = document.querySelectorAll('.footer a, .footer p');
     footerLinks.forEach(link => {
@@ -27,12 +27,10 @@ const NoEscape = ({ onPass }) => {
   return (
     <div className="main--witch">
       <div className='centerItems failed'>
-        <img id='success-img' className='' src={''} alt="" />
-        <img id='success-img' className='pumpkin-looking' src={''} width='20%' alt="" />
+        <img id='success-img' className='' src={cooked} alt="" />
+        <img id='success-img' className='pumpkin-looking' src={yikes} width='20%' alt="" />
         <div className='failed-text centerItems'>
-          <h1>No Escape</h1>
-          <p>Nice try. Join the spirits in the graveyard or...</p>
-          {/* <img src={Pumpkin} width='250px'/> */}
+          <h1>Cooked</h1>
           <button onClick={handleTryAgain}>Try Again</button>
         </div>
       </div>
