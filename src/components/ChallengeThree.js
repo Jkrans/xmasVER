@@ -193,10 +193,10 @@ const ChallengeThree = ({ onPass }) => {
 
                     </div>
                     <div style={{ width: '45%', position: 'relative' }}>
-                        <img className="latch latchleft" src={latchleft} />
-                        <img className="latch latchright" src={latchright} />
-                        <img ref={latchRef} className="latch latchbolt" src={latchbolt} />
-                        <img className="latch latchtop" src={latchtop} />
+                        <img className="latch latchleft" src={latchleft} alt='' />
+                        <img className="latch latchright" src={latchright} alt='' />
+                        <img ref={latchRef} className="latch latchbolt" src={latchbolt} alt='' />
+                        <img className="latch latchtop" src={latchtop} alt='' />
                     </div>
                 </div>
 
