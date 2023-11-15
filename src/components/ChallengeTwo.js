@@ -12,26 +12,38 @@ import TryAgain from './TryAgainMessage';
 
 //ChallengeTwo component
 const ChallengeTwo = ({ onPass }) => {
-    const [storyData, setStoryData] = useState([])
+    // const [storyData, setStoryData] = useState([])
     const [riddles, setRiddles] = useState({})
     const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0);
     const [userAnswer, setUserAnswer] = useState('');
     const [showTryAgainMessage, setShowTryAgainMessage] = useState(false);
     const [moveTurkey, setMoveTurkey] = useState(0);
 
-    useEffect(() => {
-        async function fetchStory() {
-            try {
-                const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/stories/2");
-                const data = await response.json();
-                setStoryData(data);
-            } catch (err) {
-                console.error("An error occurred while fetching story:", err);
-            }
-        }
+    // useEffect(() => {
+    //     let retryCount = 0;
+    //     const maxRetries = 3; // Set the maximum number of retries
+    //     const retryDelay = 2000; // Delay between retries in milliseconds
 
-        fetchStory();
-    }, []);
+    //     async function fetchStory() {
+    //         try {
+    //             const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/stories/2");
+    //             if (!response.ok) {
+    //                 throw new Error(`HTTP error! status: ${response.status}`);
+    //             }
+    //             console.log('try: ', retryCount)
+    //             const data = await response.json();
+    //             setStoryData(data);
+    //         } catch (err) {
+    //             console.error("An error occurred while fetching story:", err);
+    //             if (retryCount < maxRetries) {
+    //                 setTimeout(fetchStory, retryDelay);
+    //                 retryCount++;
+    //             }
+    //         }
+    //     }
+
+    //     fetchStory();
+    // }, []);
 
     useEffect(() => {
         async function fetchRiddles() {
@@ -186,7 +198,7 @@ const ChallengeTwo = ({ onPass }) => {
 
     return (
         <div className="main--witch">
-            <Story title={storyData.title} story={storyData.story} color="rgb(255,255,255,0.8)" width="70%" />
+            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/2" color="rgb(255,255,255,0.8)" width="70%" />
 
             <div className='riddles-container'>
                 <div style={{ position: 'relative' }}>

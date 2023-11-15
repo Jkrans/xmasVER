@@ -1,15 +1,14 @@
-import { useEffect, useState, useRef } from 'react'
-// import Cloak from '../images/cloak.png'
-// import Gate from '../images/gate.png'
+import { useEffect } from 'react'
+// import whitehouse from '../images/white-house.png'
+import tablecloth from '../images/table-cloth.png'
+// import turkey from '../images/turkey-walk2.png'
 // import Pumpkin from '../images/pumpkin2.gif'
 import Story from './Story'
 
 
 
 const Escaped = ({ formattedTime }) => {
-
-    const [img, setImg] = useState('')
-    const hasTriggered = useRef(false);
+    // const hasTriggered = useRef(false);
 
     // Set styles when the component mounts
     useEffect(() => {
@@ -26,44 +25,43 @@ const Escaped = ({ formattedTime }) => {
         };
     }, []);
 
-    // fade out image and then fade in new images when user reaches certain scroll point.    
-    const handleScroll = () => {
-        if (hasTriggered.current) return;
+    // // fade out image and then fade in new images when user reaches certain scroll point.    
+    // const handleScroll = () => {
+    //     if (hasTriggered.current) return;
 
-        const successImg = document.querySelector('#success-img');
+    //     const successImg = document.querySelector('#success-img');
 
-        if (window.scrollY > 400) {
-            hasTriggered.current = true;
+    //     if (window.scrollY > 400) {
+    //         hasTriggered.current = true;
 
-            setTimeout(() => {
-                successImg.classList.add('fade-out');
+    //         setTimeout(() => {
+    //             successImg.classList.add('fade-out');
 
-                setTimeout(() => {
-                    setImg('');
-                    successImg.classList.replace('fade-out', 'fade-in');
-                }, 2000);
-            }, 2000);
-            window.removeEventListener('scroll', handleScroll);
-        }
-    }
-    // add scroll event to window
-    useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    });
+    //             setTimeout(() => {
+    //                 setImg('');
+    //                 successImg.classList.replace('fade-out', 'fade-in');
+    //             }, 2000);
+    //         }, 2000);
+    //         window.removeEventListener('scroll', handleScroll);
+    //     }
+    // }
+    // // add scroll event to window
+    // useEffect(() => {
+    //     window.addEventListener('scroll', handleScroll);
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll);
+    //     };
+    // });
 
+    // <p>With a display of wit and cunning, you made your escape with <span style={{ color: '#002473' }}>{formattedTime}</span> to spare. That was seriously impressive!</p>
     return (
         <div className="main--witch">
-            <Story title='Escaped' width='75%' />
+            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/5" color="black" width="78%" />
             <div className='centerItems success'>
-                <img id='success-img' className='' src={img} alt="" />
-                <div className='success-text centerItems'>
-                    <h1 style={{ fontFamily: 'Young Serif' }}>dfsdsfbfbh wobble</h1>
-                    <p>With a display of wit and cunning, you made your escape with <span style={{ color: '#002473' }}>{formattedTime}</span> to spare. That was seriously impressive!</p>
-                    <img src={''} width='250px' alt="" />
-                </div>
+                <img className='success-table' src={tablecloth} alt='' />
+
+
+
             </div>
         </div>
     )

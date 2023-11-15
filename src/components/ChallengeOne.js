@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import ImageEquationRow from "./ImageEquationRow"
 import Story from "./Story"
 
 
 const ChallengeOne = ({ onPass }) => {
-  const [storyData, setStoryData] = useState(null);
 
   useEffect(() => {
 
@@ -23,24 +22,10 @@ const ChallengeOne = ({ onPass }) => {
     };
   });
 
-  useEffect(() => {
-    async function fetchStory() {
-      try {
-        const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/stories/1");
-        const data = await response.json();
-        setStoryData(data);
-      } catch (err) {
-        console.error("An error occurred while fetching story:", err);
-      }
-    }
-
-    fetchStory();
-  }, []);
-
 
   return (
     <div className="main--witch">
-      {storyData && <Story title={storyData.title} story={storyData.story} color="rgb(0,0,0,0.7)" />}
+      <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/1" color="rgb(255,255,255,0.8)" width="70%" />
       <ImageEquationRow onPass={onPass} />
     </div>
   )

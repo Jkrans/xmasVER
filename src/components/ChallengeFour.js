@@ -5,23 +5,8 @@ import knife from '../images/knife.png'
 import oven from '../images/oven.png'
 import TryAgain from './TryAgainMessage'
 
-// const story = [
-//     "After unlocking the cage in the basement, relief floods over you. Before you can turn to thank your skeletal companion, you find his cage eerily empty, with just a soft chuckle echoing in the background as a reminder of his presence. The dim light allows you to spot a set of worn-out cellar doors across the room. Hopeful, you make your way over and push them open. A gust of cool air greets you. Stepping out, you find yourself not in the safety of the outdoors as you hoped, but instead, in an eerie, moonlit graveyard. Fog blankets the ground, and twisted trees stretch their skeletal branches toward the sky. This is no ordinary graveyard, and as you will soon discover, its residents aren't exactly resting in peace.",
-//     <br />,
-//     <br />,
-//     "Suddenly, from behind one of the tombstones, a figure emerges, draped in a bluish cloak that shimmers in the moonlight. She introduces herself as the \"Guardian of Lost Souls\", a spirit trapped in the graveyard for centuries. She explains, \"This graveyard is enchanted. The souls of those buried here remain restless, trapped in a limbo between realms. The only way to pacify them and ensure your safe passage is to solve their riddles.\" She continues, \"Solving these riddles won't just ensure your safe passage but will also bring some peace to these tormented souls.\"",
-//     <br />,
-//     <br />,
-//     "The first tombstone starts to glow, indicating where you should begin. The Guardian of Lost Souls whispers, \"Remember, time is of the essence. With each riddle you solve, dawn approaches. You must solve them all before the first light touches the horizon, or you risk joining the souls here for eternity.\"",
-//     <br />,
-//     <br />,
-//     "Your heart races as you take a deep breath. With determination, you step forward, ready to face the riddles of the graveyard and unlock the final path to freedom."
-// ]
-
-
 
 const ChallengeFour = ({ onPass }) => {
-    const [storyData, setStoryData] = useState(null);
     const [riddles, setRiddles] = useState([]);
     const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0); // starts from the first riddle
     const [userInput, setUserInput] = useState('');
@@ -30,20 +15,6 @@ const ChallengeFour = ({ onPass }) => {
 
     const whiskIconRef = useRef(null);
     const knifeIconRef = useRef(null);
-
-    useEffect(() => {
-        async function fetchStory() {
-            try {
-                const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/stories/4");
-                const data = await response.json();
-                setStoryData(data);
-            } catch (err) {
-                console.error("An error occurred while fetching story:", err);
-            }
-        }
-
-        fetchStory();
-    }, []);
 
     useEffect(() => {
         async function fetchRiddles() {
@@ -161,7 +132,7 @@ const ChallengeFour = ({ onPass }) => {
 
     return (
         <div className="main--witch">
-            {storyData && <Story title={storyData.title} story={storyData.story} color="white" width="78%" />}
+            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/4" color="rgb(255,255,255,0.8)" width="78%" />
             {riddles.length > 0 && (
                 <>
                     <div ref={whiskIconRef} class="floating-icon">

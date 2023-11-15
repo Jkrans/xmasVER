@@ -1,13 +1,22 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3001;  // Use environment variable if available
-const db = require('./db');
 const cors = require('cors');
-app.use(cors());
+const db = require('./db');
+const port = process.env.PORT || 3001;
 
-app.get('/api/hello', (req, res) => {
-    res.json({ message: 'Hello from server!' });
-});
+// CORS options
+const corsOptions = {
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204
+};
+
+// Enable CORS with options
+app.use(cors(corsOptions));
+
+// Handle pre-flight requests for all routes
+app.options('*', cors(corsOptions));
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server running on http://0.0.0.0:${port}`);

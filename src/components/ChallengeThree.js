@@ -10,7 +10,6 @@ import latchtop from '../images/latch-parts.png'
 import TryAgain from './TryAgainMessage';
 
 const ChallengeThree = ({ onPass }) => {
-    const [storyData, setStoryData] = useState(null);
     const [moveLatch, setMoveLatch] = useState(false);
     // const [showHintButton, setShowHintButton] = useState(false);
     const [userAnswer1, setUserAnswer1] = useState("");
@@ -23,41 +22,6 @@ const ChallengeThree = ({ onPass }) => {
     const cipherRef = useRef(null);
     const latchRef = useRef(null);
 
-    useEffect(() => {
-        async function fetchStory() {
-            try {
-                const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/stories/3");
-                const data = await response.json();
-                setStoryData(data);
-            } catch (err) {
-                console.error("An error occurred while fetching story:", err);
-            }
-        }
-
-        fetchStory();
-    }, []);
-
-    // useEffect(() => {
-    //     if (showHint) {
-    //         const hint = document.querySelector('.hint');
-    //         hint.classList.add('fade-in');
-    //     }
-    // })
-
-    // const hintButtonClicked = () => {
-    //     setShowHint(true)
-    // }
-
-    // useEffect(() => {
-    //     const minutes = 8;
-    //     const hintTimeout = setTimeout(() => {
-    //         setShowHintButton(true);
-    //     }, minutes * 60 * 1000);
-
-    //     return () => {
-    //         clearTimeout(hintTimeout);
-    //     };
-    // }, []);
 
     const handleScroll = () => {
         if (window.scrollY > 400) {
@@ -158,7 +122,7 @@ const ChallengeThree = ({ onPass }) => {
 
     return (
         <div className="main--witch">
-            {storyData && <Story title={storyData.title} story={storyData.story} color="white" width="78%" />}
+            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/3" color="rgb(255,255,255,0.8)" width="70%" />
             <div className="main-pp-wrapper ">
                 {/* <p>Figure out which letters are missing in the key to the right before you can solve the cipher below. This may require a pencil and paper.</p> */}
 
