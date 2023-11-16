@@ -143,6 +143,7 @@ const ChallengeFour = ({ onPass }) => {
                     </div>
                     <div className='ch4-riddles-container'>
                         <img src={oven} alt="oven Icon" style={{ width: '45%', maxWidth: '512px' }} />
+
                         <div className="ch4-riddle">
                             <div className="recipe-title">
                                 <h3>Recipe:</h3>
@@ -167,18 +168,20 @@ const ChallengeFour = ({ onPass }) => {
                                     <form onSubmit={handleSubmit}>
                                         <input type='text' value={userInput} onChange={handleInputChange} maxLength={35} />
                                     </form>
-                                    <TryAgain
-                                        message='Please try again. Remember to check your spelling.'
-                                        isDisplayed={tryAgainMessage}
-                                        marginTop='1rem'
-                                        color='black'
-                                    />
                                 </div>
 
                             </div>
 
 
+                            <TryAgain
+                                message='Please try again. Check your spelling.'
+                                isDisplayed={tryAgainMessage}
+                                marginTop='1rem'
+                                color='black'
+                            />
                         </div>
+
+
                     </div>
                 </>
             )}

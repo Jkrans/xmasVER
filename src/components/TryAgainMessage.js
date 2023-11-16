@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import Jackstein from '../images/jackstein.png'
+import jackolantern from '../images/jackolantern.png'
 
 const TryAgainMessage = ({ message, isDisplayed, color, marginTop }) => {
   const [visibility, setVisibility] = useState(isDisplayed ? 'visible' : 'hidden');
@@ -11,7 +11,7 @@ const TryAgainMessage = ({ message, isDisplayed, color, marginTop }) => {
       setVisibility('visible');
       timer = setTimeout(() => {
         setVisibility('hidden');
-      }, 10000); // hide after 10 seconds
+      }, 100000); // hide after 10 seconds
     } else setVisibility('hidden');
 
     return () => clearTimeout(timer); // clear timeout on component unmount
@@ -25,7 +25,7 @@ const TryAgainMessage = ({ message, isDisplayed, color, marginTop }) => {
       marginTop: marginTop,
       visibility: visibility,
     }}>
-      <img src={''} width='30px' alt="" />
+      <img src={jackolantern} width='30px' alt="" />
       <p style={{ color: color, fontSize: '1rem' }} className='speech-bubble'>{message}</p>
 
     </div>

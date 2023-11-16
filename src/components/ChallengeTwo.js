@@ -71,11 +71,11 @@ const ChallengeTwo = ({ onPass }) => {
         switch (move) {
             case 0:
                 img.src = turkeyWalk;
-                img.style.top = '26.3rem';
+                img.style.top = '26rem';
                 setTimeout(() => {
                     img.style.left = '25.1rem';
                     setTimeout(() => {
-                        img.style.top = '17rem';
+                        img.style.top = '16.5rem';
                         setTimeout(() => {
                             img.style.transform = "rotateY(0deg)";
                             setTimeout(() => {
@@ -84,7 +84,7 @@ const ChallengeTwo = ({ onPass }) => {
                                     img.src = turkey;
                                 }, 2000);
                             }, 2000);
-                        }, 2000);
+                        }, 1000);
                     }, 2000);
                 }, 2000);
                 break;
@@ -97,7 +97,7 @@ const ChallengeTwo = ({ onPass }) => {
                 break;
             case 2:
                 img.src = turkeyWalk;
-                img.style.top = '4.4rem';
+                img.style.top = '4rem';
                 setTimeout(() => {
                     img.src = turkey;
                 }, 2000);
@@ -108,7 +108,7 @@ const ChallengeTwo = ({ onPass }) => {
                 setTimeout(() => {
                     img.style.left = '25rem';
                     setTimeout(() => {
-                        img.style.top = '7.9rem';
+                        img.style.top = '7.5rem';
                         setTimeout(() => {
                             img.src = turkey;
                         }, 2000);
@@ -117,7 +117,7 @@ const ChallengeTwo = ({ onPass }) => {
                 break;
             case 4:
                 img.src = turkeyWalk;
-                img.style.left = '50rem';
+                img.style.left = '100rem';
                 img.style.opacity = '0';
                 break;
             default: console.log("default")

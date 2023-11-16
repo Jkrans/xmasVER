@@ -759,7 +759,7 @@ ol {
   box-shadow: 5px 8px 20px 3px rgb(51, 104, 73);
 }
 
-.ch4-riddle p,
+.ch4-riddle p:not(.speech-bubble),
 .ch4-riddle h2,
 .ch4-riddle h3,
 .ch4-riddle h4,
@@ -933,7 +933,7 @@ ol {
 }
 
 .success-text h1,
-p {
+.success-text p {
   margin: 0;
 }
 
