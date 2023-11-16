@@ -851,6 +851,9 @@ ol {
 
 .success {
   background-image: url('./images/white-house.png');
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   position: relative;
   opacity: 1;
   background-size: cover;
@@ -861,12 +864,49 @@ ol {
   z-index: -1;
 }
 
-.success-table {
-  position: absolute;
-  top: 50rem;
-  left: 50rem;
+.success-icon-container {
+  transform: scaleX(-1);
+  padding-left: 5rem;
+  width: 32%;
 }
 
+.success-icon-container img {
+  width: 100%;
+  height: auto;
+}
+
+.success-medal {
+  background-image: url('./images/blob.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 56%;
+  height: 56%;
+  margin: 0rem 0rem 8rem -3rem;
+  flex-direction: row;
+  padding: 1.5rem;
+  /* border-radius: 10px;
+  background-color: #2686b396;
+  box-shadow: 5px 5px 10px 3px rgb(175, 175, 175); */
+}
+
+.success-medal img {
+  width: 40%;
+}
+
+.success-blob {
+  text-align: center;
+}
+
+.success-blob h1 {
+  font-size: 4rem;
+  margin: 0%;
+  font-family: 'Shadows Into Light';
+}
+
+.success-blob h2 {
+  font-size: 1.5rem;
+  margin: 0%;
+}
 
 .failed {
   display: flex;

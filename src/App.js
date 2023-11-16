@@ -35,6 +35,7 @@ const flaticonLinks = [
   extractLinkToObject('<a href="https://www.flaticon.com/free-icons/pumpkin-pie" title="pumpkin-pie icons">Pumpkin-pie icons created by amonrat rungreangfangsai - Flaticon</a>'),
   extractLinkToObject('<a href="https://www.flaticon.com/free-icons/mashed-potatoes" title="mashed potatoes icons">Mashed potatoes icons created by juicy_fish - Flaticon</a>'),
   extractLinkToObject('<a href="https://www.flaticon.com/free-animated-icons/agriculture" title="agriculture animated icons">Scarecrow icons created by Freepik - Flaticon</a>'),
+  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/medal" title="medal icons">Medal icons created by wanicon - Flaticon</a>'),
 ];
 
 export const CurrentComponentContext = createContext();
@@ -128,7 +129,7 @@ function App() {
         {currentComponent === 'NoEscape' && <NoEscape onPass={() => handlePass(() => setShowNoEscape(false), () => setShowStart(true))} />}
       </div>
 
-      <Footer flaticonLinks={flaticonLinks} designers='Jack Krans, Freepik' />
+      <Footer flaticonLinks={flaticonLinks} designers='Jack Krans, Freepik, Wanicon, Juicy_Fish, Amonrat, AomAm, and Vectorslab' />
     </div>
   );
 }
