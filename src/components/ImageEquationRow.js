@@ -29,17 +29,32 @@ const ImageEquationRow = ({ onPass }) => {
     }
   }, [items.length]);
 
+  const updateBorderColor = (input, index) => {
+    if (parseInt(input.value) === items[index].value) {
+      input.style.borderBottom = '2px solid rgb(97, 147, 0)'; // Correct answer, green
+    } else if (input.value !== '' && parseInt(input.value) !== items[index].value) {
+      input.style.borderBottom = '2px solid rgb(255, 25, 25)'; // Incorrect answer, red
+    } else if (document.activeElement === input) {
+      input.style.borderBottom = '2px solid rgb(255, 100, 25'; // Focused input, orange
+    } else {
+      input.style.borderBottom = '2px solid rgb(0, 0, 0)'; // Unfocused empty input, black
+    }
+  };
+
   const handleInputChange = (index, event) => {
     const newInputValues = [...inputValues];
     newInputValues[index] = event.target.value;
     setInputValues(newInputValues);
 
-    // Check if the input value is correct and update the input's style
-    if (parseInt(event.target.value) === items[index].value) {
-      event.target.style.borderBottom = '2px solid rgb(97, 147, 0)';
-    } else {
-      event.target.style.borderBottom = '2px solid rgb(0, 0, 0)'; // Reset the border if the value is incorrect
-    }
+    updateBorderColor(event.target, index);
+  };
+
+  const handleInputFocus = (index, event) => {
+    updateBorderColor(event.target, index);
+  };
+
+  const handleInputBlur = (index, event) => {
+    updateBorderColor(event.target, index);
   };
 
   const checkValues = () => {
@@ -65,23 +80,58 @@ const ImageEquationRow = ({ onPass }) => {
           <div className="imageAndInput">
             <div>
               <img src={items[2].img} alt="corncob icon" />
-              <input type="text" value={inputValues[2]} onChange={(event) => handleInputChange(2, event)} maxLength={2} />
+              <input
+                type="text"
+                value={inputValues[2]}
+                onChange={(event) => handleInputChange(2, event)}
+                onFocus={(event) => handleInputFocus(2, event)}
+                onBlur={(event) => handleInputBlur(2, event)}
+                maxLength={2}
+              />
             </div>
             <div>
               <img src={items[0].img} alt="" />
-              <input type="text" value={inputValues[0]} onChange={(event) => handleInputChange(0, event)} maxLength={2} />
+              <input
+                type="text"
+                value={inputValues[0]}
+                onChange={(event) => handleInputChange(0, event)}
+                onFocus={(event) => handleInputFocus(0, event)}
+                onBlur={(event) => handleInputBlur(0, event)}
+                maxLength={2}
+              />
             </div>
             <div>
               <img src={items[4].img} alt="" />
-              <input type="text" value={inputValues[4]} onChange={(event) => handleInputChange(4, event)} maxLength={2} />
+              <input
+                type="text"
+                value={inputValues[4]}
+                onChange={(event) => handleInputChange(4, event)}
+                onFocus={(event) => handleInputFocus(4, event)}
+                onBlur={(event) => handleInputBlur(4, event)}
+                maxLength={2}
+              />
             </div>
             <div>
               <img src={items[3].img} alt="" />
-              <input type="text" value={inputValues[3]} onChange={(event) => handleInputChange(3, event)} maxLength={2} />
+              <input
+                type="text"
+                value={inputValues[3]}
+                onChange={(event) => handleInputChange(3, event)}
+                onFocus={(event) => handleInputFocus(3, event)}
+                onBlur={(event) => handleInputBlur(3, event)}
+                maxLength={2}
+              />
             </div>
             <div>
               <img src={items[1].img} alt="" />
-              <input type="text" value={inputValues[1]} onChange={(event) => handleInputChange(1, event)} maxLength={2} />
+              <input
+                type="text"
+                value={inputValues[1]}
+                onChange={(event) => handleInputChange(1, event)}
+                onFocus={(event) => handleInputFocus(1, event)}
+                onBlur={(event) => handleInputBlur(1, event)}
+                maxLength={2}
+              />
             </div>
           </div>
           <button className='brew-btn' onClick={checkValues}>SUBMIT CODE</button>

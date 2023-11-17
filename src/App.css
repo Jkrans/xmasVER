@@ -974,7 +974,7 @@ ol {
   color: rgb(206, 223, 242);
   border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0.342);
-  margin-top: 3rem;
+  margin-top: 1rem;
 }
 
 .failed button:hover {
@@ -982,10 +982,13 @@ ol {
 }
 
 .pumpkin-looking {
-  position: absolute;
+  -webkit-filter: brightness(81%);
   filter: brightness(81%);
-  top: 22rem;
-  left: 47rem;
+  right: 5%;
+  position: absolute;
+  bottom: 5%;
+  width: 15rem;
+  -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
 

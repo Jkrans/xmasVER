@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 
 const CountdownTimer = ({ onCountdownEnd, onTimeUpdate }) => {
-    const [timer, setTimer] = useState(40 * 60);
+    const [timer, setTimer] = useState(60 * 60);
 
     const hasEnded = useRef(false); // to help ensure onCountdownEnd is only called once
 
