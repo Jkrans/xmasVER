@@ -24,7 +24,7 @@ const Start = ({ onPass }) => {
     <div className="start-page">
       {/* <img src={slime}/> */}
       <div>
-        <h1>The Great Turkey Escape</h1>
+        <h1>The North Pole Escape!!!</h1>
         <button onClick={enter}>Enter</button>
       </div>
       <img src={turkey} alt="" />
