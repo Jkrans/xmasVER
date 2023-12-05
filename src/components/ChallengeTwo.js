@@ -140,6 +140,7 @@ const ChallengeTwo = ({ onPass }) => {
                         userInput={userInput}
                         handleInputChange={handleInputChange}
                         tryAgainMessage={tryAgainMessage}
+
                     />
 
                 </>
