@@ -4,6 +4,7 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Gabarito&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Linefont:wght@300&display=swap');
 
 :root {
@@ -39,32 +40,45 @@ body {
 }
 
 .start-page {
+  background-image: url('./images/elf-running.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   width: 100vw;
-  height: calc(100vh);
-  font-family: 'Shadows Into Light';
-  font-size: 1.7rem;
+  height: calc(110vh);
+}
+
+.start-page h1 {
+  font-family: 'Mountains of Christmas', serif;
+  font-size: 8.5rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  margin-top: 2%;
 }
 
 .start-page button {
-  margin-top: 3rem;
+  margin: 10rem 5rem;
+  align-self: flex-end;
   padding: 0.5rem;
   padding-top: 0.6rem;
-  background-color: rgb(220, 161, 12);
+  background-color: rgba(5, 72, 0, 0.859);
+  color: rgba(255, 255, 255, 0.841);
   border: none;
-  box-shadow: 1px 2px 5px rgb(57, 48, 0);
-  font-size: 200%;
-  font-family: 'Shadows Into Light';
+  font-size: 3rem;
+  font-family: 'Mountains of Christmas', serif;
+  font-weight: 700;
   letter-spacing: 1rem;
   border-radius: 12px;
-  width: 100%;
+  width: 25%;
 }
 
 .start-page button:hover {
-  box-shadow: inset 1px 2px 5px rgb(137, 100, 7);
-  transform: translate(0.1rem, 0.2rem);
+  background-color: rgba(5, 72, 0, 0.959);
+  /* transform: translate(0.1rem, 0.2rem); */
 }
 
 .gravy {
@@ -93,14 +107,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 9rem;
-  height: 3rem;
+  width: 7rem;
+  height: 5rem;
   background-color: rgba(0, 0, 0, 0.11);
   margin-right: 1rem;
   color: rgba(255, 255, 255, 0.50);
   border-radius: 8px;
   position: sticky;
-  top: 6rem;
+  top: 8rem;
   left: 2rem;
   z-index: 1;
 }
@@ -128,8 +142,8 @@ body {
 }
 
 .story-content h2 {
-  font-family: 'Shadows Into Light';
-  font-size: 4rem;
+  font-family: 'Mountains of Christmas', serif;
+  font-size: 5rem;
   letter-spacing: 1rem;
 }
 
@@ -137,6 +151,7 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   font-family: 'Gabarito', sans-serif;
+  margin: 0;
 }
 
 .main--witch {
@@ -257,7 +272,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 2rem 0;
-  margin-top: 10rem;
+  /* margin-top: 10rem; */
   width: 100%;
   height: 70px;
   background-color: rgba(0, 0, 0, 0.5);
@@ -294,66 +309,76 @@ body {
   transform: rotateY(180deg);
 }
 
-.riddles-container {
-  display: flex;
-  justify-content: space-between;
-  width: 74%;
-  color: rgba(255, 255, 255, 0.8)
+
+
+.ratio-problems {
+  width: 35%;
+  flex-shrink: 0;
+  /* Prevents the div from shrinking below its set width */
 }
 
-
-.riddles {
-  display: flex;
-  flex-direction: column;
-  width: 45%;
+.ratio-problems p {
+  font-size: 1.6rem;
+  color: white;
 }
 
-.riddles p {
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 2rem;
-}
-
-.ch2-before-input {
-  margin-top: 1rem !important;
-  padding-right: 1rem;
-}
-
-.answer-p {
-  margin-bottom: 0;
-  padding: 0 1rem;
-  margin-top: 1rem !important;
-}
-
-.riddles input {
+.ratio-problems input {
   background-color: transparent;
   border: none;
   outline: none;
-  border-bottom: 1px solid black;
-  width: 10rem;
+  border-bottom: 2px solid black;
+  width: 8rem;
   text-align: center;
   font-size: 2rem;
   color: rgba(255, 255, 255, 0.473);
 }
 
-.riddles input:focus {
+.ratio-problems input:focus {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid var(--witch-green);
+  border-bottom: 2px solid rgb(150, 216, 255);
 }
 
-.riddles div {
+.riddles-container {
+  margin-top: 8rem;
+  width: 80%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.riddles img {
-  align-self: center;
-  margin-top: 1rem;
+.riddles-img {
+  width: 60%;
+  height: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px rgb(22, 22, 22);
 }
 
-#ch2-turkey-id {
-  transition: all 2s ease-in-out;
+.riddles-container form {
+  display: flex;
+  /* Use flex to layout the input and units */
+  align-items: center;
+  /* Align the form items vertically */
 }
+
+/* Add this to ensure the image doesn't distort on smaller screens */
+@media screen and (max-width: 768px) {
+  .riddles-container {
+    flex-direction: column;
+    /* Stack image and problems div on top of each other */
+  }
+
+  .riddles-container img,
+  .riddles-container .ratio-problems {
+    width: 100%;
+    /* Each takes full width of the container */
+  }
+}
+
 
 /*****************************/
 /****** Challenge Three ******/
@@ -618,50 +643,25 @@ ol {
 
 .progress-bar-half-color {
   /* background: linear-gradient(to right, var(--witch-purple), rgb(255, 255, 255)) */
-  background: linear-gradient(to top right, rgb(255, 232, 25) 20%, rgb(255, 255, 255))
+  background: linear-gradient(to top right, rgb(150, 216, 255) 20%, rgb(255, 255, 255))
 }
 
 .progress-bar-full-color {
   /* background-color: var(--witch-purple); */
-  background-color: rgb(255, 232, 25);
+  background-color: rgb(150, 216, 255);
 }
 
 /****************************/
 /****** Challenge Four ******/
 /****************************/
 
-.floating-icon {
-  animation: floatAndSpin 61s infinite linear;
-  position: absolute;
-  will-change: transform;
-  z-index: -2;
-}
+
 
 .floating-icon-2 {
   animation: opacityChange 1s linear;
   position: absolute;
   will-change: transform;
   z-index: -2;
-}
-
-@keyframes floatAndSpin {
-
-  0%,
-  100% {
-    transform: translateX(-70vw) translateY(130vh) rotate(0deg);
-  }
-
-  25% {
-    transform: translateX(70vw) translateY(30vh) rotate(360deg);
-  }
-
-  50% {
-    transform: translateX(-70vw) translateY(130vh) rotate(0deg);
-  }
-
-  75% {
-    transform: translateX(70vw) translateY(-30vh) rotate(360deg);
-  }
 }
 
 @keyframes opacityChange {
@@ -675,14 +675,68 @@ ol {
   }
 }
 
-
 .ch4-riddles-container {
   display: flex;
-  width: 80%;
+  width: 70%;
+  height: 325px;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
 }
+
+.ch4-riddles-container>div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.shapeAndInput {
+  width: 30%;
+  flex-shrink: 0;
+  /* Prevents the div from shrinking below its set width */
+}
+
+.shapeAndInput img {
+  max-width: 100%;
+  /* Adjusts the image width to fit the container */
+  align-self: flex-end;
+}
+
+.surfaceAreaProblem {
+  width: 65%;
+  flex-shrink: 0;
+  /* Prevents the div from shrinking below its set width */
+}
+
+.surfaceAreaProblem p {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.surfaceAreaProblem input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid black;
+  width: 8rem;
+  text-align: center;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.473);
+}
+
+.surfaceAreaProblem input:focus {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid rgb(150, 216, 255);
+}
+
+.surfaceAreaProblemInputUnits {
+  margin: 0 1rem;
+  align-self: flex-end;
+
+}
+
 
 .headstones {
   display: flex;

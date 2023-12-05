@@ -152,18 +152,31 @@ app.get('/api/stories/:id', async (req, res) => {
     }
 });
 
-app.get('/api/riddles/:id', async (req, res) => {
+// get all great turkey escape riddles
+app.get('/api/riddles/xver4', async (req, res) => {
     try {
-        const { id } = req.params;
-        const riddleQuery = await db.query('SELECT * FROM riddles WHERE id = $1', [id]);
-        const riddleData = riddleQuery.rows[0];
+        // Execute the SQL query
+        const result = await db.query("SELECT * FROM riddles WHERE website = 'xver4'");
 
-        if (!riddleData) {
-            return res.status(404).json({ error: 'Riddle not found' });
-        }
-
-        res.json(riddleData);
+        // Send the result as a JSON response
+        res.json(result.rows);
     } catch (err) {
+        // Handle any errors
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+// get all great turkey escape riddles
+app.get('/api/riddles/xver2', async (req, res) => {
+    try {
+        // Execute the SQL query
+        const result = await db.query("SELECT * FROM riddles WHERE website = 'xver2'");
+
+        // Send the result as a JSON response
+        res.json(result.rows);
+    } catch (err) {
+        // Handle any errors
         console.error(err.message);
         res.status(500).send('Server Error');
     }

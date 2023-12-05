@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
-import turkey from '../images/turkey.png'
+// import elf from '../images/elf-running.png'
 
 const Start = ({ onPass }) => {
 
   useEffect(() => {
     // Set styles when the component mounts
-    document.body.style.background = 'linear-gradient(rgb(220, 161, 12), rgb(79 39 25))';
+    document.body.style.background = 'white';
 
     const footerLinks = document.querySelectorAll('.footer a, .footer p');
     footerLinks.forEach(link => {
-      link.style.color = "rgb(79 39 25)";
+      link.style.color = "white";
     })
 
 
@@ -22,12 +22,8 @@ const Start = ({ onPass }) => {
   const enter = () => { onPass(true) }
   return (
     <div className="start-page">
-      {/* <img src={slime}/> */}
-      <div>
-        <h1>The North Pole Escape!!!</h1>
-        <button onClick={enter}>Enter</button>
-      </div>
-      <img src={turkey} alt="" />
+      <h1>The North Pole Escape</h1>
+      <button onClick={enter}>Enter</button>
     </div>
   )
 }

@@ -7,7 +7,7 @@ const Header = () => {
     <>
       <img className="gravy" src={gravy} alt="" />
       <main className="header" >
-        <h1 className="header--h1">The Great Turkey Escape</h1>
+        <h1 className="header--h1">The North Pole Escape</h1>
         <ProgressBar />
       </main>
     </>

@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext } from 'react'
 import './App.css';
+import './Animate.css';
 import Header from './components/Header'
 import Footer from "./components/Footer"
 import Enclosure from './components/ChallengeOne';
@@ -120,7 +121,7 @@ function App() {
       )}
 
       <div className={`${transitionClass}`}>
-        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowEnclosure(true))} />}
+        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowCornMaze(true))} />}
         {currentComponent === 'Enclosure' && <Enclosure onPass={() => handlePass(() => setShowEnclosure(false), () => setShowCornMaze(true))} />}
         {currentComponent === 'CornMaze' && <CornMaze onPass={() => handlePass(() => setShowCornMaze(false), () => setShowCage(true))} />}
         {currentComponent === 'Cage' && <Cage onPass={() => handlePass(() => setShowCage(false), () => setShowKitchen(true))} />}
@@ -129,7 +130,11 @@ function App() {
         {currentComponent === 'NoEscape' && <NoEscape onPass={() => handlePass(() => setShowNoEscape(false), () => setShowStart(true))} />}
       </div>
 
-      <Footer flaticonLinks={flaticonLinks} designers='Jack Krans, Freepik, Wanicon, Juicy_Fish, Amonrat, AomAm, and Vectorslab' />
+      <Footer
+        flaticonLinks={flaticonLinks}
+        designers='Jack Krans, Freepik, Wanicon, Juicy_Fish, Amonrat, AomAm, and Vectorslab'
+        marginTop="3rem"
+      />
     </div>
   );
 }

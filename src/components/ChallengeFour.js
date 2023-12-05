@@ -1,7 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
 import Story from './Story'
-import whisk from '../images/whisk.png'
-import knife from '../images/knife.png'
+import squarepyrmid from '../images/squarepyrmid.png'
+import recprism from '../images/rectangularprism.png'
+import recpyramid from '../images/rectangularpyrmid.png'
+import triprism from '../images/triangularprism.png'
+import cube from '../images/cube.png'
 import oven from '../images/oven.png'
 import TryAgain from './TryAgainMessage'
 
@@ -13,21 +16,18 @@ const ChallengeFour = ({ onPass }) => {
     const [tryAgainMessage, setTryAgainMessage] = useState(false);
     const [scrollHeight, setScrollHeight] = useState(1638);
 
-    const whiskIconRef = useRef(null);
-    const knifeIconRef = useRef(null);
+    // const whiskIconRef = useRef(null);
+    // const knifeIconRef = useRef(null);
 
     useEffect(() => {
         async function fetchRiddles() {
             try {
-                const riddles = [];
 
-                for (let i = 9; i <= 14; i++) {
-                    const response = await fetch(`https://turkeyver-backend-production.up.railway.app/api/riddles/${i}`);
-                    const data = await response.json();
-                    riddles.push(data);
-                }
+                const response = await fetch(`https://turkeyver-backend-production.up.railway.app/api/riddles/xver4`);
+                const data = await response.json();
+                console.log("data: ", data)
 
-                setRiddles(riddles);
+                setRiddles(data);
             } catch (err) {
                 console.error("An error occurred while fetching riddles:", err);
             }
@@ -35,6 +35,8 @@ const ChallengeFour = ({ onPass }) => {
 
         fetchRiddles();
     }, []);
+
+    const imageArray = [cube, recprism, squarepyrmid, recpyramid, triprism];
 
 
     const handleInputChange = (e) => {
@@ -81,8 +83,8 @@ const ChallengeFour = ({ onPass }) => {
 
     useEffect(() => {
         // Set styles when the component mounts
-        document.body.style.background = 'linear-gradient(rgb(92, 132, 101)25%, rgb(50, 200, 125)';
-        document.getElementsByClassName('header--h1')[0].style.color = 'rgb(255, 255, 255, 0.8)';
+        document.body.style.background = 'linear-gradient(rgb(0, 100, 0)25%, rgb(0, 100, 150)';
+        document.getElementsByClassName('header--h1')[0].style.color = 'rgb(150, 216, 255, .8)';
 
         const footerLinks = document.querySelectorAll('.footer a, .footer p');
         footerLinks.forEach(link => {
@@ -96,92 +98,45 @@ const ChallengeFour = ({ onPass }) => {
         };
     }, []);
 
-    const iconAnimate = (elementRef, duration, maxHeight) => {
-        const element = elementRef.current;
-
-        const keyframes = [
-            { transform: `translateX(25vw) translateY(calc(${maxHeight}px - 389px)) rotate(0deg)` },
-            { transform: 'translateX(-70vw) translateY(-30vh) rotate(180deg)' },
-            { transform: `translateX(-20vw) translateY(calc(${maxHeight}px  - 389px)) rotate(90deg)` },
-            { transform: 'translateX(40vw) translateY(-30vh) rotate(270deg)' },
-            { transform: `translateX(25vw) translateY(calc(${maxHeight}px  - 389px)) rotate(0deg)` }
-        ];
-
-        const timing = {
-            duration: duration, // Total animation duration in milliseconds
-            iterations: Infinity, // Repeat the animation forever
-            fill: 'forwards' // Ensure the animation stays at the last keyframe when finished
-        };
-        setTimeout(() => {
-            element.animate(keyframes, timing);
-        }, 0)
-    }
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            const html = document.documentElement;
-            const height = Math.max(html.clientHeight, html.scrollHeight, html.offsetHeight);
-            setScrollHeight(height);
-            console.log("height: ", scrollHeight);
-            if (knifeIconRef) {
-                iconAnimate(knifeIconRef, 43000, scrollHeight)
-            }
-        }, 1000)
-        return () => clearTimeout(timer);
-    }, [scrollHeight])
-
     return (
         <div className="main--witch">
-            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/4" color="rgb(255,255,255,0.8)" width="78%" />
+            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/6" color="rgb(255,255,255,0.8)" width="78%" />
             {riddles.length > 0 && (
                 <>
-                    <div ref={whiskIconRef} class="floating-icon">
-                        <img src={whisk} alt="Floating Icon" />
+                    <div class="floating-icon">
+                        <img src={squarepyrmid} alt="Floating Icon" style={{ width: '300px', maxWidth: '512px' }} />
                     </div>
-                    <div ref={knifeIconRef} class="floating-icon-2">
-                        <img src={knife} alt="Floating Icon" />
+                    <div class="floating-icon-recprism">
+                        <img src={recprism} alt="Floating Icon" style={{ width: '350px', maxWidth: '512px' }} />
+                    </div>
+                    <div class="floating-icon-recpyramid">
+                        <img src={recpyramid} alt="Floating Icon" style={{ width: '300px', maxWidth: '512px' }} />
+                    </div>
+                    <div class="floating-icon-triprism">
+                        <img src={triprism} alt="Floating Icon" style={{ width: '300px', maxWidth: '512px' }} />
+                    </div>
+                    <div class="floating-icon-cube">
+                        <img src={cube} alt="Floating Icon" style={{ width: '300px', maxWidth: '512px' }} />
                     </div>
                     <div className='ch4-riddles-container'>
-                        <img src={oven} alt="oven Icon" style={{ width: '45%', maxWidth: '512px' }} />
-
-                        <div className="ch4-riddle">
-                            <div className="recipe-title">
-                                <h3>Recipe:</h3>
-                                <p style={{ fontFamily: 'Linefont' }}>wHatintheworld dOesthiseven saybruh?</p>
+                        <div>
+                            <div className='surfaceAreaProblem'>
+                                <p>{riddles[currentRiddleIndex].question}</p>
+                                <form onSubmit={handleSubmit} style={{ display: 'flex' }}>
+                                    <input type='text' value={userInput} onChange={handleInputChange} maxLength={35} />
+                                    <p className="surfaceAreaProblemInputUnits" >inches squared</p>
+                                </form>
+                                <TryAgain
+                                    message='Please try again'
+                                    isDisplayed={tryAgainMessage}
+                                    marginTop='1rem'
+                                    color='black'
+                                />
                             </div>
-                            <div className="recipe-main">
-                                <div className="recipe-ingredients">
-                                    <h5>Ingredients:</h5>
-                                    <ul style={{ fontFamily: 'Linefont' }}>
-                                        <li>whatintheheck isthisagain</li>
-                                        <li>thisdoesntmeannothin</li>
-                                        <li>itsjustabunchof nothing</li>
-                                        <li>nothingitellyou</li>
-                                        <li>justneeds tolooklikesomeone</li>
-                                        <li>actuallyscribbled inhere</li>
-                                        <li>scribblescribble scribble</li>
-                                    </ul>
-                                </div>
-                                <div className="recipe-instructions">
-                                    <h4>Instructions:</h4>
-                                    <p>{riddles[currentRiddleIndex].question}</p>
-                                    <form onSubmit={handleSubmit}>
-                                        <input type='text' value={userInput} onChange={handleInputChange} maxLength={35} />
-                                    </form>
-                                </div>
-
+                            <div className='shapeAndInput'>
+                                <img src={imageArray[riddles[currentRiddleIndex].img]} alt="Floating Icon" />
                             </div>
-
-
-                            <TryAgain
-                                message='Please try again. Check your spelling.'
-                                isDisplayed={tryAgainMessage}
-                                marginTop='1rem'
-                                color='black'
-                            />
                         </div>
-
-
                     </div>
                 </>
             )}

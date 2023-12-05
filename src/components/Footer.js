@@ -4,7 +4,7 @@ const Footer = (props) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className="footer" style={{ color: props.color }}>
+    <div className="footer" style={{ color: props.color, marginTop: props.marginTop }}>
       <div>
         {props.flaticonLinks.map((link, index) => (
           <a key={index} href={link.href} title={link.title} target='_blank' rel="noreferrer" >

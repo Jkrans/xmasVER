@@ -1,56 +1,29 @@
-import { useState, useEffect } from 'react'
-import maze from '../images/maze.png'
-import turkey from '../images/turkey-walk2.png'
-import turkeyWalk from '../images/turkey-walk2.gif'
-import scarecrow from '../images/scarecrow.gif'
-import Story from "./Story"
-import Riddle from "./Riddle"
-import TryAgain from './TryAgainMessage';
+import { useEffect, useState, useRef } from 'react'
+import Story from './Story'
+import ImageAndQuestion from './ImageAndQuestion'
+import gumballs from '../images/gumballs-extended.png'
+import trees from '../images/treeratio-expanded.png'
+import wrapping2 from '../images/wrapingpresents2.png'
+import wrapping1 from '../images/wrappingpresents-expanded.png'
+import TryAgain from './TryAgainMessage'
 
-// Get random values
-// const getRandomNumber = (max) => Math.floor(Math.random() * max) + 1;
 
-//ChallengeTwo component
 const ChallengeTwo = ({ onPass }) => {
-    // const [storyData, setStoryData] = useState([])
-    const [riddles, setRiddles] = useState({})
-    const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0);
-    const [userAnswer, setUserAnswer] = useState('');
-    const [showTryAgainMessage, setShowTryAgainMessage] = useState(false);
-    const [moveTurkey, setMoveTurkey] = useState(0);
-
-    // useEffect(() => {
-    //     let retryCount = 0;
-    //     const maxRetries = 3; // Set the maximum number of retries
-    //     const retryDelay = 2000; // Delay between retries in milliseconds
-
-    //     async function fetchStory() {
-    //         try {
-    //             const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/stories/2");
-    //             if (!response.ok) {
-    //                 throw new Error(`HTTP error! status: ${response.status}`);
-    //             }
-    //             console.log('try: ', retryCount)
-    //             const data = await response.json();
-    //             setStoryData(data);
-    //         } catch (err) {
-    //             console.error("An error occurred while fetching story:", err);
-    //             if (retryCount < maxRetries) {
-    //                 setTimeout(fetchStory, retryDelay);
-    //                 retryCount++;
-    //             }
-    //         }
-    //     }
-
-    //     fetchStory();
-    // }, []);
-
+    const [riddles, setRiddles] = useState([]);
+    const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0); // starts from the first riddle
+    const [userInput, setUserInput] = useState('');
+    const [tryAgainMessage, setTryAgainMessage] = useState(false);
     useEffect(() => {
         async function fetchRiddles() {
             try {
-                const response = await fetch("https://turkeyver-backend-production.up.railway.app/api/ch2riddles");
+
+                const response = await fetch(`https://turkeyver-backend-production.up.railway.app/api/riddles/xver2`);
                 const data = await response.json();
+                console.log("data: ", data)
+
                 setRiddles(data);
+                console.log("riddles: ", riddles)
+                console.log("riddles 1: ", riddles[0].question)
             } catch (err) {
                 console.error("An error occurred while fetching riddles:", err);
             }
@@ -59,133 +32,57 @@ const ChallengeTwo = ({ onPass }) => {
         fetchRiddles();
     }, []);
 
-    // let inputReference = null;
 
-    // const setInputRef = (ref) => {
-    //     inputReference = ref;
-    // };
+    const handleInputChange = (e) => {
+        setUserInput(e.target.value);
+    };
 
-    const moveImage = (move) => {
-        const img = document.getElementById('ch2-turkey-id');
+    const handleSubmit = (e) => {
 
-        switch (move) {
-            case 0:
-                img.src = turkeyWalk;
-                img.style.top = '26rem';
-                setTimeout(() => {
-                    img.style.left = '25.1rem';
-                    setTimeout(() => {
-                        img.style.top = '16.5rem';
-                        setTimeout(() => {
-                            img.style.transform = "rotateY(0deg)";
-                            setTimeout(() => {
-                                img.style.left = "15.8rem";
-                                setTimeout(() => {
-                                    img.src = turkey;
-                                }, 2000);
-                            }, 2000);
-                        }, 1000);
-                    }, 2000);
-                }, 2000);
-                break;
-            case 1:
-                img.src = turkeyWalk;
-                img.style.left = '9.4rem';
-                setTimeout(() => {
-                    img.src = turkey;
-                }, 2000);
-                break;
-            case 2:
-                img.src = turkeyWalk;
-                img.style.top = '4rem';
-                setTimeout(() => {
-                    img.src = turkey;
-                }, 2000);
-                break;
-            case 3:
-                img.src = turkeyWalk;
-                img.style.transform = "rotateY(180deg)";
-                setTimeout(() => {
-                    img.style.left = '25rem';
-                    setTimeout(() => {
-                        img.style.top = '7.5rem';
-                        setTimeout(() => {
-                            img.src = turkey;
-                        }, 2000);
-                    }, 2000);
-                }, 2000);
-                break;
-            case 4:
-                img.src = turkeyWalk;
-                img.style.left = '100rem';
-                img.style.opacity = '0';
-                break;
-            default: console.log("default")
-        }
-    }
-
-    const checkAnswer = (e) => {
-        console.log(moveTurkey);
+        let gTimer;
         e.preventDefault();
 
-        let correct = riddles[currentRiddleIndex].answer.includes(userAnswer.toLowerCase());
-
+        let correct = riddles[currentRiddleIndex].answer.some(variant =>
+            userInput.toLowerCase().includes(variant.toLowerCase())
+        );
 
         if (correct) {
-            if (currentRiddleIndex < riddles.length - 1) {
-                setCurrentRiddleIndex(currentRiddleIndex + 1); // Move to next riddle
-                setUserAnswer(''); // Reset answer input
-                setMoveTurkey(prev => moveTurkey + 1);
-                moveImage(moveTurkey);
+            riddles[currentRiddleIndex].isSolved = true;
+            if ((currentRiddleIndex === riddles.length - 1)) {
+                //End the game or display a message, etc.
+                onPass(true)
+                clearTimeout(gTimer);
             } else {
-                moveImage(moveTurkey);
-                setTimeout(() => {
-                    onPass(true); // All riddles solved                    
-                }, 1500);
+                setCurrentRiddleIndex((prevIndex) => prevIndex + 1);
+                setUserInput('');
+                console.log('set to false')
+                setTryAgainMessage(false)
             }
-            setShowTryAgainMessage(false);
+
         } else {
-            setShowTryAgainMessage(true);
-            setTimeout(() => {
-                setShowTryAgainMessage(false);
-            }, 10000);
+            // if it's already true, set it to false, then after that, set it to true
+            if (tryAgainMessage) {
+                setTryAgainMessage(false);
+                // Using a timeout to delay the setting of the message to true 
+                // to ensure the previous state change has been processed
+                setTimeout(() => {
+                    setTryAgainMessage(true);
+                }, 0);
+            } else {
+                setTryAgainMessage(true);
+            }
         }
-
-        // if (inputReference) {
-        //     console.log("input ref", inputReference);
-        //     console.log("Is input disabled?", inputReference.disabled);
-        //     console.log("Is input visible?", inputReference.offsetWidth > 0 && inputReference.offsetHeight > 0);
-
-        //     setTimeout(() => {
-        //         if (inputReference) {
-        //             inputReference.focus();
-        //         }
-        //     }, 10);
-
-        //     inputReference.onblur = (e) => {
-        //         console.log("Focus shifted to:", e.relatedTarget);
-        //     };
-
-        //     inputReference.addEventListener("blur", () => {
-        //         console.log("Input was blurred");
-        //     });
-
-        // }
-        // hacky-ish way to do this because useRef wasn't working.
-        e.stopPropagation();
-        setTimeout(() => {
-            document.getElementById("ch2input").focus();
-        }, 0);
     };
+
 
     useEffect(() => {
         // Set styles when the component mounts
-        document.body.style.background = 'linear-gradient(rgb(15, 87, 213), rgb(0, 164, 33)';
+        document.body.style.background = 'linear-gradient(rgb(15, 87, 213) 25%, rgb(255,215,0)';
         document.getElementsByClassName('header--h1')[0].style.color = 'rgb(255, 255, 255, 0.8)';
 
         const footerLinks = document.querySelectorAll('.footer a, .footer p');
         footerLinks.forEach(link => {
-            link.style.color = "rgb(0, 164, 33)";
+            link.style.color = "rgb(255,215,0)";
         });
 
 
@@ -195,40 +92,62 @@ const ChallengeTwo = ({ onPass }) => {
         };
     }, []);
 
-
     return (
         <div className="main--witch">
-            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/2" color="rgb(255,255,255,0.8)" width="70%" />
-
-            <div className='riddles-container'>
-                <div style={{ position: 'relative' }}>
-                    <img className="ch2-maze" src={maze} alt="simple yellow maze" />
-                    <img id='ch2-turkey-id' className="ch2-turkey" src={turkey} alt="turkey graphic" />
-                </div>
-                <div className='riddles'>
-                    {riddles.length > 0 && (
-                        <Riddle
-                            key={currentRiddleIndex}
-                            riddle={riddles[currentRiddleIndex].question}
-                            units={riddles[currentRiddleIndex].units}
-                            unitsBefore={riddles[currentRiddleIndex].unitsbefore}
-                            onAnswerChange={(value) => setUserAnswer(value)}
-                            value={userAnswer}
-                            // setInputRef={setInputRef}
-                            checkAnswer={checkAnswer}
-                        />
-                    )}
-                    <TryAgain
-                        message='Please Try Again'
-                        isDisplayed={showTryAgainMessage}
-                        marginTop='1rem'
-                        color='black'
+            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/7" color="rgb(255,255,255,0.8)" width="78%" />
+            {riddles.length > 0 && (
+                <>
+                    <ImageAndQuestion
+                        img={trees}
+                        left={false}
+                        degrees='3'
+                        riddle={riddles[0].question}
+                        currentRiddleIndex={currentRiddleIndex}
+                        handleSubmit={handleSubmit}
+                        userInput={userInput}
+                        handleInputChange={handleInputChange}
+                        tryAgainMessage={tryAgainMessage}
                     />
-                    <img src={scarecrow} alt='scarecrow graphic' style={{ alignSelf: 'center' }} />
-                </div>
-            </div>
+                    <ImageAndQuestion
+                        img={wrapping2}
+                        left={true}
+                        degrees='-4'
+                        riddle={riddles[1].question}
+                        currentRiddleIndex={currentRiddleIndex}
+                        handleSubmit={handleSubmit}
+                        userInput={userInput}
+                        handleInputChange={handleInputChange}
+                        tryAgainMessage={tryAgainMessage}
+                    />
+                    <ImageAndQuestion
+                        img={gumballs}
+                        left={false}
+                        degrees='3'
+                        riddle={riddles[2].question}
+                        currentRiddleIndex={currentRiddleIndex}
+                        handleSubmit={handleSubmit}
+                        userInput={userInput}
+                        handleInputChange={handleInputChange}
+                        tryAgainMessage={tryAgainMessage}
+                    />
+                    <ImageAndQuestion
+                        img={wrapping1}
+                        left={true}
+                        degrees='-3'
+                        riddle={riddles[3].question}
+                        currentRiddleIndex={currentRiddleIndex}
+                        handleSubmit={handleSubmit}
+                        userInput={userInput}
+                        handleInputChange={handleInputChange}
+                        tryAgainMessage={tryAgainMessage}
+                    />
+
+                </>
+            )}
         </div>
+
     )
 }
 
 export default ChallengeTwo
+

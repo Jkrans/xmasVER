@@ -37,7 +37,7 @@ const CountdownTimer = ({ onCountdownEnd, onTimeUpdate }) => {
     return (
         <div className="countdown">
             <div>
-                <p>Cooked in:</p>
+                <p>X-MAS</p><p>Morning</p>
                 <p>{formatTime(timer)}</p>
             </div>
         </div>
