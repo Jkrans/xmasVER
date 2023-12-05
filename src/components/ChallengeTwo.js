@@ -1,11 +1,11 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import Story from './Story'
 import ImageAndQuestion from './ImageAndQuestion'
 import gumballs from '../images/gumballs-extended.png'
 import trees from '../images/treeratio-expanded.png'
 import wrapping2 from '../images/wrapingpresents2.png'
 import wrapping1 from '../images/wrappingpresents-expanded.png'
-import TryAgain from './TryAgainMessage'
+// import TryAgain from './TryAgainMessage'
 
 
 const ChallengeTwo = ({ onPass }) => {
@@ -30,7 +30,7 @@ const ChallengeTwo = ({ onPass }) => {
         }
 
         fetchRiddles();
-    }, []);
+    }, [riddles]);
 
 
     const handleInputChange = (e) => {

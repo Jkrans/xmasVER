@@ -1,11 +1,10 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import Story from './Story'
 import squarepyrmid from '../images/squarepyrmid.png'
 import recprism from '../images/rectangularprism.png'
 import recpyramid from '../images/rectangularpyrmid.png'
 import triprism from '../images/triangularprism.png'
 import cube from '../images/cube.png'
-import oven from '../images/oven.png'
 import TryAgain from './TryAgainMessage'
 
 
@@ -14,10 +13,7 @@ const ChallengeFour = ({ onPass }) => {
     const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0); // starts from the first riddle
     const [userInput, setUserInput] = useState('');
     const [tryAgainMessage, setTryAgainMessage] = useState(false);
-    const [scrollHeight, setScrollHeight] = useState(1638);
-
-    // const whiskIconRef = useRef(null);
-    // const knifeIconRef = useRef(null);
+    // const [scrollHeight, setScrollHeight] = useState(1638);
 
     useEffect(() => {
         async function fetchRiddles() {
@@ -34,7 +30,7 @@ const ChallengeFour = ({ onPass }) => {
         }
 
         fetchRiddles();
-    }, []);
+    }, [riddles]);
 
     const imageArray = [cube, recprism, squarepyrmid, recpyramid, triprism];
 
