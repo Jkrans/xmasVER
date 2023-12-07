@@ -130,11 +130,24 @@ function App() {
         {currentComponent === 'NoEscape' && <NoEscape onPass={() => handlePass(() => setShowNoEscape(false), () => setShowStart(true))} />}
       </div>
 
-      <Footer
-        flaticonLinks={flaticonLinks}
-        designers='Jack Krans, Freepik, Wanicon, Juicy_Fish, Amonrat, AomAm, and Vectorslab'
-        marginTop="3rem"
-      />
+
+      {currentComponent === 'Start' && (
+        <Footer
+          flaticonLinks={flaticonLinks}
+          designers='Jack Krans, Freepik, Wanicon, Juicy_Fish, Amonrat, AomAm, and Vectorslab'
+          marginTop="0"
+        />
+      )}
+
+      {currentComponent !== 'Start' && (
+        <Footer
+          flaticonLinks={flaticonLinks}
+          designers='Jack Krans, Freepik, Wanicon, Juicy_Fish, Amonrat, AomAm, and Vectorslab'
+          marginTop="10rem"
+        />
+      )}
+
+
     </div>
   );
 }

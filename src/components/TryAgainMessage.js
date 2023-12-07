@@ -9,10 +9,13 @@ const TryAgainMessage = ({ message, isDisplayed, color, marginTop }) => {
 
     if (isDisplayed) {
       setVisibility('visible');
+      console.log("try again: ", isDisplayed);
       timer = setTimeout(() => {
         setVisibility('hidden');
+        isDisplayed = false;
+        console.log("try again: ", isDisplayed);
       }, 10000); // hide after 10 seconds
-    } else setVisibility('hidden');
+    }
 
     return () => clearTimeout(timer); // clear timeout on component unmount
   }, [isDisplayed]);

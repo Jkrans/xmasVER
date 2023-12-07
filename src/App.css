@@ -340,7 +340,7 @@ body {
 }
 
 .riddles-container {
-  margin-top: 8rem;
+  margin-top: 15rem;
   width: 80%;
   display: flex;
   align-items: center;
@@ -377,6 +377,24 @@ body {
     width: 100%;
     /* Each takes full width of the container */
   }
+}
+
+.ch2-submit-btn {
+  font-size: 3.8rem;
+  margin-top: 7rem;
+  width: 60%;
+  height: 7rem;
+  border-radius: 15px;
+  background-color: rgb(150, 216, 255);
+  font-family: 'Mountains of Christmas', serif;
+  font-weight: 700;
+  letter-spacing: 1rem;
+}
+
+.ch2-submit-btn:hover {
+
+  background-color: rgb(150, 195, 255);
+
 }
 
 
