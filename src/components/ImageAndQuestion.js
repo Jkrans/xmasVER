@@ -1,6 +1,6 @@
 const ImageAndQuestion = (props) => {
     // Constructor, state, and methods would be defined here if needed
-    const { riddle, handleInputChange, handleInputFocus, handleInputBlur, tryAgainMessage, img, degrees, left, units } = props;
+    const { riddle, handleInputChange, handleInputFocus, handleInputBlur, img, degrees, left, units } = props;
 
 
     return (

@@ -11,9 +11,7 @@ import TryAgain from './TryAgainMessage'
 
 const ChallengeTwo = ({ onPass }) => {
     const [riddles, setRiddles] = useState([]);
-    const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0); // starts from the first riddle
-    const [inputValues, setInputValues] = useState([]);
-    // const [userInput, setUserInput] = useState('');
+
     const [tryAgainMessage, setTryAgainMessage] = useState(false);
 
     const imageArray = [trees, wrapping2, gumballs, wrapping1, penguin];
@@ -92,7 +90,7 @@ const ChallengeTwo = ({ onPass }) => {
             setTryAgainMessage(true);
             setTimeout(() => {
                 setTryAgainMessage(false);
-            }, 10000);
+            }, 5000);
         }
     };
 
@@ -106,14 +104,13 @@ const ChallengeTwo = ({ onPass }) => {
         footerLinks.forEach(link => {
             link.style.color = "rgb(163,0,255)";
         });
-        console.log(riddles)
 
 
         return () => {
             // Remove styles when the component unmounts
             document.body.style.backgroundColor = '';
         };
-    }, []);
+    },);
 
     return (
         <div className="main--witch">
@@ -127,7 +124,7 @@ const ChallengeTwo = ({ onPass }) => {
                             left={index % 2 === 0}
                             degrees={index % 2 === 0 ? '3' : '-3'}
                             riddle={riddle.question}
-                            currentRiddleIndex={currentRiddleIndex}
+
                             units={riddle.units}
                             userInput={riddle.userInput || ''}
                             handleInputChange={(e) => handleInputChange(index, e)}
