@@ -86,7 +86,7 @@ const ChallengeTwo = ({ onPass }) => {
         });
 
         if (allSolved) {
-            onPass(true); // Move to next challenge
+            onPass(true);
         } else {
             // Handle the case where not all riddles are solved
             setTryAgainMessage(true);
