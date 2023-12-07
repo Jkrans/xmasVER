@@ -10,7 +10,7 @@ import PBFragment from './ProgressBarFragment';
 
 
 const ProgressBar = () => {
-    const currentComponent = useContext(CurrentComponentContext);
+    const currentComponent = useContext(CurrentComponentContext); //
 
     const componentName = [
         'Enclosure',
