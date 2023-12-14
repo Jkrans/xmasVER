@@ -182,5 +182,20 @@ app.get('/api/riddles/xver2', async (req, res) => {
     }
 });
 
+// get all train room riddles
+app.get('/api/riddles/xver1', async (req, res) => {
+    try {
+        // Execute the SQL query
+        const result = await db.query("SELECT * FROM riddles WHERE website = 'xver1'");
+
+        // Send the result as a JSON response
+        res.json(result.rows);
+    } catch (err) {
+        // Handle any errors
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 
 

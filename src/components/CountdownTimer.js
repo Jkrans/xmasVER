@@ -1,7 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
+import { motion } from "framer-motion"
 
 const CountdownTimer = ({ onCountdownEnd, onTimeUpdate }) => {
     const [timer, setTimer] = useState(60 * 60);
+    const fullBodyConstraint = {
+        top: 0,
+        right: 200,
+        bottom: window.innerHeight - 225,
+        left: -20,
+    };
 
     const hasEnded = useRef(false); // to help ensure onCountdownEnd is only called once
 
@@ -35,12 +42,15 @@ const CountdownTimer = ({ onCountdownEnd, onTimeUpdate }) => {
     }, [onCountdownEnd, onTimeUpdate]);
 
     return (
-        <div className="countdown">
-            <div>
+
+        <div className="example-container sticky-container">
+
+            <motion.div drag dragConstraints={fullBodyConstraint}>
                 <p>X-MAS</p><p>Morning</p>
                 <p>{formatTime(timer)}</p>
-            </div>
+            </motion.div >
         </div>
+
     )
 }
 

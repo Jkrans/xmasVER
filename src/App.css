@@ -103,34 +103,7 @@ body {
   margin-left: 1rem;
 }
 
-.countdown {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 7rem;
-  height: 5rem;
-  background-color: rgba(0, 0, 0, 0.11);
-  margin-right: 1rem;
-  color: rgba(255, 255, 255, 0.50);
-  border-radius: 8px;
-  position: sticky;
-  top: 8rem;
-  left: 2rem;
-  z-index: 1;
-}
 
-.countdown div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.countdown div p {
-  font-weight: bold;
-  margin: 0;
-  font-family: "Play", Monaco, monospace;
-}
 
 .story-content {
   width: 65%;
@@ -160,7 +133,6 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
 }
 
 .image--row {
@@ -380,22 +352,18 @@ body {
 }
 
 .ch2-submit-btn {
-  font-size: 3.8rem;
+  font-size: 3rem;
   margin-top: 7rem;
-  width: 60%;
+  width: 45%;
   height: 7rem;
   border-radius: 15px;
+  border: none;
   background-color: rgb(150, 216, 255);
   font-family: 'Mountains of Christmas', serif;
   font-weight: 700;
   letter-spacing: 1rem;
 }
 
-.ch2-submit-btn:hover {
-
-  background-color: rgb(150, 195, 255);
-
-}
 
 
 /*****************************/
@@ -1096,4 +1064,32 @@ ol {
 .fade-out {
   opacity: 0;
   transition: opacity 2s ease;
+}
+
+.sticky-container {
+  position: sticky;
+  top: 0.5rem;
+  z-index: 10;
+}
+
+.example-container div {
+  background-color: rgba(0, 0, 0, 0.11);
+  color: rgba(255, 255, 255, 0.50);
+  border-radius: 30px;
+  width: 9rem;
+  height: 8rem;
+  position: sticky;
+  top: 0rem;
+  left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.example-container div p {
+  font-weight: bold;
+  margin: 0;
+  font-family: "Play", Monaco, monospace;
 }

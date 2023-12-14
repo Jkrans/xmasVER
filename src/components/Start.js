@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-// import elf from '../images/elf-running.png'
+import { motion } from "framer-motion";
 
 const Start = ({ onPass }) => {
 
@@ -22,8 +22,8 @@ const Start = ({ onPass }) => {
   const enter = () => { onPass(true) }
   return (
     <div className="start-page">
-      <h1>The North Pole Escape</h1>
-      <button onClick={enter}>Enter</button>
+      <motion.h1 whileHover={{ scale: 1.05 }}  >The North Pole Escape</motion.h1>
+      <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.6 }} transition={{ type: "spring", stiffness: 400, damping: 10 }} onClick={enter}>Enter</motion.button>
     </div>
   )
 }

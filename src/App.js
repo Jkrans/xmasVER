@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext } from 'react'
 import './App.css';
 import './Animate.css';
+import './Train.css';
 import Header from './components/Header'
 import Footer from "./components/Footer"
 import Enclosure from './components/ChallengeOne';

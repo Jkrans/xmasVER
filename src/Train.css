@@ -1,0 +1,64 @@
+.train-container {
+    width: 75%;
+    display: flex;
+    transform: translateX(87vw);
+    /* 87  3 -74.5 -149.5 -224*/
+    transition: transform 5s ease-in-out;
+}
+
+.train-img {
+    width: 100%;
+    height: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    aspect-ratio: 16 / 9;
+    position: relative;
+}
+
+.traincar-img {
+    width: 42%;
+    height: auto;
+    border: 9px solid rgba(0, 0, 0);
+    border-radius: 22px;
+    position: absolute;
+    top: 11.2rem;
+    left: 18rem;
+}
+
+.train-riddles {
+    opacity: 0;
+    transition: opacity 7s;
+    width: 40%;
+    margin: 2rem 0 -4rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-self: center;
+    flex-shrink: 0;
+    z-index: 10;
+    /* Prevents the div from shrinking below its set width */
+}
+
+.train-riddles p {
+    font-size: 1.7rem;
+    text-align: center;
+    color: white;
+}
+
+.train-riddles input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.697);
+}
+
+.train-riddles input:focus {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid rgb(150, 216, 255);
+}

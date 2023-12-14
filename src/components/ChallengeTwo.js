@@ -7,6 +7,7 @@ import wrapping2 from '../images/wrapingpresents2.png'
 import wrapping1 from '../images/wrappingpresents-expanded.png'
 import penguin from '../images/penguin-expanded.png'
 import TryAgain from './TryAgainMessage'
+import { motion } from "framer-motion";
 
 
 const ChallengeTwo = ({ onPass }) => {
@@ -136,7 +137,7 @@ const ChallengeTwo = ({ onPass }) => {
 
                 </>
             )}
-            <button className='ch2-submit-btn' onClick={checkAllRiddles}>Submit Answers</button>
+            <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 400, damping: 10 }} className='ch2-submit-btn' onClick={checkAllRiddles}>Submit Answers</ motion.button>
             <TryAgain
                 message='Please try again'
                 isDisplayed={tryAgainMessage}
