@@ -5,7 +5,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Gabarito&family=Shadows+Into+Light&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Linefont:wght@300&display=swap');
 
 :root {
   box-sizing: border-box;
@@ -117,13 +116,18 @@ body {
 .story-content h2 {
   font-family: 'Mountains of Christmas', serif;
   font-size: 5rem;
+  align-self: center;
   letter-spacing: 1rem;
+  text-align: center;
+  /* Add this line */
 }
 
 .story-content p {
+  letter-spacing: .1rem;
   font-size: 1.5rem;
   font-weight: bold;
   font-family: 'Gabarito', sans-serif;
+  line-height: 3rem;
   margin: 0;
 }
 
@@ -1070,10 +1074,11 @@ ol {
   position: sticky;
   top: 0.5rem;
   z-index: 10;
+  width: 12rem;
 }
 
 .example-container div {
-  background-color: rgba(0, 0, 0, 0.11);
+  background-color: rgba(255, 255, 255, 0);
   color: rgba(255, 255, 255, 0.50);
   border-radius: 30px;
   width: 9rem;
@@ -1086,10 +1091,38 @@ ol {
   justify-content: center;
   align-items: center;
   z-index: 2;
+  box-shadow: 5px 2px 20px rgb(0, 0, 0, .5);
 }
 
 .example-container div p {
   font-weight: bold;
   margin: 0;
   font-family: "Play", Monaco, monospace;
+}
+
+.no-escape-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+}
+
+.no-escape-container img {
+  border-radius: 5%;
+  width: 55%;
+}
+
+.no-escape-container button {
+  border-radius: 25%;
+  font-family: 'Mountains of Christmas', serif;
+  font-weight: 700;
+  border: none;
+  box-shadow: 5px 2px 20px rgb(0, 0, 0, 0.5);
+  font-size: 2.6rem;
+  width: 15rem;
+  height: 10rem;
+  color: rgba(255, 255, 255, 0.94);
+  background-color: rgba(118, 188, 118, 1);
+  cursor: pointer;
 }

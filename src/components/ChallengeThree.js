@@ -1,46 +1,89 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Story from './Story'
-// import PigpenLetters from './PigpenLetters'
-import pigpen from '../images/pigpen-cipher-key.png'
-import truck from '../images/pickup-truck.png'
-import latchleft from '../images/latch-left.png'
-import latchright from '../images/latch-right.png'
-import latchbolt from '../images/latch-bolt.png'
-import latchtop from '../images/latch-parts.png'
-import TryAgain from './TryAgainMessage';
+import Card from './card'
 
 const ChallengeThree = ({ onPass }) => {
-    const [moveLatch, setMoveLatch] = useState(false);
-    // const [showHintButton, setShowHintButton] = useState(false);
-    const [userAnswer1, setUserAnswer1] = useState("");
-    const [userAnswer2, setUserAnswer2] = useState("");
-    const [userAnswer3, setUserAnswer3] = useState("");
-    const [userAnswer4, setUserAnswer4] = useState("");
-    const [showTryAgainMessage, setShowTryAgainMessage] = useState(false);
-    const [cipherExpanded, setCipherExpanded] = useState(false);
-
-    const cipherRef = useRef(null);
-    const latchRef = useRef(null);
+    const [cards, setCards] = useState([]);
+    const [flippedCards, setFlippedCards] = useState([]);
+    const [matchedCards, setMatchedCards] = useState([]);
 
 
-    const handleScroll = () => {
-        if (window.scrollY > 400) {
-            document.querySelector('.pigpen-container').classList.add('center-screen');
-            window.removeEventListener('scroll', handleScroll);
-        }
-    }
+    const gridRef = useRef(null);
+
+    const initializeCards = () => {
+        const initialCards = [
+            { id: 1, content: '⅓ + 5/3 ', answer: 2 },
+            { id: 2, content: '25% of 8', answer: 2 },
+            { id: 3, content: '⅖ x 20', answer: 8 },
+            { id: 4, content: '40% of 20', answer: 8 },
+            { id: 5, content: '3/50 + 11/20 ', answer: .61 },
+            { id: 6, content: '2.36-1.75 ', answer: .61 },
+            { id: 7, content: 'Area of triangle with a base of 4 and height of 3', answer: 6 },
+            { id: 8, content: '30% of 20', answer: 6 },
+            { id: 9, content: 'The GCF of 42 & 28', answer: 7 },
+            { id: 10, content: '(3 x 8) ÷ 2 - 5', answer: 7 },
+            { id: 11, content: '14.2 x 2.3 ', answer: 32.66 },
+            { id: 12, content: '102.3-69.64', answer: 32.66 },
+            { id: 13, content: '4/5 - ½', answer: .3 },
+            { id: 14, content: '10-9.7', answer: .3 },
+            { id: 15, content: 'Area of a rectangle with a base of 6 and height of 8', answer: 48 },
+            { id: 16, content: '5:6 and 40:?', answer: 48 },
+            // ...and so on for each pair
+        ];
+
+        // Shuffle the cards
+        initialCards.sort(() => Math.random() - 0.5);
+
+        return initialCards;
+    };
+
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            // Clean-up: remove the event listener when the component is unmounted
-            window.removeEventListener('scroll', handleScroll);
-        };
-    });
+        setCards(initializeCards());
+    }, []);
+
+
+    const handleFlip = (cardId) => {
+        // Prevent flipping more than two cards or already matched cards
+        if (flippedCards.length === 2 || matchedCards.includes(cardId)) return;
+
+        setFlippedCards(prevFlippedCards => [...prevFlippedCards, cardId]);
+
+        if (flippedCards.length === 1) {
+            // Check for a match
+            const firstCard = cards.find(card => card.id === flippedCards[0]);
+            const secondCard = cards.find(card => card.id === cardId);
+
+            if (firstCard.answer === secondCard.answer) {
+                // It's a match
+                setMatchedCards(prevMatchedCards => {
+                    const newMatchedCards = [...prevMatchedCards, firstCard.id, secondCard.id];
+
+                    // Check if all cards are matched
+                    if (newMatchedCards.length === cards.length) {
+                        // All cards are matched
+                        setTimeout(() => { onPass(); }, 2000)
+
+                    }
+
+                    return newMatchedCards;
+                });
+
+                setFlippedCards([]);
+            } else {
+                // No match, flip them back after a delay
+                setTimeout(() => {
+                    setFlippedCards([]);
+                }, 2000);
+            }
+        }
+    };
+
+
 
     useEffect(() => {
         // Set styles when the component mounts
-        document.body.style.background = 'linear-gradient(rgb(102, 123, 138) 25%, rgb(181, 92, 7)';
+        document.body.style.background = 'linear-gradient(rgb(124, 3, 108) 25%, rgb(181, 7, 7)';
         document.getElementsByClassName('header--h1')[0].style.color = 'rgb(255, 255, 255, 0.8)';
 
         const footerLinks = document.querySelectorAll('.footer a, .footer p');
@@ -55,118 +98,25 @@ const ChallengeThree = ({ onPass }) => {
         };
     }, []);
 
-    useEffect(() => {
-        const cipher = cipherRef.current;
-        const handleTransitionEnd = () => {
-            if (cipherExpanded) {
-                cipher.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-
-            cipher.removeEventListener('transitionend', handleTransitionEnd);
-        };
-
-        // Add the event listener
-        cipher.addEventListener('transitionend', handleTransitionEnd);
-
-        // Clean up function
-        return () => {
-            cipher.removeEventListener('transitionend', handleTransitionEnd);
-        };
-    }, [cipherExpanded]);
-
-    const handleCipherClick = () => {
-        setCipherExpanded(!cipherExpanded);
-        cipherRef.current.classList.toggle('pigpen-slide-up');
-    };
-
-    // helper function 
-    const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-
-    useEffect(() => {
-        const animateLatch = async () => {
-            const latch = latchRef.current;
-            if (moveLatch) {
-                latch.style.transform = 'rotateX(180deg)';
-                latch.style.top = '-94px';
-
-                await delay(1000);
-                latch.style.left = '165px';
-
-                await delay(1000);
-                latch.style.transform = 'rotateX(0deg)';
-                latch.style.top = '87px';
-            }
-        };
-
-        animateLatch();
-    }, [moveLatch]);
-
-    const checkAnswer = async () => {
-        let timer;
-        if (userAnswer1.toLowerCase().trim() !== "lift up" ||
-            userAnswer2.toLowerCase().trim() !== "slide right" ||
-            userAnswer3.toLowerCase().trim() !== "drop down" ||
-            userAnswer4.toLowerCase().trim() !== "pull open") {
-            setShowTryAgainMessage(true);
-            timer = setTimeout(() => {
-                setShowTryAgainMessage(false);
-            }, 10000);
-            return;
-        } else setShowTryAgainMessage(false);
-
-        setMoveLatch(true);
-        await delay(2000);
-        onPass(true);
-        return () => clearTimeout(timer); // clear timeout on component unmount
-    }
-
     return (
         <div className="main--witch">
-            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/3" color="rgb(255,255,255,0.8)" width="70%" />
-            <div className="main-pp-wrapper ">
-                {/* <p>Figure out which letters are missing in the key to the right before you can solve the cipher below. This may require a pencil and paper.</p> */}
+            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/10" color="rgb(255,255,255,0.8)" width="70%" />
+            <div ref={gridRef} className="puzzle-grid">
 
-                <div className='pigpen-container slide-in'>
-                    <img src={truck} alt="pickup-truck with caged turkey in the back." />
-                    <div className='pigpen-cipher flex-center '>
-                        <div ref={cipherRef} onClick={handleCipherClick} className='pigpen-img flex-center '>
-                            <p>Cipher Key</p>
-                            <img src={pigpen} alt="pigpen cipher key" width='68%' height='90%' />
-                        </div>
-                        <h5>Latch Instructions:</h5>
-                        <ol className='unselectable'>
-                            <li><span className='pigpen-font'>lift up</span></li>
-                            <li><span className='pigpen-font'>slide right</span></li>
-                            <li><span className='pigpen-font'>drop down</span></li>
-                            <li><span className='pigpen-font'>pull open</span></li>
-                        </ol>
-                    </div>
-                </div>
+                {cards.map(card => (
+                    <Card
+                        key={card.id}
+                        id={card.id}
+                        content={card.content}
+                        isFlipped={flippedCards.includes(card.id) || matchedCards.includes(card.id)}
+                        onFlip={handleFlip}
+                    />
+                ))}
+
 
             </div>
-            <div className='pigpen-cipher-container'>
-                <div className='pigpen-submit-wrapper'>
-                    <div style={{ width: '55%' }}>
-                        <p>Enter the instructions below:</p>
-                        <input type="text" placeholder='Cipher 1...' onChange={(e) => setUserAnswer1(e.target.value)} />
-                        <input type="text" placeholder='Cipher 2...' onChange={(e) => setUserAnswer2(e.target.value)} />
-                        <input type="text" placeholder='Cipher 3...' onChange={(e) => setUserAnswer3(e.target.value)} />
-                        <input type="text" placeholder='Cipher 4...' onChange={(e) => setUserAnswer4(e.target.value)} />
-                        <button className='ch3-submit' onClick={checkAnswer}>Submit Instructions</button>
-                        <TryAgain message='Please try again. Check spelling.' isDisplayed={showTryAgainMessage} marginTop='1rem' color='black' />
 
-                    </div>
-                    <div style={{ width: '45%', position: 'relative' }}>
-                        <img className="latch latchleft" src={latchleft} alt='' />
-                        <img className="latch latchright" src={latchright} alt='' />
-                        <img ref={latchRef} className="latch latchbolt" src={latchbolt} alt='' />
-                        <img className="latch latchtop" src={latchtop} alt='' />
-                    </div>
-                </div>
-
-            </div>
         </div>
     )
 }
-
 export default ChallengeThree

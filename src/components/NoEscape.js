@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import cooked from '../images/cooked.png';
-import yikes from '../images/scared.png';
+import { motion } from "framer-motion"
+import Story from "./Story"
+import sad from "../images/sadxmas.png"
 
 const NoEscape = ({ onPass }) => {
 
@@ -26,13 +27,11 @@ const NoEscape = ({ onPass }) => {
 
   return (
     <div className="main--witch">
-      <div className='centerItems failed'>
-        <img id='success-img' className='' src={cooked} alt="" />
-        <img id='success-img' className='pumpkin-looking' src={yikes} width='20%' alt="" />
-        <div className='failed-text centerItems'>
-          <h1>Cooked</h1>
-          <button onClick={handleTryAgain}>Try Again</button>
-        </div>
+      <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/9" color="rgb(255,255,255,0.8)" width="78%" />
+      <div className="no-escape-container">
+        <img src={sad}></img>
+        <motion.button onClick={handleTryAgain}
+          whileTap={{ scale: 0.97, boxShadow: 'inset 5px 2px 5px rgb(0, 0, 0, .5)' }}>Try Again</motion.button>
       </div>
     </div>
   )

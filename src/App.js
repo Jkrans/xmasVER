@@ -2,6 +2,7 @@ import { useState, useEffect, createContext } from 'react'
 import './App.css';
 import './Animate.css';
 import './Train.css';
+import './Challenge3.css';
 import Header from './components/Header'
 import Footer from "./components/Footer"
 import Enclosure from './components/ChallengeOne';
@@ -122,7 +123,7 @@ function App() {
       )}
 
       <div className={`${transitionClass}`}>
-        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowCornMaze(true))} />}
+        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowEscaped(true))} />}
         {currentComponent === 'Enclosure' && <Enclosure onPass={() => handlePass(() => setShowEnclosure(false), () => setShowCornMaze(true))} />}
         {currentComponent === 'CornMaze' && <CornMaze onPass={() => handlePass(() => setShowCornMaze(false), () => setShowCage(true))} />}
         {currentComponent === 'Cage' && <Cage onPass={() => handlePass(() => setShowCage(false), () => setShowKitchen(true))} />}

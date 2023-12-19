@@ -45,7 +45,10 @@ const CountdownTimer = ({ onCountdownEnd, onTimeUpdate }) => {
 
         <div className="example-container sticky-container">
 
-            <motion.div drag dragConstraints={fullBodyConstraint}>
+            <motion.div drag dragConstraints={fullBodyConstraint}
+                whileHover={{ scale: 1.05, boxShadow: '5px 2px 30px rgb(0, 0, 0, .5)' }}
+                whileTap={{ scale: 0.95, boxShadow: '5px 2px 10px rgb(0, 0, 0, .5)' }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }} >
                 <p>X-MAS</p><p>Morning</p>
                 <p>{formatTime(timer)}</p>
             </motion.div >
