@@ -29,7 +29,7 @@ const NoEscape = ({ onPass }) => {
     <div className="main--witch">
       <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/9" color="rgb(255,255,255,0.8)" width="78%" />
       <div className="no-escape-container">
-        <img src={sad}></img>
+        <img src={sad} alt='group of sad children looking to the sky'></img>
         <motion.button onClick={handleTryAgain}
           whileTap={{ scale: 0.97, boxShadow: 'inset 5px 2px 5px rgb(0, 0, 0, .5)' }}>Try Again</motion.button>
       </div>

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import treeicon from '../images/card-icons/tree-icon.png'
 

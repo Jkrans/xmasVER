@@ -18,8 +18,6 @@ import breakfast from '../images/breakfast-snowboy.png'
 import frost from '../images/frost-monster.webp'
 import bugged from '../images/bugged.png'
 
-import TryAgain from './TryAgainMessage'
-
 
 
 
