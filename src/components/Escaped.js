@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
-// import whitehouse from '../images/white-house.png'
-import winningturkey from '../images/winningturkey.png'
 
-import medal from '../images/medal.png'
+import gold from '../images/golden-ornament.png'
+
 import Story from './Story'
 
 
@@ -12,11 +11,11 @@ const Escaped = ({ formattedTime }) => {
 
     // Set styles when the component mounts
     useEffect(() => {
-        document.body.style.background = 'linear-gradient(rgb(97, 200, 255) 60%, rgb(0, 73, 10) 80%)';
-        document.querySelector('.header--h1').style.color = 'rgb(255, 255, 255, 0.8)'
+        document.body.style.background = 'linear-gradient(rgb(19, 56, 58), rgb(0, 250, 255) 80%)';
+        document.querySelector('.header--h1').style.color = 'rgb(150, 216, 255, .8)'
         const footerLinks = document.querySelectorAll('.footer a, .footer p');
         footerLinks.forEach(link => {
-            link.style.color = "rgb(0, 73, 10)";
+            link.style.color = "rgb(0, 250, 255)";
         });
 
         // Remove styles when the component unmounts
@@ -27,21 +26,23 @@ const Escaped = ({ formattedTime }) => {
 
     return (
         <div className="main--witch">
-            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/5" color="black" width="78%" />
+            <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/11" color="white" width="78%" />
             <div className='success'>
 
 
                 <div className='success-medal flex-center' >
-                    <img src={medal} alt='' />
+                    {/* <img src={gold} alt='' /> */}
                     <div className='success-blob'>
-                        <h1>Pardoned!</h1>
-                        <h2>with {formattedTime} to spare.</h2>
+                        <h1>Congratulations!</h1>
+                        <h2>You saved Christmas with {formattedTime} before Santa has to deliver the first presents. Enjoy this break, just {formattedTime} before your preparations start for next year!</h2>
                     </div>
                 </div>
-
                 <div className='success-icon-container'>
-                    <img src={winningturkey} alt='' />
+                    <img src={gold} alt='' />
                 </div>
+
+
+
 
 
             </div>

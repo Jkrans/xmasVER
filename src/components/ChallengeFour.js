@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react'
+// Shapes
+
+import { useEffect, useState, useRef } from 'react'
 import Story from './Story'
 import squarepyrmid from '../images/squarepyrmid.png'
 import recprism from '../images/rectangularprism.png'
 import recpyramid from '../images/rectangularpyrmid.png'
 import triprism from '../images/triangularprism.png'
 import cube from '../images/cube.png'
-import TryAgain from './TryAgainMessage'
 
 
 const ChallengeFour = ({ onPass }) => {
@@ -13,7 +14,7 @@ const ChallengeFour = ({ onPass }) => {
     const [currentRiddleIndex, setCurrentRiddleIndex] = useState(0); // starts from the first riddle
     const [userInput, setUserInput] = useState('');
     const [tryAgainMessage, setTryAgainMessage] = useState(false);
-    // const [scrollHeight, setScrollHeight] = useState(1638);
+    const inputRef = useRef(null);
 
     useEffect(() => {
         async function fetchRiddles() {
@@ -34,13 +35,37 @@ const ChallengeFour = ({ onPass }) => {
 
     const imageArray = [cube, recprism, squarepyrmid, recpyramid, triprism];
 
+    const updateBorderColor = (input, index) => {
+        const riddleInput = inputRef.current;
+        let isCorrect = riddles[index].answer.some(answer =>
+            riddleInput.value.includes(answer)
+        );
+
+        if (isCorrect) {
+            riddleInput.style.borderBottom = '2px solid rgb(0, 255, 0)'; // Correct answer, green
+            setTimeout(() => {
+                riddleInput.style.borderBottom = '2px solid rgb(150, 216, 255)';
+            }, 1000)
+        }
+        else if (input.value !== '' && !isCorrect) {
+            riddleInput.style.borderBottom = '2px solid rgb(255, 0, 0)'; // Incorrect answer, red
+            setTimeout(() => {
+                riddleInput.style.borderBottom = '2px solid rgb(150, 216, 255)';
+            }, 1000)
+        }
+        else if (document.activeElement === input) {
+            riddleInput.style.borderBottom = '2px solid rgb(150, 216, 255)'; // Focused input, orange
+        } else {
+            riddleInput.style.borderBottom = '2px solid rgb(0, 0, 0)'; // Unfocused empty input, black
+        }
+    };
 
     const handleInputChange = (e) => {
         setUserInput(e.target.value);
     };
 
     const handleSubmit = (e) => {
-
+        updateBorderColor(e.target, currentRiddleIndex);
         let gTimer;
         e.preventDefault();
 
@@ -97,6 +122,7 @@ const ChallengeFour = ({ onPass }) => {
     return (
         <div className="main--witch">
             <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/6" color="rgb(255,255,255,0.8)" width="78%" />
+            {/* <button onClick={onPass}>click</button> */}
             {riddles.length > 0 && (
                 <>
                     <div class="floating-icon">
@@ -119,15 +145,9 @@ const ChallengeFour = ({ onPass }) => {
                             <div className='surfaceAreaProblem'>
                                 <p>{riddles[currentRiddleIndex].question}</p>
                                 <form onSubmit={handleSubmit} style={{ display: 'flex' }}>
-                                    <input type='text' value={userInput} onChange={handleInputChange} maxLength={35} />
+                                    <input ref={inputRef} type='text' value={userInput} onChange={handleInputChange} maxLength={35} />
                                     <p className="surfaceAreaProblemInputUnits" >inches squared</p>
                                 </form>
-                                <TryAgain
-                                    message='Please try again'
-                                    isDisplayed={tryAgainMessage}
-                                    marginTop='1rem'
-                                    color='black'
-                                />
                             </div>
                             <div className='shapeAndInput'>
                                 <img src={imageArray[riddles[currentRiddleIndex].img]} alt="Floating Icon" />

@@ -31,14 +31,7 @@ function extractLinkToObject(link) {
 }
 
 const flaticonLinks = [
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/turkey" title="turkey icons">Turkey icons created by Freepik - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/corn-cob" title="corn cob icons">Corn cob icons created by Vectorslab - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/pumpkin" title="pumpkin icons">Pumpkin icons created by Freepik - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/green-beans" title="green-beans icons">Green-beans icons created by AomAm - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/pumpkin-pie" title="pumpkin-pie icons">Pumpkin-pie icons created by amonrat rungreangfangsai - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/mashed-potatoes" title="mashed potatoes icons">Mashed potatoes icons created by juicy_fish - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-animated-icons/agriculture" title="agriculture animated icons">Scarecrow icons created by Freepik - Flaticon</a>'),
-  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/medal" title="medal icons">Medal icons created by wanicon - Flaticon</a>'),
+  extractLinkToObject('<a href="https://www.flaticon.com/free-icons/christmas" title="christmas icons">Christmas Tree icons created by Freepik - Flaticon</a>'),
 ];
 
 export const CurrentComponentContext = createContext();
@@ -123,11 +116,11 @@ function App() {
       )}
 
       <div className={`${transitionClass}`}>
-        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowEscaped(true))} />}
+        {currentComponent === 'Start' && <Start onPass={() => handlePass(() => setShowStart(false), () => setShowKitchen(true))} />}
+        {currentComponent === 'Kitchen' && <Kitchen onPass={() => handlePass(() => setShowKitchen(false), () => setShowCage(true))} />}
+        {currentComponent === 'Cage' && <Cage onPass={() => handlePass(() => setShowCage(false), () => setShowEnclosure(true))} />}
         {currentComponent === 'Enclosure' && <Enclosure onPass={() => handlePass(() => setShowEnclosure(false), () => setShowCornMaze(true))} />}
-        {currentComponent === 'CornMaze' && <CornMaze onPass={() => handlePass(() => setShowCornMaze(false), () => setShowCage(true))} />}
-        {currentComponent === 'Cage' && <Cage onPass={() => handlePass(() => setShowCage(false), () => setShowKitchen(true))} />}
-        {currentComponent === 'Kitchen' && <Kitchen onPass={() => handlePass(() => setShowKitchen(false), () => setShowEscaped(true))} />}
+        {currentComponent === 'CornMaze' && <CornMaze onPass={() => handlePass(() => setShowCornMaze(false), () => setShowEscaped(true))} />}
         {currentComponent === 'Escaped' && <Escaped formattedTime={formattedTime} />}
         {currentComponent === 'NoEscape' && <NoEscape onPass={() => handlePass(() => setShowNoEscape(false), () => setShowStart(true))} />}
       </div>
@@ -136,7 +129,7 @@ function App() {
       {currentComponent === 'Start' && (
         <Footer
           flaticonLinks={flaticonLinks}
-          designers='Jack Krans, Freepik, Wanicon, Juicy_Fish, Amonrat, AomAm, and Vectorslab'
+          designers='Freepik'
           marginTop="0"
         />
       )}
@@ -144,7 +137,7 @@ function App() {
       {currentComponent !== 'Start' && (
         <Footer
           flaticonLinks={flaticonLinks}
-          designers='Jack Krans, Freepik, Wanicon, Juicy_Fish, Amonrat, AomAm, and Vectorslab'
+          designers='Freepik'
           marginTop="10rem"
         />
       )}

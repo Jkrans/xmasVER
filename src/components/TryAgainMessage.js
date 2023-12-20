@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import jackolantern from '../images/jackolantern.png'
 
 const TryAgainMessage = ({ message, isDisplayed, color, marginTop }) => {
   const [visibility, setVisibility] = useState(isDisplayed ? 'visible' : 'hidden');
@@ -25,8 +24,7 @@ const TryAgainMessage = ({ message, isDisplayed, color, marginTop }) => {
       marginTop: marginTop,
       visibility: visibility,
     }}>
-      <img src={jackolantern} width='30px' alt="" />
-      <p style={{ color: color, fontSize: '1rem' }} className='speech-bubble'>{message}</p>
+      <p style={{ color: color, fontSize: '1.2rem' }} className='speech-bubble'>{message}</p>
 
     </div>
   );

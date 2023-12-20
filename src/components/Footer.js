@@ -9,10 +9,10 @@ const Footer = (props) => {
         {props.flaticonLinks.map((link, index) => (
           <a key={index} href={link.href} title={link.title} target='_blank' rel="noreferrer" >
             {link.text}{index < props.flaticonLinks.length - 1 ? '/' : ''}
+            <p style={{ display: 'inline' }}> Icon created by {props.designers} - Flaticon</p>
           </a>
         ))}
       </div>
-      <p style={{ display: 'inline' }}>Icons created by {props.designers} - Flaticon</p>
       <p>Copyright © {currentYear} Jeremy Krans. All Rights Reserved.</p>
 
     </div>

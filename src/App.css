@@ -40,6 +40,7 @@ body {
 
 .start-page {
   background-image: url('./images/elf-running.png');
+  /* background-image: url('./images/jackfrost2.png'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: right;
@@ -110,7 +111,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 3rem 0 6rem 0
+  margin: 7rem 0 6rem 0
 }
 
 .story-content h2 {
@@ -608,8 +609,8 @@ ol {
   justify-content: center;
   align-items: center;
   padding: 4px;
-  width: 45px;
-  height: 45px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-color: white;
   z-index: 1;
@@ -894,17 +895,14 @@ ol {
 }
 
 .success {
-  background-image: url('./images/white-house.png');
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
   opacity: 1;
+  margin-top: -10rem;
   background-size: cover;
   background-repeat: no-repeat;
-  width: 1200px;
-  height: 1200px;
-  margin-top: -30rem;
   z-index: -1;
 }
 
@@ -912,6 +910,8 @@ ol {
   transform: scaleX(-1);
   padding-left: 5rem;
   width: 32%;
+  transform: rotate(-25deg);
+  transform-origin: bottom;
 }
 
 .success-icon-container img {
@@ -923,8 +923,8 @@ ol {
   background-image: url('./images/blob.svg');
   background-size: cover;
   background-repeat: no-repeat;
-  width: 56%;
-  height: 56%;
+  width: 800px;
+  height: 800px;
   margin: 0rem 0rem 8rem -3rem;
   flex-direction: row;
   padding: 1.5rem;
@@ -934,22 +934,25 @@ ol {
 }
 
 .success-medal img {
-  width: 40%;
+  width: 25%;
+  transform: rotate(25deg);
+  transform-origin: center;
 }
 
 .success-blob {
   text-align: center;
+  width: 60%;
 }
 
 .success-blob h1 {
   font-size: 4rem;
-  margin: 0%;
+  margin: 0 0 0 1rem;
   font-family: 'Shadows Into Light';
 }
 
 .success-blob h2 {
   font-size: 1.5rem;
-  margin: 0%;
+  margin: 0 0 0 1rem;
 }
 
 .failed {
@@ -1038,13 +1041,13 @@ ol {
 
 .speech-bubble {
   position: relative;
-  background: #d6d6d6;
+  background: #00000024;
   border-radius: .4em;
   padding: .2rem .5rem;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
 }
 
-.speech-bubble:before {
+/* .speech-bubble:before {
   content: '';
   position: absolute;
   left: 0;
@@ -1057,7 +1060,7 @@ ol {
   border-bottom: 0;
   margin-top: -5px;
   margin-left: -10px;
-}
+} */
 
 .fade-in {
   opacity: 1;
@@ -1101,17 +1104,18 @@ ol {
 }
 
 .no-escape-container {
-  width: 100%;
+  width: 78%;
   display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
 
 .no-escape-container img {
-  border-radius: 5%;
-  width: 55%;
+  margin-right: 2rem;
+  border-radius: 50px;
+  width: 78%;
 }
+
 
 .no-escape-container button {
   border-radius: 25%;

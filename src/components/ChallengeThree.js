@@ -1,3 +1,5 @@
+// matching cards
+
 import React, { useEffect, useState, useRef } from 'react'
 import Story from './Story'
 import Card from './card'
@@ -84,11 +86,11 @@ const ChallengeThree = ({ onPass }) => {
     useEffect(() => {
         // Set styles when the component mounts
         document.body.style.background = 'linear-gradient(rgb(124, 3, 108) 25%, rgb(181, 7, 7)';
-        document.getElementsByClassName('header--h1')[0].style.color = 'rgb(255, 255, 255, 0.8)';
+        document.getElementsByClassName('header--h1')[0].style.color = 'rgb(150, 216, 255, .8)';
 
         const footerLinks = document.querySelectorAll('.footer a, .footer p');
         footerLinks.forEach(link => {
-            link.style.color = "rgb(181, 92, 7)";
+            link.style.color = "rgb(181, 7, 7)";
         })
 
 
@@ -101,6 +103,7 @@ const ChallengeThree = ({ onPass }) => {
     return (
         <div className="main--witch">
             <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/10" color="rgb(255,255,255,0.8)" width="70%" />
+            {/* <button onClick={onPass}>click</button> */}
             <div ref={gridRef} className="puzzle-grid">
 
                 {cards.map(card => (

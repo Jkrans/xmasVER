@@ -1,3 +1,5 @@
+// The Clock Room
+
 import { useEffect, useState } from 'react'
 import Story from './Story'
 import ImageAndQuestion from './ImageAndQuestion'
@@ -99,7 +101,7 @@ const ChallengeTwo = ({ onPass }) => {
     useEffect(() => {
         // Set styles when the component mounts
         document.body.style.background = 'linear-gradient(rgb(15, 87, 213) 25%, rgb(163,0,255)';
-        document.getElementsByClassName('header--h1')[0].style.color = 'rgb(255, 255, 255, 0.8)';
+        document.getElementsByClassName('header--h1')[0].style.color = 'rgb(150, 216, 255, .8)';
 
         const footerLinks = document.querySelectorAll('.footer a, .footer p');
         footerLinks.forEach(link => {
@@ -116,6 +118,8 @@ const ChallengeTwo = ({ onPass }) => {
     return (
         <div className="main--witch">
             <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/7" color="rgb(255,255,255,0.8)" width="78%" />
+            {/* <button onClick={onPass}>click</button> */}
+
             {riddles.length > 0 && (
                 <>
                     {riddles.map((riddle, index) => (
@@ -139,10 +143,10 @@ const ChallengeTwo = ({ onPass }) => {
             )}
             <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 400, damping: 10 }} className='ch2-submit-btn' onClick={checkAllRiddles}>Submit Answers</ motion.button>
             <TryAgain
-                message='Please try again'
+                message='Check Your Answers'
                 isDisplayed={tryAgainMessage}
                 marginTop='1rem'
-                color='black'
+                color='white'
             />
         </div>
 

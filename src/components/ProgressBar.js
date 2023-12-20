@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { CurrentComponentContext } from '../App';
 
-import pie from '../images/pumpkin-pie.png';
-
-import cage from '../images/cage.png';
-import oven from '../images/oven.png';
+import shape from '../images/card-icons/shape.png';
+import tree from '../images/card-icons/tree.png';
+import train from '../images/card-icons/train.png';
+import clock from '../images/card-icons/clock.png';
 
 import PBFragment from './ProgressBarFragment';
 
@@ -13,10 +13,10 @@ const ProgressBar = () => {
     const currentComponent = useContext(CurrentComponentContext); //
 
     const componentName = [
+        'Kitchen',
+        'Cage',
         'Enclosure',
         'CornMaze',
-        'Cage',
-        'Kitchen',
         'Escaped'
     ];
 
@@ -39,34 +39,34 @@ const ProgressBar = () => {
     return (
         <div className="progress-bar">
             <PBFragment
-                img={pie}
+                img={shape}
                 backgroundColorBubble={getBackgroundColor(currentComponent, componentName, 0)}
                 backgroundColorLine={getBackgroundColorLine(currentComponent, componentName, 1)}
                 imgVisibility={setImageVisible(currentComponent, componentName, 1)}
-                imgPixels="38px"
+                imgPixels="50px"
             />
 
             <PBFragment
-                img={pie}
+                img={tree}
                 backgroundColorBubble={getBackgroundColor(currentComponent, componentName, 1)}
                 backgroundColorLine={getBackgroundColorLine(currentComponent, componentName, 2)}
                 imgVisibility={setImageVisible(currentComponent, componentName, 2)}
-                imgPixels='38px'
+                imgPixels='50px'
             />
 
             <PBFragment
-                img={cage}
+                img={train}
                 backgroundColorBubble={getBackgroundColor(currentComponent, componentName, 2)}
                 backgroundColorLine={getBackgroundColorLine(currentComponent, componentName, 3)}
                 imgVisibility={setImageVisible(currentComponent, componentName, 3)}
-                imgPixels='33px'
+                imgPixels='50px'
             />
             <PBFragment
-                img={oven}
+                img={clock}
                 backgroundColorBubble={getBackgroundColor(currentComponent, componentName, 3)}
                 backgroundColorLine={getBackgroundColorLine(currentComponent, componentName, 4)}
                 imgVisibility={setImageVisible(currentComponent, componentName, 4)}
-                imgPixels='33px'
+                imgPixels='50px'
                 lineDisplay='none'
             />
 

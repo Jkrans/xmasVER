@@ -1,3 +1,5 @@
+// Train room
+
 import { useEffect, useState, useRef } from 'react'
 import { motion } from "framer-motion";
 
@@ -13,6 +15,7 @@ import rich from '../images/rich.png'
 import laundry from '../images/laundry-santa.png'
 import sheets from '../images/gingerbread-sheets.png'
 import breakfast from '../images/breakfast-snowboy.png'
+import frost from '../images/frost-monster.webp'
 import bugged from '../images/bugged.png'
 
 import TryAgain from './TryAgainMessage'
@@ -169,7 +172,7 @@ const ChallengeOne = ({ onPass }) => {
   useEffect(() => {
     // Set styles when the component mounts
     document.body.style.background = 'linear-gradient(rgb(15, 87, 213) 25%, rgb(163,0,255)';
-    document.getElementsByClassName('header--h1')[0].style.color = 'rgb(255, 255, 255, 0.8)';
+    document.getElementsByClassName('header--h1')[0].style.color = 'rgb(150, 216, 255, .8)';
 
     const footerLinks = document.querySelectorAll('.footer a, .footer p');
     footerLinks.forEach(link => {
@@ -186,6 +189,7 @@ const ChallengeOne = ({ onPass }) => {
   return (
     <div className="main--witch">
       <Story apiUrl="https://turkeyver-backend-production.up.railway.app/api/stories/8" color="rgb(255,255,255,0.8)" width="78%" />
+      {/* <button onClick={onPass}>click</button> */}
       {riddles.length > 0 && (
         <>
 
@@ -236,7 +240,7 @@ const ChallengeOne = ({ onPass }) => {
             </div>
             <div className='train-img' style={{ backgroundImage: `url(${traincar})`, backgroundSize: 'cover' }} ></div>
             <div className='train-img' style={{ backgroundImage: `url(${traincar})`, backgroundSize: 'cover' }} >
-              <motion.img whileHover={{ scale: 1.5 }} className='traincar-img' src={breakfast} alt="Gumballs" />
+              <motion.img whileHover={{ scale: 1.5 }} className='traincar-img' src={frost} alt="Gumballs" />
             </div>
             <div className='train-img' style={{ backgroundImage: `url(${traincar})`, backgroundSize: 'cover' }} ></div>
             <div className='train-img' style={{ backgroundImage: `url(${traincar})`, backgroundSize: 'cover' }} >
