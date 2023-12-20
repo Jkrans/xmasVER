@@ -34,7 +34,7 @@ const Escaped = ({ formattedTime }) => {
                     {/* <img src={gold} alt='' /> */}
                     <div className='success-blob'>
                         <h1>Congratulations!</h1>
-                        <h2>You saved Christmas with {formattedTime} before Santa has to deliver the first presents. Enjoy this break, just {formattedTime} before your preparations start for next year!</h2>
+                        <h2>You saved Christmas with {formattedTime} left before Santa has to deliver the first presents. Enjoy this break, just {formattedTime} before your preparations start for next year!</h2>
                     </div>
                 </div>
                 <div className='success-icon-container'>

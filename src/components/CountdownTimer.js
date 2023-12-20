@@ -49,7 +49,7 @@ const CountdownTimer = ({ onCountdownEnd, onTimeUpdate }) => {
                 whileHover={{ scale: 1.05, boxShadow: '5px 2px 30px rgb(0, 0, 0, .5)' }}
                 whileTap={{ scale: 0.95, boxShadow: '5px 2px 10px rgb(0, 0, 0, .5)' }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }} >
-                <p>X-MAS</p><p>Morning</p>
+                <p>X-MAS</p><p>in</p>
                 <p>{formatTime(timer)}</p>
             </motion.div >
         </div>
