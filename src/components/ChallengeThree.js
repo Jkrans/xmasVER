@@ -14,23 +14,22 @@ const ChallengeThree = ({ onPass }) => {
 
     const initializeCards = () => {
         const initialCards = [
-            { id: 1, content: '⅓ + 5/3 ', answer: 2 },
-            { id: 2, content: '25% of 8', answer: 2 },
-            { id: 3, content: '⅖ x 20', answer: 8 },
-            { id: 4, content: '40% of 20', answer: 8 },
-            { id: 5, content: '3/50 + 11/20 ', answer: .61 },
-            { id: 6, content: '2.36-1.75 ', answer: .61 },
-            { id: 7, content: 'Area of triangle with a base of 4 and height of 3', answer: 6 },
-            { id: 8, content: '30% of 20', answer: 6 },
-            { id: 9, content: 'The GCF of 42 & 28', answer: 7 },
-            { id: 10, content: '(3 x 8) ÷ 2 - 5', answer: 7 },
-            { id: 11, content: '14.2 x 2.3 ', answer: 32.66 },
-            { id: 12, content: '102.3-69.64', answer: 32.66 },
-            { id: 13, content: '4/5 - ½', answer: .3 },
-            { id: 14, content: '10-9.7', answer: .3 },
-            { id: 15, content: 'Area of a rectangle with a base of 6 and height of 8', answer: 48 },
-            { id: 16, content: '5:6 and 40:?', answer: 48 },
-            // ...and so on for each pair
+            { id: 1, content: '7 x 7', answer: 49 },
+            { id: 2, content: '100 - 51', answer: 49 },
+            { id: 3, content: '6 + 14', answer: 20 },
+            { id: 4, content: '4 x 5', answer: 20 },
+            { id: 5, content: '12 - 5', answer: 7 },
+            { id: 6, content: '3 x 3 - 2', answer: 7 },
+            { id: 7, content: '8 + 16', answer: 24 },
+            { id: 8, content: '3 x 8', answer: 24 },
+            { id: 9, content: '15 ÷ 3', answer: 5 },
+            { id: 10, content: '10 ÷ 2', answer: 5 },
+            { id: 11, content: '9 + 9', answer: 18 },
+            { id: 12, content: '2 x 9', answer: 18 },
+            { id: 13, content: '12 ÷ 4', answer: 3 },
+            { id: 14, content: '6 ÷ 2', answer: 3 },
+            { id: 15, content: '11 + 11', answer: 22 },
+            { id: 16, content: '2 x 11', answer: 22 },
         ];
 
         // Shuffle the cards
